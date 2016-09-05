@@ -14,6 +14,13 @@ const config = {
   resolve: {
     extensions: ['', '.js', '.jsx']
   },
+  loaders: [
+    {
+      test: /\.jsx?$/,
+      include: path.join(__dirname, 'src'),
+      loader: 'babel'
+    }
+  ],
   plugins: [
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
