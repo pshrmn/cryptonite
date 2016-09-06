@@ -1,5 +1,6 @@
 from django.conf.urls import url, include
 from django.contrib import admin
+from django.views.generic import RedirectView
 
 from catch_all.views import base_view, unknown_api
 
@@ -17,6 +18,9 @@ urlpatterns = [
 
 urlpatterns += [
     url(r'^admin/', admin.site.urls),
+    # because the catch all prevents APPEND_SLASHES from redirecting
+    # /admin to /admin/, the redirect needs to be done manually
+    url(r'^admin$', RedirectView.as_view(pattern_name='admin:index', permanent=True))
 ]
 
 """
