@@ -1,9 +1,12 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
 
 import { PInput } from './inputs';
 import { login } from '../api/auth';
+import { loginUser, setErrors } from '../actions';
 
-export default React.createClass({
+const LoginForm = React.createClass({
   getInitialState: function() {
     return {
       username: '',
@@ -23,14 +26,17 @@ export default React.createClass({
   handleSubmit: function(event) {
     event.preventDefault();
     login(this.state.username, this.state.password)
+      .then(resp => resp.json())
       .then(resp => {
-        resp.json()
-          .then(body => {
-            console.log(body);
-          })
+        if ( resp.success ) {
+          this.props.loginUser(resp.user);
+          this.props.router.push('/');
+        } else {
+          return Promise.reject(resp.errors);
+        }
       })
-      .catch(err => {
-        console.error(err);
+      .catch(errs => {
+        this.props.setErrors(errs);
       });
   },
   render: function() {
@@ -52,3 +58,13 @@ export default React.createClass({
     );
   }
 });
+
+export default connect(
+  state => ({
+    errors: state.errors
+  }),
+  {
+    loginUser,
+    setErrors
+  }
+)(withRouter(LoginForm));

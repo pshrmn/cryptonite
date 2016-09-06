@@ -1,37 +1,68 @@
 import React from 'react';
-import { Link } from 'react-router';
+import { IndexLink, Link, withRouter } from 'react-router';
+import { connect } from 'react-redux';
 
 import { logout } from '../api/auth';
+import { logoutUser } from '../actions';
 
-function Header(props, context) {
-  const logoutHandler = event => {
-    event.preventDefault();
-    logout()
-      .then(() => {
-        context.router.push('/');
-      })
-  }
+function Header(props) {
+  const {
+    user,
+    logoutUser
+  } = props;
   return (
     <header>
+      <IndexLink to={{pathname: '/'}}>Cryptonite</IndexLink>
       <nav>
-        <ul>
-          <li>
-            <Link to={{pathname: 'signup'}}>Sign Up</Link>
-          </li>
-          <li>
-            <Link to={{pathname: 'login'}}>Login</Link>
-          </li>
-          <li>
-            <a href='#' onClick={logoutHandler}>Logout</a>
-          </li>
-        </ul>
+        { user.authenticated ?
+          <LoggedIn user={user} logoutUser={logoutUser} />
+          : <LoggedOut />
+        }
       </nav>
     </header>
   );
 }
 
-Header.contextTypes = {
-  router: React.PropTypes.object
-};
+const LoggedIn = withRouter(function(props) {
+  const logoutHandler = event => {
+    event.preventDefault();
+    logout()
+      .then(() => {
+        props.logoutUser();
+        props.router.push('/');
+      })
+  }
 
-export default  Header;
+  return (
+    <ul>
+      <li>
+        { props.user.username }
+      </li>
+      <li>
+        <a href='#' onClick={logoutHandler}>Logout</a>
+      </li>
+    </ul>
+  );
+});
+
+function LoggedOut(props) {
+  return (
+    <ul>
+      <li>
+        <Link to={{pathname: 'signup'}}>Sign Up</Link>
+      </li>
+      <li>
+        <Link to={{pathname: 'login'}}>Login</Link>
+      </li>
+    </ul>
+  );
+}
+
+export default connect(
+  state => ({
+    user: state.user
+  }),
+  {
+    logoutUser
+  }
+)(Header);

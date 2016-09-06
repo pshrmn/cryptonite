@@ -1,6 +1,6 @@
 {
   "name": "cryptonite",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "The React powered front end of Cryptonite",
   "main": "src/index.js",
   "scripts": {
@@ -21,7 +21,9 @@
   "dependencies": {
     "react": "^15.3.1",
     "react-dom": "^15.3.1",
+    "react-redux": "^4.4.5",
     "react-router": "^2.7.0",
+    "redux": "^3.6.0",
     "whatwg-fetch": "^1.0.0"
   },
   "devDependencies": {

@@ -4,7 +4,6 @@ import { getCSRFToken } from '../helpers/csrf';
 
 export const login = (username, password) => {
   const csrf = getCSRFToken();
-  console.log(csrf);
   return fetch('/api/auth/login', {
     method: 'POST',
     credentials: 'same-origin',

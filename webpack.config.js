@@ -5,7 +5,14 @@ const config = {
   context: path.join(__dirname, 'src'),
   entry: {
     bundle: './index.js',
-    vendor: ['react', 'react-dom', 'react-router']
+    vendor: [
+      'react',
+      'react-dom',
+      'react-router',
+      'redux',
+      'react-redux',
+      'whatwg-fetch'
+    ]
   },
   output: {
     path: path.join(__dirname, 'cryptonite', 'static'),
