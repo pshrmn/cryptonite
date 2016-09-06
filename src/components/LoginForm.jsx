@@ -24,7 +24,10 @@ export default React.createClass({
     event.preventDefault();
     login(this.state.username, this.state.password)
       .then(resp => {
-        console.log(resp);
+        resp.json()
+          .then(body => {
+            console.log(body);
+          })
       })
       .catch(err => {
         console.error(err);

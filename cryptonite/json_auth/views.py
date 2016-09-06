@@ -1,5 +1,5 @@
 import json
-from django.http import JsonResponse, Http404
+from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_http_methods
 from django.contrib.auth import (get_user_model, authenticate,
@@ -17,7 +17,10 @@ def signup(request):
     automatically be logged in.
     """
     if request.user.is_authenticated():
-        raise Http404
+        return JsonResponse({
+            'success': False,
+            'errors': ['Cannot create an account when you are already logged in']
+        })
     data = json.loads(request.body.decode())
     form = UserCreationForm(data)
     if form.is_valid():

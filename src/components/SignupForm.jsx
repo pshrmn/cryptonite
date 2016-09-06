@@ -30,7 +30,10 @@ export default React.createClass({
     event.preventDefault();
     signup(this.state.username, this.state.password1, this.state.password2)
       .then(resp => {
-        console.log(resp);
+        resp.json()
+          .then(body => {
+            console.log(body);
+          })
       })
       .catch(err => {
         console.error(err);
