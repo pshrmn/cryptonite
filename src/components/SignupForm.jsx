@@ -2,9 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 
-import { PInput } from './inputs';
+import { InputRow, Errors } from './inputs';
 import { signup } from '../api/auth';
-import { loginUser, setErrors } from '../actions';
+import { loginUser } from '../actions';
 
 const SignupForm = React.createClass({
   getInitialState: function() {
@@ -41,26 +41,36 @@ const SignupForm = React.createClass({
           return Promise.reject(resp.errors)
         }
       })
-      .catch(errs => {
-        this.props.setErrors(errs);
+      .catch(errors => {
+        this.setState({ errors })
       });
   },
   render: function() {
+    const {
+      username,
+      password1,
+      password2,
+      errors = {}
+    } = this.state;
     return (
       <form onSubmit={this.handleSubmit}>
-        <PInput name='Username'
-                value={this.state.username}
+        <Errors errors={errors['__all__']} />
+        <InputRow name='Username'
+                value={username}
                 handler={this.handleUsername}
+                errors={errors.username}
                 id='signup-username-input' />
-        <PInput name='Password'
-                value={this.state.password1}
+        <InputRow name='Password'
+                value={password1}
                 type='password'
                 handler={this.handlePassword1}
+                errors={errors.password1}
                 id='signup-password1-input' />
-        <PInput name='Password (Verify)'
-                value={this.state.password2}
+        <InputRow name='Password (Verify)'
+                value={password2}
                 type='password'
                 handler={this.handlePassword2}
+                errors={errors.password2}
                 id='signup-password2-input' />
         <div>
           <button>Sign Up</button>
@@ -75,8 +85,7 @@ export default connect(
     errors: state.errors
   }),
   {
-    loginUser,
-    setErrors
+    loginUser
   }
 )(withRouter(SignupForm));
 

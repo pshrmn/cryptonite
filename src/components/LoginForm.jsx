@@ -2,15 +2,16 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 
-import { PInput } from './inputs';
+import { InputRow, Errors } from './inputs';
 import { login } from '../api/auth';
-import { loginUser, setErrors } from '../actions';
+import { loginUser } from '../actions';
 
 const LoginForm = React.createClass({
   getInitialState: function() {
     return {
       username: '',
-      password: ''
+      password: '',
+      errors: {}
     }
   },
   handleUsername: function(event) {
@@ -35,21 +36,29 @@ const LoginForm = React.createClass({
           return Promise.reject(resp.errors);
         }
       })
-      .catch(errs => {
-        this.props.setErrors(errs);
+      .catch(errors => {
+        this.setState({ errors })
       });
   },
   render: function() {
+    const {
+      username,
+      password,
+      errors = {}
+    } = this.state;
     return (
       <form onSubmit={this.handleSubmit}>
-        <PInput name='Username'
-                value={this.state.username}
+        <Errors errors={errors['__all__']} />
+        <InputRow name='Username'
+                value={username}
                 handler={this.handleUsername}
+                errors={errors.username}
                 id='login-username-input' />
-        <PInput name='Password'
-                value={this.state.password}
+        <InputRow name='Password'
+                value={password}
                 type='password'
                 handler={this.handlePassword}
+                errors={errors.password}
                 id='login-password-input' />
         <div>
           <button>Login</button>
@@ -64,7 +73,6 @@ export default connect(
     errors: state.errors
   }),
   {
-    loginUser,
-    setErrors
+    loginUser
   }
 )(withRouter(LoginForm));

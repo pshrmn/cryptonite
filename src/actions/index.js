@@ -8,8 +8,3 @@ export const loginUser = user => ({
 export const logoutUser = () => ({
   type: types.LOGOUT_USER
 });
-
-export const setErrors = errors => ({
-  type: types.SET_ERRORS,
-  errors
-});

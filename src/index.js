@@ -8,8 +8,7 @@ import routes from './routes';
 import reducers from './reducers';
 
 const intialState = {
-  user: window.__INITIAL_STATE__.user,
-  errors: {}
+  user: window.__INITIAL_STATE__.user
 };
 
 const reducer = combineReducers(reducers);
