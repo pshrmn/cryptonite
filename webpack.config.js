@@ -5,7 +5,7 @@ const config = {
   context: path.join(__dirname, 'src'),
   entry: {
     bundle: './index.js',
-    vendor: ['react', 'react-dom']
+    vendor: ['react', 'react-dom', 'react-router']
   },
   output: {
     path: path.join(__dirname, 'cryptonite', 'static'),
@@ -14,13 +14,15 @@ const config = {
   resolve: {
     extensions: ['', '.js', '.jsx']
   },
-  loaders: [
-    {
-      test: /\.jsx?$/,
-      include: path.join(__dirname, 'src'),
-      loader: 'babel'
-    }
-  ],
+  module: {
+    loaders: [
+      {
+        test: /\.jsx?$/,
+        include: path.join(__dirname, 'src'),
+        loader: 'babel'
+      }
+    ]
+  },
   plugins: [
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',

@@ -1,0 +1,28 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cryptonite</title>
+  <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
+</head>
+<body>
+  <main></main>
+
+  <script type="text/javascript">
+    <!-- set this before the app is loaded -->
+    window.__INITIAL_STATE__ = {
+      'url': '{{ url }}',
+      'user': {
+        'authenticated': {{ user.is_authenticated|yesno:'true,false' }},
+        {% if user.is_authenticated %}
+        'username': '{{ user.username }}',
+        'pk': {{ user.pk }}
+        {% endif %}
+      }
+    }
+  </script>
+  <script src="{% static 'js/polyfill.min.js' %}"></script>
+  <script src="{% static 'js/vendor.js' %}"></script>
+  <script src="{% static 'js/bundle.js' %}"></script>
+</body>
+</html>
