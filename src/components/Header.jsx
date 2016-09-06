@@ -41,6 +41,9 @@ const LoggedIn = withRouter(function(props) {
       <li>
         <a href='#' onClick={logoutHandler}>Logout</a>
       </li>
+      <li>
+        <Link to={{pathname: 'change-password'}}>Change Password</Link>
+      </li>
     </ul>
   );
 });

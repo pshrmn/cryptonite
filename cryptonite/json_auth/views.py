@@ -3,8 +3,10 @@ from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_http_methods
 from django.contrib.auth import (get_user_model, authenticate,
-                                 login as auth_login, logout as auth_logout)
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+                                 login as auth_login, logout as auth_logout,
+                                 update_session_auth_hash)
+from django.contrib.auth.forms import (UserCreationForm, AuthenticationForm,
+                                       PasswordChangeForm)
 
 User = get_user_model()
 
@@ -70,3 +72,21 @@ def logout(request):
     return JsonResponse({
         'success': True
     })
+
+
+@require_http_methods(['POST'])
+def change_password(request):
+    data = json.loads(request.body.decode())
+    form = PasswordChangeForm(request.user, data=data)
+    if form.is_valid():
+        form.save()
+        update_session_auth_hash(request, form.user)
+        return JsonResponse({
+            'success': True,
+            'errors': []
+        })
+    else:
+        return JsonResponse({
+            'success': False,
+            'errors': form.errors
+        })

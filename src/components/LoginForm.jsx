@@ -69,9 +69,7 @@ const LoginForm = React.createClass({
 });
 
 export default connect(
-  state => ({
-    errors: state.errors
-  }),
+  null,
   {
     loginUser
   }

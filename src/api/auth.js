@@ -41,3 +41,18 @@ export const logout = () => {
     },
   });
 };
+
+export const changePassword = (oldPassword, password1, password2) => {
+  return fetch('/api/auth/change_password', {
+    method: 'POST',
+    credentials: 'same-origin',
+    headers: {
+      'X-CSRFToken': getCSRFToken(),
+    },
+    body: JSON.stringify({
+      'old_password': oldPassword,
+      'new_password1': password1,
+      'new_password2': password2
+    })
+  });
+};
