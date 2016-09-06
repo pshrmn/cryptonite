@@ -1,3 +1,22 @@
+#app-base {
+
+}
+
+header {
+  
+}
+
+main {
+  display: block;
+  min-height: 80vh;
+  width: 80vw;
+  margin: 0 auto;
+}
+
+footer {
+  text-align: center;
+}
+
 .input-row {
   margin: 10px 0;
 }

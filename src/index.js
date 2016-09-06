@@ -19,5 +19,5 @@ ReactDOM.render(
   <Provider store={store}>
     <Router routes={routes} history={browserHistory} />
   </Provider>,
-  document.querySelector('main')
+  document.querySelector('#app-holder')
 );

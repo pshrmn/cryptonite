@@ -1,5 +1,5 @@
 import React from 'react';
-import ChangePasswordForm from '../components/ChangePasswordForm';
+import ChangePasswordForm from '../../components/ChangePasswordForm';
 
 export default function ChangePassword(props) {
   return (

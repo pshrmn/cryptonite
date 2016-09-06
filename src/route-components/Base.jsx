@@ -5,9 +5,11 @@ import Footer from '../components/Footer';
 
 export default function Base(props) {
   return (
-    <div>
+    <div id='app-base'>
       <Header />
-      { props.children }
+      <main>
+        { props.children }
+      </main>
       <Footer />
     </div>
   );
