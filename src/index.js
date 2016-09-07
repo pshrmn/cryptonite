@@ -4,7 +4,7 @@ import { Router, browserHistory  } from 'react-router';
 import { Provider } from 'react-redux';
 import { createStore, combineReducers } from 'redux';
 
-import routes from './routes';
+import routeMaker from './routes';
 import reducers from './reducers';
 
 const intialState = {
@@ -14,6 +14,26 @@ const intialState = {
 const reducer = combineReducers(reducers);
 
 const store = createStore(reducer, intialState);
+
+const requireAuth = (nextState, replace) => {
+  const { user } = store.getState();
+  if ( !user.authenticated ) {
+    replace({
+      pathname: '/login'
+    })
+  }
+}
+
+const requireUnauth = (nextState, replace) => {
+  const { user } = store.getState();
+  if ( user.authenticated ) {
+    replace({
+      pathname: '/'
+    })
+  } 
+}
+
+const routes = routeMaker(requireAuth, requireUnauth);
 
 ReactDOM.render(
   <Provider store={store}>

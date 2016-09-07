@@ -12,7 +12,7 @@ function Header(props) {
   } = props;
   return (
     <header>
-      <IndexLink to={{pathname: '/'}}>Cryptonite</IndexLink>
+      <IndexLink id='home' to={{pathname: '/'}}>Cryptonite</IndexLink>
       <nav>
         { user.authenticated ?
           <LoggedIn user={user} logoutUser={logoutUser} />
@@ -36,13 +36,10 @@ const LoggedIn = withRouter(function(props) {
   return (
     <ul>
       <li>
-        { props.user.username }
+        <Link className='cap' to={{pathname: 'profile'}}>{ props.user.username }</Link>
       </li>
       <li>
         <a href='#' onClick={logoutHandler}>Logout</a>
-      </li>
-      <li>
-        <Link to={{pathname: 'change-password'}}>Change Password</Link>
       </li>
     </ul>
   );
