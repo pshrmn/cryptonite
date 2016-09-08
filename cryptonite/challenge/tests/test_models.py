@@ -26,16 +26,14 @@ class ChallengeTestCase(TestCase):
             name='Easy',
             encrypted='GRFG',
             decrypted='TEST',
-            cipher='S',
-            known_cipher=True
+            description='This message was encrypted using ROT13'
         )
         path = Path.objects.create(name='Path')
         self.has_path = Challenge.objects.create(
             name='Medium',
             encrypted='ZRQVHZ',
             decrypted='MEDIUM',
-            cipher='S',
-            known_cipher=False
+            description='This message was encrypted using ROT13'
         )
         path.challenge_set.add(self.has_path)
 
@@ -50,13 +48,9 @@ class ChallengeTestCase(TestCase):
         self.assertEqual(no_path_dict.get('pk'), self.no_path.pk)
         self.assertEqual(no_path_dict.get('name'), self.no_path.name)
         self.assertEqual(no_path_dict.get('encrypted'), self.no_path.encrypted)
-        self.assertEqual(no_path_dict.get('cipher'), self.no_path.cipher)
+        self.assertEqual(no_path_dict.get('description'), self.no_path.description)
         # as_dict does not include the decrypted message
         self.assertNotIn('decrypted', no_path_dict)
-
-        # the cipher is not included in path's where known_cipher=False
-        has_path_dict = self.has_path.as_dict()
-        self.assertNotIn('cipher', has_path_dict)
 
     def test_decrypted_dict(self):
         no_path_dict = self.no_path.decrypted_dict()
@@ -72,16 +66,14 @@ class CompletedChallengeTestCase(TestCase):
             name='Easy',
             encrypted='GRFG',
             decrypted='TEST',
-            cipher='S',
-            known_cipher=True
+            description='This message was encrypted using ROT13'
         )
         path = Path.objects.create(name='Path')
         self.has_path = Challenge.objects.create(
             name='Medium',
              encrypted='ZRQVHZ',
              decrypted='MEDIUM',
-             cipher='S',
-             known_cipher=False
+             description='This message was encrypted using ROT13'
         )
         path.challenge_set.add(self.has_path)
 

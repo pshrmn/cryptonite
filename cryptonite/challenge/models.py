@@ -17,14 +17,6 @@ class Path(models.Model):
         }
 
 
-SHIFT = 'S'
-VIGENERE = 'V'
-CIPHER_CHOICES = (
-    (SHIFT, 'Shift'),
-    (VIGENERE, 'Vigenere')
-)
-
-
 class Challenge(models.Model):
     """
     A Challenge presents the user with an encrypted message which
@@ -33,12 +25,7 @@ class Challenge(models.Model):
     name = models.CharField(max_length=200)
     encrypted = models.CharField(max_length=1000)
     decrypted = models.CharField(max_length=1000)
-    cipher = models.CharField(max_length=1,
-                              choices=CIPHER_CHOICES,
-                              default=SHIFT)
-    # if known_cipher is True, the type of cipher used to encrypt
-    # the message will be shown to the User
-    known_cipher = models.BooleanField(default=True)
+    description = models.CharField(max_length=10000, default='')
     path = models.ForeignKey(Path,
                              null=True,
                              blank=True,
@@ -48,10 +35,9 @@ class Challenge(models.Model):
         challenge = {
             'pk': self.pk,
             'name': self.name,
-            'encrypted': self.encrypted
+            'encrypted': self.encrypted,
+            'description': self.description
         }
-        if self.known_cipher:
-            challenge['cipher'] = self.cipher
         return challenge
 
     def decrypted_dict(self):

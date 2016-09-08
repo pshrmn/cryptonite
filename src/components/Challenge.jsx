@@ -77,6 +77,10 @@ const Challenge = React.createClass({
       message,
       decrypted
     } = this.state;
+
+    // only a logged in user that is logged in can do challenges. Include a
+    // 'nextPathname' state variable in the Links so that when a user logs in or
+    // signs up, they will be redirected back to the challenge
     if ( !user || !user.authenticated ) {
       const redirectState = {
         nextPathname: `/challenge/${challengeID}`
@@ -97,7 +101,7 @@ const Challenge = React.createClass({
       <div className='challenge'>
         <Errors errors={errors['__all__']} />
         <h1>{challenge.name }{ decrypted ? '✓' : null}</h1>
-        { challenge.cipher ? `Encrypted using ${challenge.cipher}` : null }
+        { challenge.description }
         <p>
           { challenge.encrypted }
         </p>
