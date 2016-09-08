@@ -10,6 +10,7 @@ urlpatterns = [
         include(
             [
                 url(r'^auth/', include('json_auth.urls')),
+                url(r'^challenge/', include('challenge.urls')),
                 url(r'^(?:.*)/?$', unknown_api, name='unknown_api')
             ]
         )

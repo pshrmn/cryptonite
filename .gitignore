@@ -6,3 +6,4 @@ node_modules
 *.db
 
 cryptonite/cryptonite/settings/dev.py
+cryptonite/staticfiles/

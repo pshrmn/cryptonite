@@ -36,7 +36,7 @@ const SignupForm = React.createClass({
       .then(resp => {
         if ( resp.success ) {
           this.props.loginUser(resp.user);
-          this.props.router.push('/');
+          this.props.router.push(this.props.next || '/');
         } else {
           return Promise.reject(resp.errors)
         }

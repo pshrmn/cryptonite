@@ -11,6 +11,8 @@ import {
   CryptoIntro,
   ShiftCipher
 } from './route-components/lessons';
+import Challenges from './route-components/Challenges';
+import Challenge from './route-components/Challenge';
 
 /*
  * This function takes two functions, requireAuth and requireUnauth.
@@ -55,6 +57,14 @@ export default function (requireAuth, requireUnauth) {
       {
         path: 'learn/shift-cipher',
         component: ShiftCipher
+      },
+      {
+        path: 'challenges',
+        component: Challenges
+      },
+      {
+        path: 'challenge/:challengeID',
+        component: Challenge
       }
     ]
   };

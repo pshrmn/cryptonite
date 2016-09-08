@@ -2,13 +2,14 @@ import 'whatwg-fetch';
 
 import { getCSRFToken } from '../helpers/csrf';
 
+const URL_BASE = '/api/auth';
+
 export const login = (username, password) => {
-  const csrf = getCSRFToken();
-  return fetch('/api/auth/login', {
+  return fetch(`${URL_BASE}/login`, {
     method: 'POST',
     credentials: 'same-origin',
     headers: {
-      'X-CSRFToken': csrf,
+      'X-CSRFToken': getCSRFToken(),
     },
     body: JSON.stringify({
       username,
@@ -18,7 +19,7 @@ export const login = (username, password) => {
 };
 
 export const signup = (username, password1, password2) => {
-  return fetch('/api/auth/signup', {
+  return fetch(`${URL_BASE}/signup`, {
     method: 'POST',
     credentials: 'same-origin',
     headers: {
@@ -33,7 +34,7 @@ export const signup = (username, password1, password2) => {
 };
 
 export const logout = () => {
-  return fetch('/api/auth/logout', {
+  return fetch(`${URL_BASE}/logout`, {
     method: 'POST',
     credentials: 'same-origin',
     headers: {
@@ -43,7 +44,7 @@ export const logout = () => {
 };
 
 export const changePassword = (oldPassword, password1, password2) => {
-  return fetch('/api/auth/change_password', {
+  return fetch(`${URL_BASE}/change_password`, {
     method: 'POST',
     credentials: 'same-origin',
     headers: {

@@ -8,22 +8,26 @@ import routeMaker from './routes';
 import reducers from './reducers';
 
 const intialState = {
-  user: window.__INITIAL_STATE__.user
+  user: window.__INITIAL_STATE__.user,
+  challenges: {}
 };
-
 const reducer = combineReducers(reducers);
-
 const store = createStore(reducer, intialState);
 
 const requireAuth = (nextState, replace) => {
   const { user } = store.getState();
   if ( !user.authenticated ) {
     replace({
-      pathname: '/login'
+      pathname: '/login',
+      state: {
+        nextPathname: nextState.location.pathname
+      }
     })
   }
 }
 
+// this function is used to prevent a logged in user
+// from visiting the login/signup pages
 const requireUnauth = (nextState, replace) => {
   const { user } = store.getState();
   if ( user.authenticated ) {

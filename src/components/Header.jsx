@@ -15,6 +15,10 @@ function Header(props) {
     {
       key: 'learn',
       component: <Link to={{pathname: '/learn'}}>Learn</Link>
+    },
+    {
+      key: 'challenges',
+      component: <Link to={{pathname: '/challenges'}}>Challenges</Link>
     }
   ];
   if ( user.authenticated ) {
@@ -29,7 +33,7 @@ function Header(props) {
   } else {
     links.push({
       key: 'signup',
-      component: <Link to={{pathname: '/signup'}}>Login</Link>
+      component: <Link to={{pathname: '/signup'}}>Signup</Link>
     });
     links.push({
       key: 'login',

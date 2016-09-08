@@ -8,3 +8,8 @@ export const loginUser = user => ({
 export const logoutUser = () => ({
   type: types.LOGOUT_USER
 });
+
+export const loadChallenge = challenge => ({
+  type: types.LOAD_CHALLENGE,
+  challenge
+});

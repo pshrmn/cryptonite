@@ -14,8 +14,8 @@ export default function ShiftCipher(props) {
           What is a substitution cipher?
         </h2>
         <p>
-          First, we need to start off with a set of characters. We will use the
-          English alphabet, which consists of 26 characters.
+          In order to create a substitution cipher we need to start with a set of
+          characters. We will use the English alphabet, which consists of 26 characters.
         </p>
         <div className='message'>
           A B C D E F G H I J K L M N O P Q R S T U V W X Y Z

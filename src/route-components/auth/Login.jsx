@@ -4,10 +4,14 @@ import { Link } from 'react-router';
 import LoginForm from '../../components/LoginForm';
 
 export default function Login(props) {
+  let next = '/';
+  if ( props.location.state && props.location.state.nextPathname ) {
+    next = props.location.state.nextPathname;
+  }
   return (
     <div>
       <h2>Login</h2>
-      <LoginForm />
+      <LoginForm next={next} />
       <p>
         Don't have an account? <Link to={{pathname: '/signup'}}>Sign up here</Link>
       </p>

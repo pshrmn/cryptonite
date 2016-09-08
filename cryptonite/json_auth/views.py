@@ -35,7 +35,7 @@ def signup(request):
                 'pk': user.pk
             },
             'success': True,
-            'errors': []
+            'errors': {}
         })
     else:
         return JsonResponse({
@@ -57,7 +57,7 @@ def login(request):
                 'pk': user.pk
             },
             'success': True,
-            'errors': []
+            'errors': {}
         })
     else:
         return JsonResponse({
