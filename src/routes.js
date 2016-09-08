@@ -6,7 +6,11 @@ import {
   Profile,
   ChangePassword
 } from './route-components/auth';
-
+import Learn from './route-components/Learn';
+import {
+  CryptoIntro,
+  ShiftCipher
+} from './route-components/lessons';
 
 /*
  * This function takes two functions, requireAuth and requireUnauth.
@@ -39,6 +43,18 @@ export default function (requireAuth, requireUnauth) {
         path: 'profile/change-password',
         component: ChangePassword,
         onEnter: requireAuth
+      },
+      {
+        path: 'learn',
+        component: Learn
+      },
+      {
+        path: 'learn/crypto-intro',
+        component: CryptoIntro
+      },
+      {
+        path: 'learn/shift-cipher',
+        component: ShiftCipher
       }
     ]
   };

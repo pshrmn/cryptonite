@@ -1,12 +1,13 @@
 {
   "name": "cryptonite",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "description": "The React powered front end of Cryptonite",
   "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "webpack:dev": "webpack",
-    "webpack:prod": "webpack"
+    "webpack:prod": "webpack",
+    "webpack:watch": "webpack --watch"
   },
   "repository": {
     "type": "git",

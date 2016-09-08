@@ -50,6 +50,12 @@ main {
 
 footer {
   text-align: center;
+  background: #27436f;
+  color: #fff;
+}
+
+footer a {
+ color: #fff; 
 }
 
 #home {
@@ -76,4 +82,12 @@ footer {
 
 .cap {
   text-transform: capitalize;
+}
+
+.message {
+  margin: 5px 0;
+  padding: 5px;
+  width: 100%;
+  background: #fff;
+  border: 1px solid #ccc;
 }

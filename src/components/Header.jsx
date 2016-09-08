@@ -10,20 +10,48 @@ function Header(props) {
     user,
     logoutUser
   } = props;
+
+  const links = [
+    {
+      key: 'learn',
+      component: <Link to={{pathname: '/learn'}}>Learn</Link>
+    }
+  ];
+  if ( user.authenticated ) {
+    links.push({
+      key: 'profile',
+      component: <Link className='cap' to={{pathname: 'profile'}}>{ user.username }</Link>
+    });
+    links.push({
+      key: 'logout',
+      component: <LogoutLink logoutUser={logoutUser} />
+    })
+  } else {
+    links.push({
+      key: 'signup',
+      component: <Link to={{pathname: '/signup'}}>Login</Link>
+    });
+    links.push({
+      key: 'login',
+      component: <Link to={{pathname: '/login'}}>Login</Link>
+    });
+  }
+
   return (
     <header>
       <IndexLink id='home' to={{pathname: '/'}}>Cryptonite</IndexLink>
       <nav>
-        { user.authenticated ?
-          <LoggedIn user={user} logoutUser={logoutUser} />
-          : <LoggedOut />
-        }
+        <ul>
+          {
+            links.map(l => <li key={l.key}>{l.component}</li>)
+          }
+        </ul>
       </nav>
     </header>
   );
 }
 
-const LoggedIn = withRouter(function(props) {
+const LogoutLink = withRouter(function(props) {
   const logoutHandler = event => {
     event.preventDefault();
     logout()
@@ -32,31 +60,8 @@ const LoggedIn = withRouter(function(props) {
         props.router.push('/');
       })
   }
-
-  return (
-    <ul>
-      <li>
-        <Link className='cap' to={{pathname: 'profile'}}>{ props.user.username }</Link>
-      </li>
-      <li>
-        <a href='#' onClick={logoutHandler}>Logout</a>
-      </li>
-    </ul>
-  );
+  return <a href='#' onClick={logoutHandler}>Logout</a>;
 });
-
-function LoggedOut(props) {
-  return (
-    <ul>
-      <li>
-        <Link to={{pathname: 'signup'}}>Sign Up</Link>
-      </li>
-      <li>
-        <Link to={{pathname: 'login'}}>Login</Link>
-      </li>
-    </ul>
-  );
-}
 
 export default connect(
   state => ({

@@ -40,6 +40,8 @@ const config = {
 }
 
 switch (process.env.npm_lifecycle_event) {
+case 'webpack:watch':
+  break;
 case 'webpack:dev':
   break;
 case 'webpack:prod':
