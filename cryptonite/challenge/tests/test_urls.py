@@ -8,15 +8,9 @@ class UrlsTestCase(TestCase):
     def setUp(self):
         self.start = '/api/challenge'
 
-    def test_path(self):
-        good_keys = [0, 1, 7, '8']
-        for key in good_keys:
-            url = reverse('challenge-path', kwargs={'pk': key})
-            self.assertEqual(url, '{}/path/{}'.format(self.start, key))
-        bad_keys = ['foo', '', None]
-        for key in bad_keys:
-            with self.assertRaises(NoReverseMatch):
-                reverse('challenge-path', kwargs={'pk': key})
+    def test_all_challenges(self):
+        url = reverse('challenge-all')
+        self.assertEqual(url, '{}/all'.format(self.start))
 
     def test_challenge(self):
         good_keys = [0, 1, 7, '8']

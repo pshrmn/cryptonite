@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
 import { Errors } from './inputs';
-import { challenges as fetchChallenges } from '../api/challenge';
+import { all_challenges } from '../api/challenge';
 import { loadChallenges } from '../actions';
 
 const Challenges = React.createClass({
@@ -13,7 +13,7 @@ const Challenges = React.createClass({
     }
   },
   componentDidMount: function() {
-    fetchChallenges()
+    all_challenges()
       .then(resp => resp.json())
       .then(resp => {
         if ( resp.success ) {

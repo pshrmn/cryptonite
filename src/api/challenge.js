@@ -4,17 +4,7 @@ import { getCSRFToken } from '../helpers/csrf';
 
 const URL_BASE = '/api/challenge';
 
-export const path = pathID => {
-  return fetch(`${URL_BASE}/path/${pathID}`, {
-    method: 'GET',
-    credentials: 'same-origin',
-    headers: {
-      'X-CSRFToken': getCSRFToken(),
-    }
-  });
-};
-
-export const challenges = () => {
+export const all_challenges = () => {
   return fetch(`${URL_BASE}/all`, {
     method: 'GET',
     credentials: 'same-origin',
