@@ -1,16 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router';
 
+import Challenges from '../components/Challenges';
 
-export default function Challenges(props) {
-  return (
-    <div>
-      <h1>Challenges</h1>
-      <ol>
-        <li>
-          <Link to={{pathname: `/challenge/1`}}>Challenge 1</Link>
-        </li>
-      </ol>
-    </div>
-  );
+export default function ChallengesRoute(props) {
+  return <Challenges />;
 }

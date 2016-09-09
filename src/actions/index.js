@@ -13,3 +13,8 @@ export const loadChallenge = challenge => ({
   type: types.LOAD_CHALLENGE,
   challenge
 });
+
+export const loadChallenges = challenges => ({
+  type: types.LOAD_CHALLENGES,
+  challenges
+});

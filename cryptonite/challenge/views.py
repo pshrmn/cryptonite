@@ -27,6 +27,15 @@ def path(request, pk):
 
 @require_http_methods(['GET'])
 @login_required
+def all_challenges(request):
+    return JsonResponse({
+        'success': True,
+        'errors': {},
+        'challenges': [c.as_dict() for c in Challenge.objects.all()]
+    })
+
+@require_http_methods(['GET'])
+@login_required
 def challenge(request, pk):
     try:
         challenge = Challenge.objects.get(pk=pk)

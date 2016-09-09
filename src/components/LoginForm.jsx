@@ -26,7 +26,6 @@ const LoginForm = React.createClass({
   },
   handleSubmit: function(event) {
     event.preventDefault();
-    console.log('loginform props', this.props);
     login(this.state.username, this.state.password)
       .then(resp => resp.json())
       .then(resp => {
