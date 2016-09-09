@@ -28,10 +28,15 @@ def path(request, pk):
 @require_http_methods(['GET'])
 @login_required
 def all_challenges(request):
+    challenges = Challenge.objects.all()
+    challenges_dict = {c.pk: c.as_dict() for c in challenges}
+    for completed in CompletedChallenge.objects.filter(user=request.user):
+        challenges_dict[completed.challenge.pk]['completed'] = True
+    challenges_list = [c for c in challenges_dict.values()]
     return JsonResponse({
         'success': True,
         'errors': {},
-        'challenges': [c.as_dict() for c in Challenge.objects.all()]
+        'challenges': challenges_list
     })
 
 @require_http_methods(['GET'])
@@ -46,10 +51,14 @@ def challenge(request, pk):
                 '__all__': ['The Challenge cannot be found']
             }
         })
+    challenge_dict = challenge.as_dict()
+    completed = challenge.completedchallenge_set.filter(user=request.user)
+    if completed:
+        challenge_dict['completed'] = True
     return JsonResponse({
         'success': True,
         'errors': {},
-        'challenge': challenge.as_dict()
+        'challenge': challenge_dict
     })
 
 

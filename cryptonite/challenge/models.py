@@ -31,6 +31,9 @@ class Challenge(models.Model):
                              blank=True,
                              on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.name
+
     def as_dict(self):
         challenge = {
             'pk': self.pk,
@@ -55,6 +58,9 @@ class CompletedChallenge(models.Model):
                                   on_delete=models.CASCADE)
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
                              on_delete=models.CASCADE)
+
+    def __str__(self):
+        return '{} - {}'.format(self.challenge, self.user)
 
     def as_dict(self):
         return self.challenge.decrypted_dict()

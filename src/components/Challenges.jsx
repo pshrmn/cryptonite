@@ -38,6 +38,7 @@ const Challenges = React.createClass({
       return (
         <li key={c.pk} >
           <Link to={{pathname: `/challenge/${c.pk}`}}>{c.name}</Link>
+          <span className='completed'>{c.completed ? '✓' : null}</span>
         </li>
       );
     });

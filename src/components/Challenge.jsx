@@ -100,7 +100,7 @@ const Challenge = React.createClass({
     return (
       <div className='challenge'>
         <Errors errors={errors['__all__']} />
-        <h1>{challenge.name }{ decrypted ? '✓' : null}</h1>
+        <h1>{challenge.name }{ decrypted || challenge.completed ? '✓' : null}</h1>
         { challenge.description }
         <p>
           { challenge.encrypted }

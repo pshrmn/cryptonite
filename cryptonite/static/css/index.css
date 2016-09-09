@@ -46,6 +46,7 @@ main {
   padding: 25px 10vw;
   display: block;
   min-height: 90vh;
+  color: #222;
 }
 
 footer {
@@ -56,6 +57,10 @@ footer {
 
 footer a {
  color: #fff; 
+}
+
+a {
+  color: #222;
 }
 
 #home {
@@ -90,4 +95,8 @@ footer a {
   width: 100%;
   background: #fff;
   border: 1px solid #ccc;
+}
+
+.completed {
+  color: green;
 }
