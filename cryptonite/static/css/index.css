@@ -100,3 +100,13 @@ a {
 .completed {
   color: green;
 }
+
+.encrypted {
+  padding: 5px;
+  background: #fff;
+  border: 1px solid #ccc;
+}
+
+textarea.decrypted {
+  width: 100%;
+}

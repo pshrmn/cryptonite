@@ -99,15 +99,17 @@ const Challenge = React.createClass({
     }
     return (
       <div className='challenge'>
-        <Errors errors={errors['__all__']} />
         <h1>{challenge.name }{ decrypted || challenge.completed ? '✓' : null}</h1>
         { challenge.description }
-        <p>
+        <p className='encrypted'>
           { challenge.encrypted }
         </p>
         <form onSubmit={this.checkMessage}>
-          <input value={message} onChange={this.handleMessage} />
-          <button>Check</button>
+          <Errors errors={errors['__all__']} />
+          <textarea className='decrypted' value={message} onChange={this.handleMessage} />
+          <div>
+            <button>Check</button>
+          </div>
         </form>
       </div>
     );

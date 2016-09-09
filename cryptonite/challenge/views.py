@@ -9,10 +9,9 @@ from .models import Challenge
 @login_required
 def all_challenges(request):
     challenges = []
-    pk = request.user.pk
     for challenge in Challenge.objects.all():
         c_dict = challenge.as_dict()
-        c_dict['completed'] = challenge.users.filter(pk=pk).exists()
+        c_dict['completed'] = challenge.users.filter(pk=request.user.pk).exists()
         challenges.append(c_dict)
     return JsonResponse({
         'success': True,
@@ -33,6 +32,7 @@ def challenge(request, pk):
             }
         })
     challenge_dict = challenge.as_dict()
+    challenge_dict['completed'] = challenge.users.filter(pk=request.user.pk).exists()
     return JsonResponse({
         'success': True,
         'errors': {},
