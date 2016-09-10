@@ -11,48 +11,54 @@ function Header(props) {
     logoutUser
   } = props;
 
-  const links = [
-    {
-      key: 'learn',
-      component: <Link to={{pathname: '/learn'}}>Learn</Link>
-    },
-    {
-      key: 'challenges',
-      component: <Link to={{pathname: '/challenges'}}>Challenges</Link>
-    },
-    {
-      key: 'tools',
-      component: <Link to={{pathname: '/tools'}}>Tools</Link>
-    }
-  ];
+  const userLinks = [];
+
   if ( user.authenticated ) {
-    links.push({
-      key: 'profile',
-      component: <Link className='cap' to={{pathname: 'profile'}}>{ user.username }</Link>
-    });
-    links.push({
-      key: 'logout',
-      component: <LogoutLink logoutUser={logoutUser} />
-    })
+    userLinks.push(
+      <li key='user'>
+        <Link className='cap' to={{pathname: 'profile'}}>{ user.username }</Link>
+        <ul>
+          <li key='profile'>
+            <Link to={{pathname: 'profile'}}>Profile</Link>
+          </li>
+          <li key='logout'>
+            <LogoutLink logoutUser={logoutUser} />
+          </li>
+        </ul>
+      </li>
+    );
   } else {
-    links.push({
-      key: 'signup',
-      component: <Link to={{pathname: '/signup'}}>Signup</Link>
-    });
-    links.push({
-      key: 'login',
-      component: <Link to={{pathname: '/login'}}>Login</Link>
-    });
+    userLinks.push(
+      <li key='signup'>
+        <Link to={{pathname: '/signup'}}>Signup</Link>
+      </li>
+    );
+    userLinks.push(
+      <li key='login'>
+        <Link to={{pathname: '/login'}}>Login</Link>
+      </li>
+    );
   }
+  const links = [
+    <li key='learn'>
+      <Link to={{pathname: '/learn'}}>Learn</Link>
+    </li>,
+    <li key='challenges'>
+      <Link to={{pathname: '/challenges'}}>Challenges</Link>
+    </li>,
+    <li key='tools'>
+      <Link to={{pathname: '/tools'}}>Tools</Link>
+    </li>,
+    ...userLinks
+  ];
+
 
   return (
     <header>
       <IndexLink id='home' to={{pathname: '/'}}>Cryptonite</IndexLink>
       <nav>
         <ul>
-          {
-            links.map(l => <li key={l.key}>{l.component}</li>)
-          }
+          { links }
         </ul>
       </nav>
     </header>
