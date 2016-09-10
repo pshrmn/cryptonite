@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 import { logout } from '../api/auth';
 import { logoutUser } from '../actions';
 
+import '../scss/header.scss';
+
 function Header(props) {
   const {
     user,

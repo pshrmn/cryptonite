@@ -1,0 +1,34 @@
+@import 'variables';
+
+.shift-key text {
+  text-anchor: middle;
+}
+
+.outer-ring path {
+  fill: $gray;
+  stroke-width: 1px;
+  stroke: $light-gray;
+}
+
+.inner-ring path {
+  fill: $gold;
+  stroke-width: 1px;
+  stroke: $light-gray;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.clickable path {
+  fill: $dark-gray;
+}
+
+.clickable circle {
+  fill: transparent;
+}
+
+.shift-amount text {
+  text-anchor: middle;
+  font-size: 36px;
+}

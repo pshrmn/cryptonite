@@ -10,6 +10,8 @@ import {
 } from '../api/challenge';
 import { loadChallenge } from '../actions';
 
+import '../scss/challenge.scss';
+
 const Challenge = React.createClass({
   getInitialState: function() {
     return {

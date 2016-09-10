@@ -1,5 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
+const autoprefixer = require('autoprefixer');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const config = {
   context: path.join(__dirname, 'src'),
@@ -27,15 +29,21 @@ const config = {
         test: /\.jsx?$/,
         include: path.join(__dirname, 'src'),
         loader: 'babel'
+      },
+      {
+        test: /\.scss$/,
+        loader: ExtractTextPlugin.extract('style', 'css!postcss!sass')
       }
     ]
   },
+  postcss: () => [autoprefixer],
   plugins: [
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
       filename: 'js/vendor.js',
       minChunks: Infinity
-    })
+    }),
+    new ExtractTextPlugin('css/index.css')
   ]
 }
 

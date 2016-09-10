@@ -1,6 +1,6 @@
 {
   "name": "cryptonite",
-  "version": "1.1.2",
+  "version": "1.2.0",
   "description": "The React powered front end of Cryptonite",
   "main": "src/index.js",
   "scripts": {
@@ -29,10 +29,17 @@
     "whatwg-fetch": "^1.0.0"
   },
   "devDependencies": {
+    "autoprefixer": "^6.4.1",
     "babel-core": "^6.14.0",
     "babel-loader": "^6.2.5",
     "babel-preset-es2015": "^6.14.0",
     "babel-preset-react": "^6.11.1",
+    "css-loader": "^0.25.0",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "node-sass": "^3.9.3",
+    "postcss-loader": "^0.13.0",
+    "sass-loader": "^4.0.2",
+    "style-loader": "^0.13.1",
     "webpack": "^1.13.2"
   }
 }
