@@ -64,7 +64,7 @@ const ShiftKey = React.createClass({
               </g>
               <g className='shift-amount'>
                 <text dy='0.3em'>
-                  {shift}/{shift-characters.length}
+                  {shift-characters.length} {characters[shift]} {shift}
                 </text>
               </g>
               <g className='clickable'

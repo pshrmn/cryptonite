@@ -149,10 +149,11 @@ export default function ShiftCipher(props) {
         </div>
         <p>
           Below is a tool to help quickly determine the shifted letters for the
-          English alphabet. The "+1" and "-1" buttons can be used to change the
-          amount of shifting. The letters in the outer ring are for the original
-          letters in the message you have, and the letters in the inner ring are
-          the ones that you should use to substitute them with.
+          English alphabet. The left and right triangle buttons can be used to
+          change the amount of shifting. The letters in the outer ring are for
+          the original letters in the message you have, and the letters in the
+          inner ring are the ones that you should use to substitute the original
+          letters with.
         </p>
         <AlphabetShiftKey />
         <p>
