@@ -1,8 +1,6 @@
 import React from 'react';
 import { pie, arc } from 'd3-shape';
 
-const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
-
 /*
  * The ShiftKey provides a convenient mechanism for shifting
  * a character set.
@@ -10,7 +8,7 @@ const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
 const ShiftKey = React.createClass({
   getInitialState: function() {
     return {
-      shift: 0
+      shift: this.props.initialShift || 0
     };
   },
   increaseShift: function(event) {
@@ -34,33 +32,51 @@ const ShiftKey = React.createClass({
     } = this.state;
     const padding = 10;
     
+    const farRing = radius;
+    const medRing = radius - 30;
+    const nearRing = medRing - 30;
+    const tri = 30;
+    const halfTri = tri/2;
+    const d = `M 0,${-halfTri} l ${tri},${halfTri} l ${-tri},${halfTri} Z`
     return (
       <div className='shift-key'>
-        <button onClick={this.increaseShift}
-                style={{display: 'block', width: radius*2+padding*2}}>
-          +1
-        </button>
         <svg width={radius*2+padding*2} height={radius*2+padding*2} >
           <g transform={`translate(${radius+padding},${radius+padding})`}>
             <CharacterRing characters={characters}
                            className='outer-ring'
-                           outerRadius={radius}
-                           innerRadius={radius-30} />
+                           outerRadius={farRing}
+                           innerRadius={medRing} />
             <CharacterRing characters={shiftArray(characters, shift)}
                            className='inner-ring'
-                           outerRadius={radius-30}
-                           innerRadius={radius-60} />
+                           outerRadius={medRing}
+                           innerRadius={nearRing} />
             <g>
-              <text style={{textAnchor: 'middle', fontSize: '36px'}}>
-                {shift} / {shift-characters.length}
-              </text>
+              <g className='clickable'
+                 transform={`translate(${(nearRing)/2},0)`}
+                 onClick={this.increaseShift} >
+                 <circle r={tri} 
+                         transform={`translate(${halfTri},0)`}
+                         /* this circle exists to make clicking the button easier */ />
+                <path d={d} />
+                <title>Click to increase the shift</title>
+              </g>
+              <g className='shift-amount'>
+                <text dy='0.3em'>
+                  {shift}/{shift-characters.length}
+                </text>
+              </g>
+              <g className='clickable'
+                 transform={`translate(${-(nearRing)/2},0)`}
+                 onClick={this.decreaseShift} >
+                 <circle r={tri} 
+                         transform={`translate(${-halfTri},0)`}
+                         /* this circle exists to make clicking the button easier */ />
+                <path d={d} transform='scale(-1,1)' />
+                <title>Click to decrease the shift</title>
+              </g>
             </g>
           </g>
         </svg>
-        <button onClick={this.decreaseShift}
-                style={{display: 'block', width: radius*2+padding*2}}>
-          -1
-        </button>
       </div>
     );
   }
@@ -75,23 +91,23 @@ function CharacterRing(props) {
   } = props;
 
   const pieLayout = pie()
-    .value(d => d.count)
+    .value(1)
     .sort(null);
 
   const arcPath = arc()
     .innerRadius(innerRadius)
     .outerRadius(outerRadius);
 
-  const pieData = pieLayout(wrapCharacters(characters));
+  const pieData = pieLayout(characters);
   return (
     <g className={className}>
       {
         pieData.map(node => {
           const [x,y] = arcPath.centroid(node);
           return (
-            <g key={node.data.value}>
-              <path d={arcPath(node)}></path>
-              <text transform={`translate(${x},${y})`} dy='0.5em'>{node.data.value}</text>
+            <g key={node.data}>
+              <path d={arcPath(node)} />
+              <text transform={`translate(${x},${y})`} dy='0.5em'>{node.data}</text>
             </g>
           )
         })
@@ -100,13 +116,17 @@ function CharacterRing(props) {
   );
 }
 
-function wrapCharacters(characters) {
-  return characters.map(c => ({value: c, count: 1}));
-}
-
 function shiftArray(characters, shift) {
   return [...characters.slice(shift), ...characters.slice(0, shift)];
 }
 
+
 export default ShiftKey;
-export const AlphabetShiftKey = <ShiftKey characters={ALPHABET} />;
+
+/*
+ * A ShiftKey whose characters are the letters in the English alphabet
+ */
+export function AlphabetShiftKey(props) {
+  const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+  return <ShiftKey characters={ALPHABET} {...props} />
+};

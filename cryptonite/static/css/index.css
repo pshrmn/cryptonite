@@ -126,3 +126,20 @@ textarea.decrypted {
   stroke-width: 1px;
   stroke: #efefef;
 }
+
+.clickable {
+  cursor: pointer;
+}
+
+.clickable path {
+  fill: #666;
+}
+
+.clickable circle {
+  fill: transparent;
+}
+
+.shift-amount text {
+  text-anchor: middle;
+  font-size: 36px;
+}

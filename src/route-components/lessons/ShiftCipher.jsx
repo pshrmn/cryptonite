@@ -154,10 +154,10 @@ export default function ShiftCipher(props) {
           letters in the message you have, and the letters in the inner ring are
           the ones that you should use to substitute them with.
         </p>
-        { AlphabetShiftKey }
+        <AlphabetShiftKey />
         <p>
           Remember that if a message was encrypted using a shift of 7, then in
-          order to decrypt it, you need to shift the reverse way, whih is -7.
+          order to decrypt it, you need to shift the reverse way, which is -7.
         </p>
       </section>
       <section>
