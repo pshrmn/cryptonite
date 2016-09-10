@@ -110,3 +110,19 @@ a {
 textarea.decrypted {
   width: 100%;
 }
+
+.shift-key text {
+  text-anchor: middle;
+}
+
+.outer-ring path {
+  fill: #ccc;
+  stroke-width: 1px;
+  stroke: #efefef;
+}
+
+.inner-ring path {
+  fill: gold;
+  stroke-width: 1px;
+  stroke: #efefef;
+}

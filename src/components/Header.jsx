@@ -19,6 +19,10 @@ function Header(props) {
     {
       key: 'challenges',
       component: <Link to={{pathname: '/challenges'}}>Challenges</Link>
+    },
+    {
+      key: 'tools',
+      component: <Link to={{pathname: '/tools'}}>Tools</Link>
     }
   ];
   if ( user.authenticated ) {

@@ -13,7 +13,10 @@ import {
 } from './route-components/lessons';
 import Challenges from './route-components/Challenges';
 import Challenge from './route-components/Challenge';
-
+import Tools from './route-components/ToolsPage';
+import {
+  ShiftTools
+} from './route-components/tools';
 /*
  * This function takes two functions, requireAuth and requireUnauth.
  * The requireAuth function can be placed on routes that require the
@@ -65,6 +68,14 @@ export default function (requireAuth, requireUnauth) {
       {
         path: 'challenge/:challengeID',
         component: Challenge
+      },
+      {
+        path: 'tools',
+        component: Tools
+      },
+      {
+        path: 'tools/shift',
+        component: ShiftTools
       }
     ]
   };

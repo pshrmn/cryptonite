@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { AlphabetShiftKey } from '../../components/ShiftKey';
+
 export default function ShiftCipher(props) {
   return (
     <div>
@@ -145,6 +147,18 @@ export default function ShiftCipher(props) {
           A=3 B=4 C=5 D=6 E=7 F=8 G=9 H=10 I=11 J=12 K=13 L=14 M=15 N=16 O=17 P=18
           Q=19 R=20 S=21 T=22 U=23 V=24 W=25 X=0 Y=1 Z=2
         </div>
+        <p>
+          Below is a tool to help quickly determine the shifted letters for the
+          English alphabet. The "+1" and "-1" buttons can be used to change the
+          amount of shifting. The letters in the outer ring are for the original
+          letters in the message you have, and the letters in the inner ring are
+          the ones that you should use to substitute them with.
+        </p>
+        { AlphabetShiftKey }
+        <p>
+          Remember that if a message was encrypted using a shift of 7, then in
+          order to decrypt it, you need to shift the reverse way, whih is -7.
+        </p>
       </section>
       <section>
         <h2>Got Your Message, I'll Decrypt It to Reverse It</h2>
