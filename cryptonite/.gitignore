@@ -1,0 +1,8 @@
+venv
+*.py[co]
+*.log
+*.sqlite3
+*.db
+
+cryptonite/settings/dev.py
+staticfiles/
