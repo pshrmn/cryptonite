@@ -46,11 +46,11 @@ const ChangePasswordForm = React.createClass({
             errors: {}
           });
         } else {
-          return Promise.reject(resp.errors)
+          this.setState({errors: resp.errors});
         }
       })
-      .catch(errors => {
-        this.setState({ errors })
+      .catch(err => {
+        console.error(err);
       });
   },
   render: function() {

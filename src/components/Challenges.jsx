@@ -19,12 +19,12 @@ const Challenges = React.createClass({
         if ( resp.success ) {
           this.props.loadChallenges(resp.challenges);
         } else {
-          return Promise.reject(resp.errors);
+          this.setState({errors: resp.errors});
         }
       })
-      .catch(errors => {
-        this.setState({ errors });
-      })
+      .catch(err => {
+        console.error(err);
+      });
   },
   render: function() {
     const {

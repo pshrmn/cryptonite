@@ -33,11 +33,11 @@ const LoginForm = React.createClass({
           this.props.loginUser(resp.user);
           this.props.router.push(this.props.next || '/');
         } else {
-          return Promise.reject(resp.errors);
+          this.setState({errors: resp.errors});
         }
       })
-      .catch(errors => {
-        this.setState({ errors })
+      .catch(err => {
+        console.error(err);
       });
   },
   render: function() {
