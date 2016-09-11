@@ -132,3 +132,37 @@ export function AlphabetShiftKey(props) {
   const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
   return <ShiftKey characters={ALPHABET} {...props} />
 };
+
+export const CustomShiftKey = React.createClass({
+  getInitialState: function() {
+    return {
+      chars: ''
+    };
+  },
+  handleCharacters: function(event) {
+    this.setState({
+      chars: event.target.value
+    });
+  },
+  render: function() {
+    const {
+      chars
+    } = this.state;
+    return (
+      <div>
+        <p>
+          Enter the characters to use in the shift key below as one long string
+          (with no spaces). For example, to create a shift key using the English
+          alphabet, you would enter "ABCDEFGHIJKLMNOPQRSTUVWXYZ".
+        </p>
+        <input type='text'
+               value={chars}
+               onChange={this.handleCharacters} />
+        {
+          chars.length === 0 ? null : <ShiftKey characters={chars.split('')} />
+        }
+        
+      </div>
+    );
+  }
+});
