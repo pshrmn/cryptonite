@@ -12,6 +12,9 @@ export default function Learn(props) {
         <li>
           <Link to={{pathname: '/learn/shift-cipher'}}>Shift Ciphers</Link>
         </li>
+        <li>
+          <Link to={{pathname: '/learn/vigenere-cipher'}}>Vigenère Cipher</Link>
+        </li>
       </ol>
     </div>
   );

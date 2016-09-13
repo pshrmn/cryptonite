@@ -1,11 +1,11 @@
 import React from 'react';
 
+import Lesson from './Lesson';
 import { AlphabetShiftKey } from '../../components/ShiftKey';
 
 export default function ShiftCipher(props) {
-  return (
+  const content = (
     <div>
-      <h1>Shift Cipher</h1>
       <p>
         The shift cipher is a simple substitution cipher. Julius Caesar, the
         Roman Emperor, used a shift cipher to encrypt messages, so they are also
@@ -294,4 +294,6 @@ export default function ShiftCipher(props) {
       </section>
     </div>
   );
+
+  return <Lesson title='Shift Cipher' contents={content} />
 }

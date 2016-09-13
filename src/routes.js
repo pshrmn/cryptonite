@@ -9,7 +9,8 @@ import {
 import Learn from './route-components/Learn';
 import {
   CryptoIntro,
-  ShiftCipher
+  ShiftCipher,
+  Vigenere
 } from './route-components/lessons';
 import Challenges from './route-components/Challenges';
 import Challenge from './route-components/Challenge';
@@ -60,6 +61,10 @@ export default function (requireAuth, requireUnauth) {
       {
         path: 'learn/shift-cipher',
         component: ShiftCipher
+      },
+      {
+        path: 'learn/vigenere-cipher',
+        component: Vigenere
       },
       {
         path: 'challenges',

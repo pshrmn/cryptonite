@@ -1,0 +1,25 @@
+@import 'variables';
+
+table.vigenere-table {
+  border-collapse: collapse;
+
+  thead {
+    border-bottom: 1px solid $black;
+  }
+
+  td {
+    border-right: 1px solid $black;
+    padding: 0 3px;
+    text-align: center;
+  }
+
+  td:last-child {
+    border-right: 0;
+  }
+
+  thead td {
+    border: 0;
+  }
+  
+  
+}

@@ -1,14 +1,15 @@
 import React from 'react';
 
+import Lesson from './Lesson';
+
 export default function EncryptIntro(props) {
-  return (
+  const content = (
     <div>
-      <h1>Introduction to Cryptography</h1>
       <p>
         Imagine that you have a message that you want to pass to a friend:
       </p>
       <div className='message'>
-        math is fun
+        MATH IS FUN
       </div>
       <p>
         The information in the message is important and you don't want anyone
@@ -25,7 +26,7 @@ export default function EncryptIntro(props) {
         encrypted message:
       </p>
       <div className='message'>
-        zngu vf sha
+        ZNGU VF SHA
       </div>
       <p>
         Luckily, she knows that the message was encrypted using ROT13 and that in
@@ -34,13 +35,13 @@ export default function EncryptIntro(props) {
         ROT13. Using that cipher, she can decrypt the message and reply:
       </p>
       <div className='message'>
-        qrsvavgryl
+        QRSVAVGRYL
       </div>
       <p>
         After you decrypt her message, you see that her response is:
       </p>
       <div className='message'>
-        totally
+        DEFINITELY
       </div>
       <p>
         What would happen if someone else saw the messages that you passed? That
@@ -62,4 +63,6 @@ export default function EncryptIntro(props) {
       </p>
     </div>
   );
+
+  return <Lesson title='Introduction to Cryptography' contents={content} />
 }
