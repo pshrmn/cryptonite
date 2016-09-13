@@ -2,8 +2,10 @@ import React from 'react';
 
 import Lesson from './Lesson';
 
-export default function EncryptIntro(props) {
-  const content = (
+const title = 'Introduction to Cryptography';
+
+export default () => (
+  <Lesson title={title}>
     <div>
       <p>
         Imagine that you have a message that you want to pass to a friend:
@@ -62,7 +64,5 @@ export default function EncryptIntro(props) {
         and decryption can be done by hand.
       </p>
     </div>
-  );
-
-  return <Lesson title='Introduction to Cryptography' contents={content} />
-}
+  </Lesson>
+);

@@ -3,8 +3,10 @@ import React from 'react';
 import Lesson from './Lesson';
 import { AlphabetShiftKey } from '../../components/ShiftKey';
 
-export default function ShiftCipher(props) {
-  const content = (
+const title = 'Shift Ciphers';
+
+export default () => (
+  <Lesson title={title}>
     <div>
       <p>
         The shift cipher is a simple substitution cipher. Julius Caesar, the
@@ -12,141 +14,101 @@ export default function ShiftCipher(props) {
         referred to as Caesar ciphers.
       </p>
       <section>
-        <h2>
-          What is a substitution cipher?
-        </h2>
+        <h2>Why?</h2>
         <p>
-          In order to create a substitution cipher we need to start with a set of
-          characters. We will use the English alphabet, which consists of 26 characters.
+          One approach to creating a substitution cipher would be to randomize
+          the ordering of the letters. This can be quite difficult to decrypt
+          without access to the cipher because it provides n! (where n is the
+          number of characters in the character set) possible ciphers. This is
+          great security if you know the cipher, but keeping the cipher secret
+          is key to preventing other people from decrypting your messages, which
+          means that you may not want to have it written down. This would require
+          memorizing the cipher, which would make this system more prone to errors.
         </p>
-        <div className='message'>
-          A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
-        </div>
         <p>
-          As the name implies, a substitution cipher substitutes each character
-          in a message with a different character. For example, the character "A"
-          might be substituted by the character "X". Then, when you are encrypting
-          a message using the cipher, each "A" in the message would be substituted
-          with an "X". The decryption cipher would then need to invert the encryption.
-          When the encrypted message is decrypted, and each "X" would be substituted
-          with an "A".
-        </p>
-        <div className='message'>
-          X R M G P E N W H Y U Z T B O I C F L V A Q J S D K
-        </div>
-        <p>
-          The important thing is that the cipher substitutes each letter uniquely.
-          If both "A" and "E" were substituted with an "X", when you try to
-          decrypt the message, you wouldn't know whether to substitute "X"s with
-          an "A" or an "E".
+          A simpler solution may be to use a shift cipher. This only has n-1 possible
+          ciphers (n if you include a shift of 0), so it is less secure, but also
+          easier for the decrypter to remember how to decrypt the message.
         </p>
       </section>
       <section>
-        <h2>A Bit of Math</h2>
+        <h2>How?</h2>
         <p>
-          Before we go further, it is important to get a basic understanding of
-          modular arithmetic. If you remember when you first learned division,
-          instead of figuring out decimal places, you left a remainder. For
-          example, 25 divided by 4 is 6.25, but is also 6 remainder 1. Modular
-          arithmetic is essentially getting the remainder value from division.
-          Therefore, 25 modulo 4 = 1.
-        </p>
-        <p>
-          Now, lets take a look at a series of numbers modulo 4. Note that it is
-          common to express modulo using the word "mod" or the symbol "%". I.e.,
-          24 mod 4 = 0 and 25 % 4 = 1.
-        </p>
-        <ul>
-          <li>24 ÷ 4 = 6 remainder 0, so 24 mod 4 = 0</li>
-          <li>25 ÷ 4 = 6 remainder 1, so 25 mod 4 = 1</li>
-          <li>26 ÷ 4 = 6 remainder 2, so 26 mod 4 = 2</li>
-          <li>27 ÷ 4 = 6 remainder 3, so 27 mod 4 = 3</li>
-          <li>28 ÷ 4 = 7 remainder 0, so 28 mod 4 = 0</li>
-          <li>29 ÷ 4 = 7 remainder 1, so 29 mod 4 = 1</li>
-        </ul>
-        <p>
-          Looking at the modulo values, you can see that they have the cycle 0,
-          1, 2, 3, 0, 1, ... that contains the range 0 through our modulo number
-          minus one (3 in this case).
-        </p>
-        <p>
-          One way to compute the modulo value is to subtract the modulo number from
-          our initial value, and continue doing this with the result until the result
-          is less than the modulo number (and greater than or equal to 0).
-        </p>
-        <div className='message'>
-          25 mod 4 = 25 - 4 = 21 - 4 = 17 - 4 = 13 - 4 = 9 - 4 = 5 - 4 = 1
-        </div>
-        <p>
-          For negative numbers, the reverse applies. We would keep adding the modulo
-          number until we are greater than or equal to 0 (and less than the modulo
-          number).
-        </p>
-        <div className='message'>
-          -25 mod 4 = -25 + 4 = -21 + 4 = -17 + 4 = -13 + 4 = -9 + 4 = -5 + 4 = -1 + 4 = 3
-        </div>
-      </section>
-      <section>
-        <h2>Shift-y Business</h2>
-        <p>
-          One approach to a substitution cipher would be to randomize the ordering
-          of the letters. The problem with this is that the person who needs to
-          decrypt the message would also have to know this randomized ordering. A
-          simpler solution is to use a shift cipher.
-        </p>
-        <p>
-          We can assign each character in our set an index number based on its
-          position in the set. Here the index of each character is based on
-          alphabetical order. "A" is the first character, so we will give it
-          the index of 0. We start at 0 instead of 1 because we will be using
-          modular arithmetic. "B" will be index 1, so on and so forth until we
-          get to the character "Z" which will be index 25.
+          We start off by assigning each character in our set an index number
+          based on its position in the set. Here the index of each character is
+          based on alphabetical order. "A" is the first character, so we will
+          give it the index of 0. We start at 0 instead of 1 because we will be
+          using modular arithmetic. "B" will be index 1, so on and so forth until
+          we get to the character "Z" which will be index 25.
         </p>
         <div className='message'>
           A=0 B=1 C=2 D=3 E=4 F=5 G=6 H=7 I=8 J=9 K=10 L=11 M=12 N=13 O=14 P=15
           Q=16 R=17 S=18 T=19 U=20 V=21 W=22 X=23 Y=24 Z=25
         </div>
         <p>
-          A shift cipher provides a controlled way to encrypt and decrypt messages
-          by substituting a character with the one a set distance from it. For
-          example, if we were encrypting a message using a shift cipher of 3, for
-          each character in the plain text message, we would add 3 to its index and
-          substitute it with the character at the computed index.
+          When encrypting (and decrypting) using a shift cipher, the amount of
+          shift is added (or subtracted) from the character's index value. The
+          character at that index value is then substituted for the original letter.
+        </p>
+        <p>
+          A shift cipher requires two bits of information, a direction and an
+          amount. The direction is either right or left, where right indicates
+          that you should add the shift amount and left indicates that you should
+          substract it.
         </p>
         <div className='message'>
-          computed index = index + 3
+          left shift of 2 = index - 2
+        </div>
+        <div className='message'>
+          right shift of 7 = index + 7
         </div>
         <p>
-          "A" has an index
-          of 0, so we add 3 to it to get the computed index of 3. We would then
-          substitute the character at index 3, "D" for the "A".
+          A left shift of x can be cancelled out by a right shift of x and vice
+          versa. If a message is encrypted with a right shift of 11, it will be
+          decrypted using a left shift of 11.
+        </p>
+        <div className='message'>
+          index = (((index + 11) mod 26) - 11) mod 26
+        </div>
+      </section>
+      <section>
+        <h2>Making Sure to Modulo</h2>
+        <p>
+          You may have noticed an issue with the left and right shift equations
+          as they are listed above. The problem is that they can result in values
+          that are outside of the indices of our characters. A negative number or
+          a number that is larger than the largest index cannot be mapped to a
+          character.
         </p>
         <p>
-          There is one issue though, which is that some characters get shifted to
-          numbers that are outside of our number of characters, so they have no
-          character to substitute for them.
+          For a right shift of 3, we should end up with the mapped values:
         </p>
         <div className='message'>
           A=3 B=4 C=5 D=6 E=7 F=8 G=9 H=10 I=11 J=12 K=13 L=14 M=15 N=16 O=17 P=18
           Q=19 R=20 S=21 T=22 U=23 V=24 W=25 X=26 Y=27 Z=28
         </div>
         <p>
-          This is where modular arithmetic comes in. After adding the shift value
-          to the index, we need to take the modulo of that sum using the total
-          number of characters. In our case, we have 26 characters, so our cipher 
-          will use modulo 26.
+          This is where modular arithmetic comes in. Simply by using the modulo
+          of the number of characters in our character set, we can ensure that
+          each character will be mapped to a valid index.
         </p>
         <div className='message'>
-          computed index = (index + 3) mod 26
+          left shift of 2 = (index - 2) mod 26
+        </div>
+        <div className='message'>
+          right shift of 7 = (index + 7) mod 26
         </div>
         <p>
-          That will ensure that all of our characters shift to an index that aligns
-          with a character.
+          Using modular arithmetic, the values that were greater than the number
+          of characters have cycled back to legitimate values.
         </p>
         <div className='message'>
           A=3 B=4 C=5 D=6 E=7 F=8 G=9 H=10 I=11 J=12 K=13 L=14 M=15 N=16 O=17 P=18
           Q=19 R=20 S=21 T=22 U=23 V=24 W=25 X=0 Y=1 Z=2
-        </div>
+        </div>        
+      </section>
+      <section>
+        <h2>A Bit of Help</h2>
         <p>
           Below is a tool to help quickly determine the shifted letters for the
           English alphabet. The left and right triangle buttons can be used to
@@ -157,55 +119,20 @@ export default function ShiftCipher(props) {
         </p>
         <AlphabetShiftKey />
         <p>
-          Remember that if a message was encrypted using a shift of 7, then in
-          order to decrypt it, you need to shift the reverse way, which is -7.
+          Remember that if a message was encrypted using a right shift of 7 (adding
+          7), then in order to decrypt it, you need to shift the reverse way,
+          which is a left shift of 7 (subtracting 7).
         </p>
       </section>
       <section>
-        <h2>Got Your Message, I'll Decrypt It to Reverse It</h2>
-        <p>
-          In order to decrypt a shift cipher, the characters have to be shifted
-          in the opposite direction. Above our cipher added 3 to the index value
-          of each character in order to encrypt the message. We need to reverse
-          that in order to decrypt the message, so our cipher should subtract 3
-          from each character's index to get its original index.
-        </p>
-        <div className='message'>
-          original index = (index - 3) mod 26
-        </div>
-        <p>
-          That will give us back our original alphabetical ordered indices to use
-          for decrypting the encrypted message.
-        </p>
-        <div className='message'>
-          A=0 B=1 C=2 D=3 E=4 F=5 G=6 H=7 I=8 J=9 K=10 L=11 M=12 N=13 O=14 P=15
-          Q=16 R=17 S=18 T=19 U=20 V=21 W=22 X=23 Y=24 Z=25
-        </div>
-        <p>
-          Another way to look at the reverse cipher is that we need to return the
-          character to its original index, and since we have 26 characters, we need
-          to add a number to each index so that the encryption shift value and the
-          decryption shift value sum to 26. For the encryption shift cipher of 3,
-          this means that we need to add 23 to each encrypted character's index.
-        </p>
-        <div className='message'>
-          original index = (index - 3) mod 26 = (index + 23) mod 26
-        </div>
-        <p>
-          One cipher that is common for demonstrations is ROT13, which is a shift
-          cipher of 13. The reason that ROT13 is interesting is that because the
-          English alphabet contains 26 letters, the encryption and decryption
-          ciphers are the same.
-        </p>
-      </section>
-      <section>
-        <h2>Actually Encrypting and Decrypting</h2>
+        <h2>A Real Message</h2>
         <p>
           Finally, we should encrypt and decrypt an actual message. One thing to
           note is that so far we have talked about upper and lower case letters
           and haven't included punctuation. Typically, all letters would be treated
-          as being the same case and punctuation would be omitted. This is partially
-          done to be convenient and also partly to avoid leaking information.
+          as being the same case and punctuation would be omitted. This is done to
+          avoid leaking information to someone attempting to decrypt the message
+          without knowledge of the key.
         </p>
         <p>
           The message that we will be encrypting is:
@@ -218,12 +145,17 @@ export default function ShiftCipher(props) {
           convert this message to:
         </p>
         <div className='message'>
-          THE BELL RINGS AT TWO.
+          THE BELL RINGS AT TWO
         </div>
         <p>
           Now, we need to determine how much our cipher should shift. Seven is a
-          popular "random" number choice, so we'll go with that. So, given the
-          input indices:
+          popular "random" number choice, so we'll go with a right shift of 7.
+        </p>
+        <div className='message'>
+          substitute index = (index + 7) mod 26
+        </div>
+        <p>
+          So, given the input indices:
         </p>
         <div className='message'>
           A=0 B=1 C=2 D=3 E=4 F=5 G=6 H=7 I=8 J=9 K=10 L=11 M=12 N=13 O=14 P=15
@@ -246,7 +178,7 @@ export default function ShiftCipher(props) {
           W=3 O=21
         </div>
         <p>
-          Now, we need to lookup the index value for each character and substitute
+          Next, we need to lookup the index value for each character and substitute
           the character at the index.
         </p>
         <div className='message'>
@@ -260,26 +192,31 @@ export default function ShiftCipher(props) {
           AOL ILSS YPUNZ HA ADV
         </div>
         <p>
-          Now, if we are the recipient of the message and we need to decrypt the
-          message to read it. First we should determine the index of each
-          character.
+          If we are the recipient of the message, we need to decrypt the message
+          to read it. First, we should determine the index of each character.
         </p>
         <div className='message'>
           A=0 O=14 L=11 I=8 L=11 S=18 S=18 Y=24 P=15 U=20 N=13 Z=25 H=7 A=0 A=0
           D=3 V=21
         </div>
         <p>
-          We know that the plain text message was encrypted using a shift cipher
-          of 7, we know that we need to subtract 7 from the index of each
-          character to get the original index values (using modulo 26).
+          We know that the plain text message was encrypted using a right shift
+          of 7, so to decrypt it we need to do a left shift of 7.
+        </p>
+        <div className='message'>
+          original index = (substitute index - 7) mod 26
+        </div>
+        <p>
+          This cipher is applied to each character in the encrypted message to
+          determine the original indices.
         </p>
         <div className='message'>
           A=19 O=7 L=4 I=1 L=4 S=11 S=11 Y=17 P=8 U=13 N=6 Z=18 H=0 A=19 A=19
           D=22 V=14
         </div>
         <p>
-          Then, we just need to map the computed original indices to the original
-          index values to get the correct letters.
+          Then, we just need to map the original indices to the original index
+          values to get the correct letters.
         </p>
         <div className='message'>
           19=T 7=H 4=E 1=B 4=E 11=L 11=L 17=R 8=I 13=N 6=G 18=S 0=A 19=T 19=T
@@ -293,7 +230,5 @@ export default function ShiftCipher(props) {
         </div>
       </section>
     </div>
-  );
-
-  return <Lesson title='Shift Cipher' contents={content} />
-}
+  </Lesson>
+);

@@ -10,7 +10,13 @@ export default function Learn(props) {
           <Link to={{pathname: '/learn/crypto-intro'}}>Introduction to Cryptography</Link>
         </li>
         <li>
-          <Link to={{pathname: '/learn/shift-cipher'}}>Shift Ciphers</Link>
+          <Link to={{pathname: '/learn/modular-arithmetic'}}>Modular Arithmetic</Link>
+        </li>
+        <li>
+          <Link to={{pathname: '/learn/substitution-ciphers'}}>Substitution Ciphers</Link>
+        </li>
+        <li>
+          <Link to={{pathname: '/learn/shift-ciphers'}}>Shift Ciphers</Link>
         </li>
         <li>
           <Link to={{pathname: '/learn/vigenere-cipher'}}>Vigenère Cipher</Link>

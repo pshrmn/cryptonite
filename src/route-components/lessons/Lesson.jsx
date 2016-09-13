@@ -5,12 +5,12 @@ import '../../scss/lesson.scss';
 export default function Lesson(props) {
   const {
     title,
-    contents
+    children
   } = props;
   return (
     <div className='lesson'>
       <h1>{ title }</h1>
-      { contents }
+      { children }
     </div>
   );
 }

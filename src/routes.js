@@ -9,6 +9,8 @@ import {
 import Learn from './route-components/Learn';
 import {
   CryptoIntro,
+  ModularArithmetic,
+  SubstitutionCiphers,
   ShiftCipher,
   Vigenere
 } from './route-components/lessons';
@@ -18,6 +20,7 @@ import Tools from './route-components/ToolsPage';
 import {
   ShiftTools
 } from './route-components/tools';
+
 /*
  * This function takes two functions, requireAuth and requireUnauth.
  * The requireAuth function can be placed on routes that require the
@@ -59,7 +62,15 @@ export default function (requireAuth, requireUnauth) {
         component: CryptoIntro
       },
       {
-        path: 'learn/shift-cipher',
+        path: 'learn/modular-arithmetic',
+        component: ModularArithmetic
+      },
+      {
+        path: 'learn/substitution-ciphers',
+        component: SubstitutionCiphers
+      },
+      {
+        path: 'learn/shift-ciphers',
         component: ShiftCipher
       },
       {

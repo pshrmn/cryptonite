@@ -3,8 +3,10 @@ import React from 'react';
 import Lesson from './Lesson';
 import VigenereTable from '../../components/VigenereTable';
 
-export default function ShiftCipher(props) {
-  const contents = (
+const title = 'The Vigenère Cipher';
+
+export default () => (
+  <Lesson title={title}>
     <div>
       <p>
         The Vigenère cipher is an advanced shift substitution cipher. Instead of
@@ -126,7 +128,6 @@ export default function ShiftCipher(props) {
         decrypted message.
       </p>
     </div>
-  );
+  </Lesson>
+);
 
-  return <Lesson title='The Vigenère Cipher' contents={contents} />
-}
