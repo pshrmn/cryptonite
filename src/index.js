@@ -14,13 +14,13 @@ const intialState = {
 const reducer = combineReducers(reducers);
 const store = createStore(reducer, intialState);
 
-const requireAuth = (nextState, replace) => {
+const requireAuth = (fromLoc, replace) => {
   const { user } = store.getState();
   if ( !user.authenticated ) {
     replace({
       pathname: '/login',
       state: {
-        nextPathname: nextState.location.pathname
+        from: fromLoc.location.pathname
       }
     })
   }

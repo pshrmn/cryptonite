@@ -5,8 +5,8 @@ import SignupForm from '../../components/SignupForm';
 
 export default function Signup(props) {
   let next = '/';
-  if ( props.location.state && props.location.state.nextPathname ) {
-    next = props.location.state.nextPathname;
+  if ( props.location.state && props.location.state.from ) {
+    next = props.location.state.from;
   }
   return (
     <div>

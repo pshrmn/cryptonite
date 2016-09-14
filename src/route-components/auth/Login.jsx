@@ -5,8 +5,8 @@ import LoginForm from '../../components/LoginForm';
 
 export default function Login(props) {
   let next = '/';
-  if ( props.location.state && props.location.state.nextPathname ) {
-    next = props.location.state.nextPathname;
+  if ( props.location.state && props.location.state.from ) {
+    next = props.location.state.from;
   }
   return (
     <div>

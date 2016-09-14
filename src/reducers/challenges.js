@@ -2,6 +2,9 @@ import * as types from '../constants/ActionTypes';
 
 export default function(state = {}, action) {
   switch(action.type) {
+  case types.LOGOUT_USER:
+    // clear the challenges when the user logs out
+    return {};
   case types.LOAD_CHALLENGE:
     var challenge = action.challenge;
     return Object.assign({}, state, {

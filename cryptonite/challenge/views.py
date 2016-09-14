@@ -6,8 +6,15 @@ from .models import Challenge
 
 
 @require_http_methods(['GET'])
-@login_required
 def all_challenges(request):
+    if not request.user.is_authenticated():
+        return JsonResponse({
+            'success': False,
+            'errors': {
+                '__all__': ['You must be logged in to view challenges']
+            },
+            'challenges': []
+        })
     challenges = []
     for challenge in Challenge.objects.all():
         c_dict = challenge.as_dict()

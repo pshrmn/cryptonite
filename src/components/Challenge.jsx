@@ -79,11 +79,11 @@ const Challenge = React.createClass({
     } = this.state;
 
     // only a logged in user that is logged in can do challenges. Include a
-    // 'nextPathname' state variable in the Links so that when a user logs in or
+    // 'from' state variable in the Links so that when a user logs in or
     // signs up, they will be redirected back to the challenge
     if ( !user || !user.authenticated ) {
       const redirectState = {
-        nextPathname: `/challenge/${challengeID}`
+        from: `/challenge/${challengeID}`
       };
       return (
         <div>
