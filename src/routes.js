@@ -21,6 +21,7 @@ import {
   ShiftTools,
   VigenereTools
 } from './route-components/tools';
+import NotFound from './route-components/NotFound';
 
 /*
  * This function takes two functions, requireAuth and requireUnauth.
@@ -97,6 +98,10 @@ export default function (requireAuth, requireUnauth) {
       {
         path: 'tools/vigenere',
         component: VigenereTools
+      },
+      {
+        path: '*',
+        component: NotFound
       }
     ]
   };
