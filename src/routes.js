@@ -18,7 +18,8 @@ import Challenges from './route-components/Challenges';
 import Challenge from './route-components/Challenge';
 import Tools from './route-components/ToolsPage';
 import {
-  ShiftTools
+  ShiftTools,
+  VigenereTools
 } from './route-components/tools';
 
 /*
@@ -92,6 +93,10 @@ export default function (requireAuth, requireUnauth) {
       {
         path: 'tools/shift',
         component: ShiftTools
+      },
+      {
+        path: 'tools/vigenere',
+        component: VigenereTools
       }
     ]
   };

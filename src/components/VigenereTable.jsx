@@ -4,15 +4,16 @@ import '../scss/vigenere.scss';
 
 export default function VigenereTable(props) {
   const {
-    characters,
-    keyword
+    characters = [],
+    keyword = ''
   } = props;
   const charRows = keyword.split('').map((char, index) => {
+    const charIndex = characters.indexOf(char);
     return (
       <tr key={index}>
         <td>{char}</td>
-        <td>{characters.indexOf(char) || '???'}</td>
         <td>{index}</td>
+        <td>{charIndex !== -1 ? charIndex : '???'}</td>
       </tr>
     );
   })
@@ -21,8 +22,8 @@ export default function VigenereTable(props) {
       <thead>
         <tr>
           <td>Character</td>
-          <td>Shift</td>
           <td>Position</td>
+          <td>Shift</td>
         </tr>
       </thead>
       <tbody>
@@ -30,4 +31,36 @@ export default function VigenereTable(props) {
       </tbody>
     </table>
   );
+}
+
+export class EnglishVigenereTable extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      keyword: ''
+    };
+    this.keywordHandler = this.keywordHandler.bind(this);
+  }
+
+  keywordHandler(event) {
+    this.setState({
+      keyword: event.target.value
+    })
+  }
+  
+  render() {
+    const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+    const {
+      keyword
+    } = this.state;
+    return (
+      <div>
+        <input type='text'
+               value={keyword}
+               onChange={this.keywordHandler}
+               placeholder='Keyword' />
+        <VigenereTable characters={ALPHABET} keyword={keyword.toUpperCase()} />
+      </div>
+    );
+  }
 }

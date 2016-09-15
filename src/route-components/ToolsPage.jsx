@@ -13,6 +13,9 @@ export default function ToolsPage(props) {
         <li>
           <Link to={{pathname: '/tools/shift'}}>Shift Cipher Tools</Link>
         </li>
+        <li>
+          <Link to={{pathname: '/tools/vigenere'}}>Vigenère Cipher Tools</Link>
+        </li>
       </ul>
     </div>
   );

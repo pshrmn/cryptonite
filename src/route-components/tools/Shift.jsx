@@ -5,7 +5,7 @@ import { AlphabetShiftKey, CustomShiftKey } from '../../components/ShiftKey';
 export default function ShiftToolsPage(props) {
   return (
     <div>
-      <h2>Shift Key</h2>
+      <h1>Shift Key</h1>
       <p>
         The shift key is useful for matching characters in a shift cipher. Use the
         left and right triangle buttons to change the amount of shift. A positive
@@ -20,11 +20,11 @@ export default function ShiftToolsPage(props) {
         decrypting.
       </p>
       <div>
-        <h3>English Alphabet Shift Key</h3>
+        <h2>English Alphabet Shift Key</h2>
         <AlphabetShiftKey />
       </div>
       <div>
-        <h3>Custom Character Shift Key</h3>
+        <h2>Custom Character Shift Key</h2>
         <CustomShiftKey />
       </div>
   </div>
