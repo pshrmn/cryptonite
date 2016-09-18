@@ -7,24 +7,31 @@ import '../../scss/shiftkey.scss';
  * The ShiftKey provides a convenient mechanism for shifting
  * a character set.
  */
-const ShiftKey = React.createClass({
-  getInitialState: function() {
-    return {
-      shift: this.props.initialShift || 0
+class ShiftKey extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state ={
+      shift: props.initialShift || 0
     };
-  },
-  increaseShift: function(event) {
+
+    this.increaseShift = this.increaseShift.bind(this);
+    this.decreaseShift = this.decreaseShift.bind(this);
+  }
+
+  increaseShift(event) {
     this.setState({
       shift: (this.state.shift+1) % this.props.characters.length
     });
-  },
-  decreaseShift: function(event) {
+  }
+
+  decreaseShift(event) {
     const count = this.props.characters.length;
     this.setState({
       shift: (this.state.shift-1+count) % count
     });
-  },
-  render: function() {
+  }
+
+  render() {
     const {
       characters = [],
       radius = 200
@@ -82,7 +89,7 @@ const ShiftKey = React.createClass({
       </div>
     );
   }
-});
+}
 
 function CharacterRing(props) {
   const {
@@ -133,18 +140,22 @@ export function AlphabetShiftKey(props) {
   return <ShiftKey characters={ALPHABET} {...props} />
 };
 
-export const CustomShiftKey = React.createClass({
-  getInitialState: function() {
-    return {
+export class CustomShiftKey extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
       chars: ''
     };
-  },
-  handleCharacters: function(event) {
+    this.handleCharacters = this.handleCharacters.bind(this);
+  }
+
+  handleCharacters(event) {
     this.setState({
       chars: event.target.value
     });
-  },
-  render: function() {
+  }
+
+  render() {
     const {
       chars
     } = this.state;
@@ -165,4 +176,4 @@ export const CustomShiftKey = React.createClass({
       </div>
     );
   }
-});
+}

@@ -3,34 +3,43 @@ import React from 'react';
 import { InputRow, Errors } from '../inputs';
 import { changePassword } from '../../api/auth';
 
-const ChangePasswordForm = React.createClass({
-  getInitialState: function() {
-    return {
+export default class ChangePasswordForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
       old_password: '',
       new_password1: '',
       new_password2: '',
       success: false
     }
-  },
-  handleOldPassword: function(event) {
+    this.handleOldPassword = this.handleOldPassword.bind(this);
+    this.handlePassword1 = this.handlePassword1.bind(this);
+    this.handlePassword2 = this.handlePassword2.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleOldPassword(event) {
     this.setState({
       old_password: event.target.value,
       success: false
     });
-  },
-  handlePassword1: function(event) {
+  }
+
+  handlePassword1(event) {
     this.setState({
       new_password1: event.target.value,
       success: false
     });
-  },
-  handlePassword2: function(event) {
+  }
+
+  handlePassword2(event) {
     this.setState({
       new_password2: event.target.value,
       success: false
     });
-  },
-  handleSubmit: function(event) {
+  }
+
+  handleSubmit(event) {
     event.preventDefault();
     const {
       old_password,
@@ -52,8 +61,9 @@ const ChangePasswordForm = React.createClass({
       .catch(err => {
         console.error(err);
       });
-  },
-  render: function() {
+  }
+
+  render() {
     const {
       old_password,
       new_password1,
@@ -89,6 +99,4 @@ const ChangePasswordForm = React.createClass({
       </form>
     );
   }
-});
-
-export default ChangePasswordForm;
+}

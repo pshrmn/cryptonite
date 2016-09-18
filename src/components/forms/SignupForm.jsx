@@ -5,33 +5,40 @@ import { InputRow, Errors } from '../inputs';
 import { signup } from '../../api/auth';
 import { loginUser } from '../../actions';
 
-const SignupForm = React.createClass({
-  getInitialState: function() {
-    return {
+class SignupForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
       username: '',
       password1: '',
       password2: ''
-    }
-  },
-  contextTypes: {
-    router: React.PropTypes.object
-  },
-  handleUsername: function(event) {
+    };
+
+    this.handleUsername = this.handleUsername.bind(this);
+    this.handlePassword1 = this.handlePassword1.bind(this);
+    this.handlePassword2 = this.handlePassword2.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleUsername(event) {
     this.setState({
       username: event.target.value
     });
-  },
-  handlePassword1: function(event) {
+  }
+
+  handlePassword1(event) {
     this.setState({
       password1: event.target.value
     });
-  },
-  handlePassword2: function(event) {
+  }
+
+  handlePassword2(event) {
     this.setState({
       password2: event.target.value
     });
-  },
-  handleSubmit: function(event) {
+  }
+
+  handleSubmit(event) {
     event.preventDefault();
     signup(this.state.username, this.state.password1, this.state.password2)
       .then(resp => resp.json())
@@ -46,8 +53,9 @@ const SignupForm = React.createClass({
       .catch(err => {
         console.error(err);
       });
-  },
-  render: function() {
+  }
+
+  render() {
     const {
       username,
       password1,
@@ -80,7 +88,11 @@ const SignupForm = React.createClass({
       </form>
     );
   }
-});
+}
+
+SignupForm.contextTypes = {
+  router: React.PropTypes.object
+};
 
 export default connect(
   null,
