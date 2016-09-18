@@ -11,7 +11,7 @@ export default ({pathname}) => (
       pattern={`${pathname}`}
       exactly
       component={ChallengeList} />
-    <Match
+    <MatchWhenAuthorized
       pattern={`${pathname}/:challengeID`}
       component={Challenge} />
   </div>

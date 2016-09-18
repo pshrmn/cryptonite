@@ -13,6 +13,7 @@ import {
   Profile
 } from './auth';
 import NotFound from './NotFound';
+import MatchWhenAuthorized from './MatchWhenAuthorized';
 
 import '../scss/Base.scss';
 
@@ -27,7 +28,7 @@ export default props => (
         <Match pattern='/tools' component={Tools} />
         <Match pattern='/login' component={Login} />
         <Match pattern ='/signup' component={Signup} />
-        <Match pattern='/profile' component={Profile} />
+        <MatchWhenAuthorized pattern='/profile' component={Profile} />
         <Miss component={NotFound} />
       </main>
       <Footer />
