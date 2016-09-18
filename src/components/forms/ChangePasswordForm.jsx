@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { InputRow, Errors } from './inputs';
-import { changePassword } from '../api/auth';
+import { InputRow, Errors } from '../inputs';
+import { changePassword } from '../../api/auth';
 
 const ChangePasswordForm = React.createClass({
   getInitialState: function() {

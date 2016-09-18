@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Lesson from './Lesson';
+import Lesson from './LessonBase';
 
 const title = 'Substitution Ciphers';
 

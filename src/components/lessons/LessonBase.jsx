@@ -2,7 +2,7 @@ import React from 'react';
 
 import '../../scss/lesson.scss';
 
-export default function Lesson(props) {
+export default function LessonBase(props) {
   const {
     title,
     children

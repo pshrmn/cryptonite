@@ -1,7 +1,7 @@
 import React from 'react';
 
-import Lesson from './Lesson';
-import VigenereTable from '../../components/VigenereTable';
+import Lesson from './LessonBase';
+import VigenereTable from '../tools/VigenereTable';
 
 const title = 'The Vigenère Cipher';
 

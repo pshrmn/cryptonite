@@ -1,7 +1,18 @@
 import React from 'react';
-import { Link } from 'react-router';
+import { Match, Link } from 'react-router';
 
-export default function ToolsPage(props) {
+import ShiftRoute from './ShiftRoute';
+import VigenereRoute from './VigenereRoute';
+
+export default ({ pathname }) => (
+  <div>
+    <Match pattern={`${pathname}`} exactly component={ToolsList} />
+    <Match pattern={`${pathname}/shift`} component={ShiftRoute} />
+    <Match pattern={`${pathname}/vigenere`} component={VigenereRoute} />
+  </div>
+);
+
+function ToolsList(props) {
   return (
     <div>
       <h1>Tools</h1>

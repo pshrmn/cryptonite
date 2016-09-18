@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { EnglishVigenereTable } from '../../components/VigenereTable';
+import { EnglishVigenereTable } from './VigenereTable';
 
 export default function VigenereToolsPage(props) {
   return (

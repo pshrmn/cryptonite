@@ -1,7 +1,7 @@
 import React from 'react';
 import { pie, arc } from 'd3-shape';
 
-import '../scss/shiftkey.scss';
+import '../../scss/shiftkey.scss';
 
 /*
  * The ShiftKey provides a convenient mechanism for shifting

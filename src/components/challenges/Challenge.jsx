@@ -3,30 +3,31 @@ import React from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 
-import { Errors } from './inputs';
+import { Errors } from '../inputs';
 import {
   challenge as fetchChallenge,
   check as checkChallenge
-} from '../api/challenge';
-import { loadChallenge } from '../actions';
+} from '../../api/challenge';
+import { loadChallenge } from '../../actions';
 
-import '../scss/challenge.scss';
+import '../../scss/challenge.scss';
 
-const Challenge = React.createClass({
-  getInitialState: function() {
-    return {
+
+class Challenge extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
       errors: undefined,
       message: '',
       decrypted: false
     };
-  },
-  componentDidMount: function() {
+    // start loading the challenge if it isn't already loaded
     const {
       challenge,
       challengeID,
       loadChallenge
-    } = this.props;
-    if ( this.props.challenge === undefined ) {
+    } = props;
+    if ( props.challenge === undefined ) {
       fetchChallenge(challengeID)
         .then(resp => resp.json())
         .then(resp => {
@@ -40,13 +41,18 @@ const Challenge = React.createClass({
           console.error(err);
         });
     }
-  },
-  handleMessage: function(event) {
+
+    this.handleMessage = this.handleMessage.bind(this);
+    this.checkMessage = this.checkMessage.bind(this);
+  }
+
+  handleMessage(event) {
     this.setState({
       message: event.target.value
     });
-  },
-  checkMessage: function(event) {
+  }
+
+  checkMessage(event) {
     event.preventDefault();
     checkChallenge(this.props.challengeID, this.state.message)
       .then(resp => resp.json())
@@ -65,10 +71,10 @@ const Challenge = React.createClass({
           errors
         });
       })
-  },
-  render: function() {
+  }
+
+  render() {
     const {
-      user,
       challenge = {},
       challengeID
     } = this.props;
@@ -78,25 +84,6 @@ const Challenge = React.createClass({
       decrypted
     } = this.state;
 
-    // only a logged in user that is logged in can do challenges. Include a
-    // 'from' state variable in the Links so that when a user logs in or
-    // signs up, they will be redirected back to the challenge
-    if ( !user || !user.authenticated ) {
-      const redirectState = {
-        from: `/challenge/${challengeID}`
-      };
-      return (
-        <div>
-          <p>
-            You must be logged in to do the challenges. If you have an account, please
-            {' '}<Link to={{pathname: '/login', state: redirectState}}>login</Link>.
-            Otherwise, you can
-            {' '}<Link to={{pathname: '/signup', state: redirectState}}>create</Link>{' '}
-            a new account.
-          </p>
-        </div>
-      );
-    }
     return (
       <div className='challenge'>
         <h1>{challenge.name }{ decrypted || challenge.completed ? '✓' : null}</h1>
@@ -114,14 +101,15 @@ const Challenge = React.createClass({
       </div>
     );
   }
-});
+}
 
 export default connect(
   (state, ownProps) => {
-    const { challengeID } = ownProps;
+    let { challengeID } = ownProps.params;
+    challengeID = parseInt(challengeID, 10);
     return {
-      user: state.user,
-      challenge: state.challenges[challengeID]
+      challenge: state.challenges[challengeID],
+      challengeID
     }
   },
   {

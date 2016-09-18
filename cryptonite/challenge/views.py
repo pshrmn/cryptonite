@@ -27,8 +27,14 @@ def all_challenges(request):
     })
 
 @require_http_methods(['GET'])
-@login_required
 def challenge(request, pk):
+    if not request.user.is_authenticated():
+        return JsonResponse({
+            'success': False,
+            'errors': {
+                '__all__': ['You must be logged in to view challenges']
+            },   
+        })
     try:
         challenge = Challenge.objects.get(pk=pk)
     except Challenge.DoesNotExist:

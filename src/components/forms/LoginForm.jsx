@@ -1,42 +1,39 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router';
 
-import { InputRow, Errors } from './inputs';
-import { signup } from '../api/auth';
-import { loginUser } from '../actions';
+import { InputRow, Errors } from '../inputs';
+import { login } from '../../api/auth';
+import { loginUser } from '../../actions';
 
-const SignupForm = React.createClass({
+const LoginForm = React.createClass({
   getInitialState: function() {
     return {
       username: '',
-      password1: '',
-      password2: ''
+      password: '',
+      errors: {}
     }
+  },
+  contextTypes: {
+    router: React.PropTypes.object
   },
   handleUsername: function(event) {
     this.setState({
       username: event.target.value
     });
   },
-  handlePassword1: function(event) {
+  handlePassword: function(event) {
     this.setState({
-      password1: event.target.value
-    });
-  },
-  handlePassword2: function(event) {
-    this.setState({
-      password2: event.target.value
+      password: event.target.value
     });
   },
   handleSubmit: function(event) {
     event.preventDefault();
-    signup(this.state.username, this.state.password1, this.state.password2)
+    login(this.state.username, this.state.password)
       .then(resp => resp.json())
       .then(resp => {
         if ( resp.success ) {
           this.props.loginUser(resp.user);
-          this.props.router.push(this.props.next || '/');
+          this.context.router.transitionTo(this.props.next || '/');
         } else {
           this.setState({errors: resp.errors});
         }
@@ -48,8 +45,7 @@ const SignupForm = React.createClass({
   render: function() {
     const {
       username,
-      password1,
-      password2,
+      password,
       errors = {}
     } = this.state;
     return (
@@ -59,21 +55,15 @@ const SignupForm = React.createClass({
                 value={username}
                 handler={this.handleUsername}
                 errors={errors.username}
-                id='signup-username-input' />
+                id='login-username-input' />
         <InputRow name='Password'
-                value={password1}
+                value={password}
                 type='password'
-                handler={this.handlePassword1}
-                errors={errors.password1}
-                id='signup-password1-input' />
-        <InputRow name='Password (Verify)'
-                value={password2}
-                type='password'
-                handler={this.handlePassword2}
-                errors={errors.password2}
-                id='signup-password2-input' />
+                handler={this.handlePassword}
+                errors={errors.password}
+                id='login-password-input' />
         <div>
-          <button>Sign Up</button>
+          <button>Login</button>
         </div>
       </form>
     );
@@ -85,5 +75,4 @@ export default connect(
   {
     loginUser
   }
-)(withRouter(SignupForm));
-
+)(LoginForm);

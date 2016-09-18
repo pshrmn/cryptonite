@@ -13,7 +13,8 @@ const config = {
       'react-router',
       'redux',
       'react-redux',
-      'whatwg-fetch'
+      'whatwg-fetch',
+      'd3-shape'
     ]
   },
   output: {
