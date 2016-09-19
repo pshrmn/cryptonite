@@ -8,6 +8,7 @@ export const InputRow = function(props) {
     value = '',
     type = 'text',
     handler,
+    placeholder = '',
     id = `input-${Math.floor(Math.random()*10000)}`,
     errors
   } = props;
@@ -20,6 +21,7 @@ export const InputRow = function(props) {
       <input type={type}
              id={id}
              value={value}
+             placeholder={placeholder}
              onChange={handler} />
     </div>
   );

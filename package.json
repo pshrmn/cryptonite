@@ -1,6 +1,6 @@
 {
   "name": "cryptonite",
-  "version": "1.6.5",
+  "version": "1.6.6",
   "description": "The React powered front end of Cryptonite",
   "main": "src/index.js",
   "scripts": {
