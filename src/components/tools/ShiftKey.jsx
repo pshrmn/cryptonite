@@ -1,6 +1,8 @@
 import React from 'react';
 import { pie, arc } from 'd3-shape';
 
+import { InputRow } from '../inputs';
+
 import '../../scss/shiftkey.scss';
 
 /*
@@ -34,7 +36,7 @@ class ShiftKey extends React.Component {
   render() {
     const {
       characters = [],
-      radius = 200
+      radius = 150
     } = this.props;
     const {
       shift
@@ -67,12 +69,12 @@ class ShiftKey extends React.Component {
                          transform={`translate(${halfTri},0)`}
                          /* this circle exists to make clicking the button easier */ />
                 <path d={d} />
-                <title>Click to increase the shift</title>
+                <title>- Left Shift / + Right Shift</title>
               </g>
               <g className='shift-amount'>
-                <text dy='0.3em'>
-                  {shift-characters.length} {characters[shift]} {shift}
-                </text>
+                <text dy='-2.0em'>left shift of {Math.abs(shift-characters.length)}</text>
+                <text dy='0.3em' className='big'>{characters[shift]}</text>
+                <text dy='2.5em'>right shift of {shift}</text>                
               </g>
               <g className='clickable'
                  transform={`translate(${-(nearRing)/2},0)`}
@@ -81,7 +83,7 @@ class ShiftKey extends React.Component {
                          transform={`translate(${-halfTri},0)`}
                          /* this circle exists to make clicking the button easier */ />
                 <path d={d} transform='scale(-1,1)' />
-                <title>Click to decrease the shift</title>
+                <title>+ Left Shift / - Right Shift</title>
               </g>
             </g>
           </g>
@@ -159,6 +161,12 @@ export class CustomShiftKey extends React.Component {
     const {
       chars
     } = this.state;
+    const charsArray = chars.split('');
+    const charSet = new Set(charsArray);
+    let errors = undefined;
+    if ( charSet.size !== chars.length ) {
+      errors = ['Duplicate characters are not allowed in shift ciphers']
+    }
     return (
       <div>
         <p>
@@ -166,12 +174,12 @@ export class CustomShiftKey extends React.Component {
           (with no spaces). For example, to create a shift key using the English
           alphabet, you would enter "ABCDEFGHIJKLMNOPQRSTUVWXYZ".
         </p>
-        <input type='text'
-               value={chars}
-               onChange={this.handleCharacters} />
         {
-          chars.length === 0 ? null : <ShiftKey characters={chars.split('')} />
+          chars.length === 0 ? null : <ShiftKey characters={Array.from(charSet)} />
         }
+        <InputRow value={chars}
+                  handler={this.handleCharacters}
+                  errors={ errors } />
         
       </div>
     );

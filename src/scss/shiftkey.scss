@@ -30,5 +30,9 @@
 
 .shift-amount text {
   text-anchor: middle;
-  font-size: 36px;
+  font-size: 1em;
+}
+
+.shift-amount text.big {
+  font-size: 1.5em;
 }
