@@ -12,6 +12,11 @@ const MatchWhenAuthorized = ({component: Component, user, ...rest}) => (
   )} />
 );
 
+/*
+ * If a connected component is pure, it will only update when the store
+ * or its props have updated. By making it not pure, shouldComponentUpdate
+ * will return true, allowing the <Match /> component to react to new locations
+ */
 export default connect(
   state => ({
     user: state.user,

@@ -10,7 +10,7 @@ export default ({ pathname }) => (
     <Match pattern={`${pathname}/change-password`} component={ChangePassword} />
     <Match pattern={pathname} exactly component={BaseProfile} />
   </div>
-);
+)
 
 function BaseProfile(props) {
   return (
@@ -19,7 +19,7 @@ function BaseProfile(props) {
         <LogoutLink />
       </li>
       <li>
-        <Link to='profile/change-password'>Change Password</Link>
+        <Link to='/profile/change-password'>Change Password</Link>
       </li>
     </ul>
   );
