@@ -14,8 +14,9 @@ class ChallengeList  extends React.Component {
       errors: {}
     };
 
-    // load the challenges from the server
-
+    // load the challenges from the server every time this mounts
+    // this might be overkill, but helps to ensure that the user
+    // always has the most up to date challenges
     all_challenges()
       .then(resp => resp.json())
       .then(resp => {
@@ -41,14 +42,12 @@ class ChallengeList  extends React.Component {
         <Errors errors={errors['__all__']} />
         <ol>
           {
-            Object.keys(this.props.challenges)
-              .map(key => this.props.challenges[key])
-              .map(c => (
-                <li key={c.pk}>
-                  <Link to={`/challenges/${c.pk}`}>{c.name}</Link>
-                  <span className='completed'>{c.completed ? '✓' : null}</span>
-                </li>
-              ))
+            this.props.challenges.map(c => (
+              <li key={c.pk}>
+                <Link to={`/challenges/${c.pk}`}>{c.name}</Link>
+                <span className='completed'>{c.completed ? '✓' : null}</span>
+              </li>
+            ))
           }
         </ol>
       </div>

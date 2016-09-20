@@ -8,6 +8,8 @@ from helpers.context import user_state
 
 
 def all_challenges(request):
+    if not request.user.is_authenticated:
+        return redirect(to='/login?next=%s' % request.path)
     challenges = []
     for challenge in Challenge.objects.all():
         c_dict = challenge.as_dict()
@@ -26,7 +28,7 @@ def all_challenges(request):
 
 def challenge(request, pk):
     if not request.user.is_authenticated:
-        return redirect(to='challenge-web-all')
+        return redirect(to='/login?next=%s' % request.path)
     try:
         challenge = Challenge.objects.get(pk=pk)
     except Challenge.DoesNotExist:

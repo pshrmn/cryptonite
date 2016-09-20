@@ -108,7 +108,7 @@ export default connect(
     let { challengeID } = ownProps.params;
     challengeID = parseInt(challengeID, 10);
     return {
-      challenge: state.challenges[challengeID],
+      challenge: state.challenges.find(c => c.pk === challengeID),
       challengeID
     }
   },

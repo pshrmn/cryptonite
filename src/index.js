@@ -8,8 +8,9 @@ import Base from './components/Base';
 
 const intialState = {
   user: window.__INITIAL_STATE__.user,
-  challenges: {}
+  challenges: window.__INITIAL_STATE__.challenges
 };
+
 const reducer = combineReducers(reducers);
 const store = createStore(reducer, intialState);
 
