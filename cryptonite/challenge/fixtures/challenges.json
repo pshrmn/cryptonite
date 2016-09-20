@@ -5,8 +5,8 @@
     "fields": {
       "name": "Easy",
       "description": "This should be easy to decipher. It was encrypted using a shift cipher of one to the right",
-      "encrypted": "FBTZ",
-      "decrypted": "EASY"
+      "problem": "FBTZ",
+      "solution": "EASY"
     }
   },
   {
@@ -15,8 +15,8 @@
     "fields": {
       "name": "A Bit Harder",
       "description": "For a little bit more of a challenge, this was encrypted using a shift cipher of two to the left",
-      "encrypted": "FYPBCP",
-      "decrypted": "HARDER"
+      "problem": "FYPBCP",
+      "solution": "HARDER"
     }
   },
   {
@@ -25,8 +25,8 @@
     "fields": {
       "name": "Halfway There",
       "description": "Rot-13 shift ciphers are interesting because the same cipher is used for encrypting and decrypting",
-      "encrypted": "GUVEGRRA",
-      "decrypted": "THIRTEEN"
+      "problem": "GUVEGRRA",
+      "solution": "THIRTEEN"
     }
   },
   {
@@ -35,8 +35,8 @@
     "fields": {
       "name": "Switching Things Up",
       "description": "This time, you are given a message and need to encrypt it using a shift cipher of 4 to the right.",
-      "encrypted": "TOP SECRET",
-      "decrypted": "XST WIGVIX"
+      "problem": "TOP SECRET",
+      "solution": "XST WIGVIX"
     }
   },
   {
@@ -45,8 +45,8 @@
     "fields": {
       "name": "Hello, Caesar",
       "description": "Julius Caesar used a shift cipher of -3 to encrypt messages. This message is the first challenge, but Caesar's last words (translated to English).",
-      "encrypted": "VLR QLL YORQRP",
-      "decrypted": "AND YOU BRUTUS"
+      "problem": "VLR QLL YORQRP",
+      "solution": "AND YOU BRUTUS"
     }
   },
   {
@@ -55,8 +55,8 @@
     "fields": {
       "name": "A Prime Challenge",
       "description": "This message was encrypted using a shift cipher. The characters were shifted by the product of the first two positive prime numbers, two and three.",
-      "encrypted": "ZCU ZOSKY ZNXKK KWAGRY YOD",
-      "decrypted": "TWO TIMES THREE EQUALS SIX"
+      "problem": "ZCU ZOSKY ZNXKK KWAGRY YOD",
+      "solution": "TWO TIMES THREE EQUALS SIX"
     }
   },
   {
@@ -65,8 +65,8 @@
     "fields": {
       "name": "A Real Sentence",
       "description": "The number of words in the message is the same as the amount of shift used to encrypt it. Of course, once you've decrypted one, you've decrypted them all.",
-      "encrypted": "JCNNITW JCNNITW JCNNITW JCNNITW JCNNITW JCNNITW JCNNITW JCNNITW",
-      "decrypted": "BUFFALO BUFFALO BUFFALO BUFFALO BUFFALO BUFFALO BUFFALO BUFFALO"
+      "problem": "JCNNITW JCNNITW JCNNITW JCNNITW JCNNITW JCNNITW JCNNITW JCNNITW",
+      "solution": "BUFFALO BUFFALO BUFFALO BUFFALO BUFFALO BUFFALO BUFFALO BUFFALO"
     }
   }
 ]

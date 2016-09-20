@@ -88,8 +88,8 @@ class Challenge extends React.Component {
       <div className='challenge'>
         <h1>{challenge.name }{ decrypted || challenge.completed ? '✓' : null}</h1>
         { challenge.description }
-        <p className='encrypted'>
-          { challenge.encrypted }
+        <p className='problem'>
+          { challenge.problem }
         </p>
         <form onSubmit={this.checkMessage}>
           <Errors errors={errors['__all__']} />

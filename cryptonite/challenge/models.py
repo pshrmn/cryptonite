@@ -8,8 +8,8 @@ class Challenge(models.Model):
     the user is expected to decrypt.
     """
     name = models.CharField(max_length=200)
-    encrypted = models.CharField(max_length=1000)
-    decrypted = models.CharField(max_length=1000)
+    problem = models.CharField(max_length=1000)
+    solution = models.CharField(max_length=1000)
     description = models.CharField(max_length=10000, default='')
     users = models.ManyToManyField(settings.AUTH_USER_MODEL,
                                    blank=True)
@@ -21,12 +21,12 @@ class Challenge(models.Model):
         challenge = {
             'pk': self.pk,
             'name': self.name,
-            'encrypted': self.encrypted,
+            'problem': self.problem,
             'description': self.description
         }
         return challenge
 
     def decrypted_dict(self):
         challenge = self.as_dict()
-        challenge['decrypted'] = self.decrypted
+        challenge['solution'] = self.solution
         return challenge
