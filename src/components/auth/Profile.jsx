@@ -12,15 +12,13 @@ export default ({ pathname }) => (
   </div>
 )
 
-function BaseProfile(props) {
-  return (
-    <ul>
-      <li>
-        <LogoutLink />
-      </li>
-      <li>
-        <Link to='/profile/change-password'>Change Password</Link>
-      </li>
-    </ul>
-  );
-}
+const BaseProfile = ({ pathname }) => (
+  <ul>
+    <li>
+      <LogoutLink />
+    </li>
+    <li>
+      <Link to={`${pathname}/change-password`}>Change Password</Link>
+    </li>
+  </ul>
+);

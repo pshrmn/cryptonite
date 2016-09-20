@@ -4,13 +4,22 @@ from django.views.generic import RedirectView
 
 from catch_all.views import base_view, unknown_api
 
+
 urlpatterns = [
+    url(r'^challenges/', include('challenge.urls.web')),
+    url(r'^challenges$', RedirectView.as_view(
+                            pattern_name='challenge-web-all',
+                            permanent=True)
+                         )
+]
+
+urlpatterns += [
     url(
         r'^api/',
         include(
             [
                 url(r'^auth/', include('json_auth.urls')),
-                url(r'^challenge/', include('challenge.urls')),
+                url(r'^challenge/', include('challenge.urls.api')),
                 url(r'^(?:.*)/?$', unknown_api, name='unknown_api')
             ]
         )
@@ -19,9 +28,12 @@ urlpatterns = [
 
 urlpatterns += [
     url(r'^admin/', admin.site.urls),
-    # because the catch all prevents APPEND_SLASHES from redirecting
+    # because the catch all prevents APPEND_SLASH from redirecting
     # /admin to /admin/, the redirect needs to be done manually
-    url(r'^admin$', RedirectView.as_view(pattern_name='admin:index', permanent=True))
+    url(r'^admin$', RedirectView.as_view(
+                        pattern_name='admin:index',
+                        permanent=True)
+                    )
 ]
 
 """

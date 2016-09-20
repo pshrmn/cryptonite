@@ -9,19 +9,8 @@
 </head>
 <body>
   <div id="app-holder"></div>
-
   <script type="text/javascript">
-    <!-- set this before the app is loaded -->
-    window.__INITIAL_STATE__ = {
-      'url': '{{ url }}',
-      'user': {
-        'authenticated': {{ user.is_authenticated|yesno:'true,false' }},
-        {% if user.is_authenticated %}
-        'username': '{{ user.username }}',
-        'pk': {{ user.pk }}
-        {% endif %}
-      }
-    }
+    window.__INITIAL_STATE__ = {{ initial_state | safe }}
   </script>
   <script src="{% static 'js/polyfill.min.js' %}"></script>
   <script src="{% static 'js/vendor.js' %}"></script>

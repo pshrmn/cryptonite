@@ -44,7 +44,7 @@ function Header(props) {
       <Link to='/learn'>Learn</Link>
     </li>,
     <li key='challenges'>
-      <Link to='/challenges'>Challenges</Link>
+      <Link to='/challenges/'>Challenges</Link>
     </li>,
     <li key='tools'>
       <Link to='/tools'>Tools</Link>
