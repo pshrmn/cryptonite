@@ -12,7 +12,7 @@ def all_challenges(request):
     total_points = request.user.cryptographer.points
     for challenge in Challenge.objects.all():
         c_dict = challenge.as_dict()
-        c_dict['completed'] = challenge.users.filter(pk=request.user.pk).exists()
+        c_dict['completed'] = challenge.users.filter(pk=request.user.cryptographer.pk).exists()
         c_dict['can_do'] = total_points >= c_dict['points_required']
         challenges.append(c_dict)
     initial_state = {
@@ -39,7 +39,7 @@ def challenge(request, pk):
     if challenge_dict.get('points_required') > total_points:
         return redirect(to='challenge-web-all')
 
-    challenge_dict['completed'] = challenge.users.filter(pk=request.user.pk).exists()
+    challenge_dict['completed'] = challenge.users.filter(pk=request.user.cryptographer.pk).exists()
     initial_state = {
         'user': user_state(request.user),
         'challenges': [challenge_dict]
