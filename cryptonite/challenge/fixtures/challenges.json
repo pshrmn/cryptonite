@@ -52,7 +52,7 @@
     "pk": 5,
     "fields": {
       "name": "Hello, Caesar",
-      "description": "Julius Caesar used a shift cipher of -3 to encrypt messages. This message is the first challenge, but Caesar's last words (translated to English).",
+      "description": "Julius Caesar used a shift cipher of -3 to encrypt messages.",
       "problem": "VLR QLL YORQRP",
       "solution": "AND YOU BRUTUS",
       "points": 50,
@@ -63,10 +63,10 @@
     "model": "challenge.challenge",
     "pk": 6,
     "fields": {
-      "name": "A Prime Challenge",
-      "description": "This message was encrypted using a shift cipher. The characters were shifted by the product of the first two positive prime numbers, two and three.",
-      "problem": "ZCU ZOSKY ZNXKK KWAGRY YOD",
-      "solution": "TWO TIMES THREE EQUALS SIX",
+      "name": "A Real Sentence",
+      "description": "The number of words in the message is the same as the amount of shift used to encrypt it. Of course, once you've decrypted one, you've decrypted them all.",
+      "problem": "JCNNITW JCNNITW JCNNITW JCNNITW JCNNITW JCNNITW JCNNITW JCNNITW",
+      "solution": "BUFFALO BUFFALO BUFFALO BUFFALO BUFFALO BUFFALO BUFFALO BUFFALO",
       "points": 100,
       "points_required": 150
     }
@@ -75,12 +75,12 @@
     "model": "challenge.challenge",
     "pk": 7,
     "fields": {
-      "name": "A Real Sentence",
-      "description": "The number of words in the message is the same as the amount of shift used to encrypt it. Of course, once you've decrypted one, you've decrypted them all.",
-      "problem": "JCNNITW JCNNITW JCNNITW JCNNITW JCNNITW JCNNITW JCNNITW JCNNITW",
-      "solution": "BUFFALO BUFFALO BUFFALO BUFFALO BUFFALO BUFFALO BUFFALO BUFFALO",
-      "points": 100,
-      "points_required": 150
+      "name": "A Prime Challenge",
+      "description": "This message was encrypted using a shift cipher. The characters were shifted by the product of the first two positive prime numbers.",
+      "problem": "ZCU ZOSKY ZNXKK KWAGRY YOD",
+      "solution": "TWO TIMES THREE EQUALS SIX",
+      "points": 150,
+      "points_required": 200
     }
   }
 ]

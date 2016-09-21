@@ -11,6 +11,7 @@ export default function(state = [], action) {
     // this allows the challenge to be updated if it is already
     // known, such as when a user successfully completes it
     var challenge = action.challenge;
+
     return [
       ...state.filter(c => c.pk !== challenge.pk),
       challenge

@@ -1,0 +1,45 @@
+@import 'variables';
+
+.challenge-item {
+  font-size: 1em;
+  margin: 5px 0;
+  display: inline-flex;
+  flex-flow: row nowrap;
+  align-items: center;
+
+  .byline {
+    font-size: 0.75em;
+    color: $dark-gray;
+  }
+
+  .possible-points {
+    font-size: 0.8em;
+    display: inline-block;
+    margin: 0 5px;
+    min-width: 50px;
+
+    .status {
+      color: $dark-gray;
+      background: $gray;
+      border-radius: 5px;
+      padding: 1px 3px;
+
+      .star {
+        color: $dark-gray;
+      }
+
+      &.done {
+        color: $black;
+        .star {
+          color: $gold;
+        }
+      }
+      
+    }
+
+  }
+
+  .description {
+    font-size: 0.8em;
+  }
+}

@@ -1,21 +1,3 @@
-.challenge-item {
-  margin: 5px 0;
-  display: flex;
-  flex-flow: row wrap;
-  align-items: center;
-  
-  .status {
-    font-size: 0.8em;
-    display: inline-block;
-    margin-right: 5px;
-    width: 75px;
-  }
-
-  .byline {
-    font-size: 0.75em;
-  }  
-}
-
 .challenges-list {
   ol {
     font-size: 1.25em;

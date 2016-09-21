@@ -106,10 +106,13 @@ def check_challenge(request, pk):
         if created:
             crypto.points += challenge.points
             crypto.save()
-
+        challenge_dict = challenge.decrypted_dict()
+        challenge_dict['completed'] = True
+        challenge_dict['can_do'] = True
         return JsonResponse({
             'success': True,
-            'errors': {}
+            'errors': {},
+            'challenge': challenge_dict
         })
     else:
         return JsonResponse({

@@ -18,14 +18,6 @@ export const unlocked = (
   </span>
 );
 
-export const completed = (
-  <span
-    className='completed'
-    title='Completed'>
-    {String.fromCharCode(10003)}
-  </span>
-);
-
 export const star = (
   <span className='star'>
     {String.fromCharCode(55356, 57119)}

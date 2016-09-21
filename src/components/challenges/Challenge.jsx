@@ -4,14 +4,12 @@ import { Link } from 'react-router';
 import { connect } from 'react-redux';
 
 import { Errors } from '../inputs';
+import ChallengeItem from './ChallengeItem';
 import {
   challenge as fetchChallenge,
   check as checkChallenge
 } from '../../api/challenge';
 import { loadChallenge } from '../../actions';
-import {
-  completed
-} from '../symbols';
 
 import '../../scss/challenge.scss';
 
@@ -21,8 +19,7 @@ class Challenge extends React.Component {
     super(props);
     this.state = {
       errors: undefined,
-      message: '',
-      decrypted: false
+      message: ''
     };
     // start loading the challenge if it isn't already loaded
     const {
@@ -61,8 +58,8 @@ class Challenge extends React.Component {
       .then(resp => resp.json())
       .then(resp => {
         if ( resp.success ) {
+            this.props.loadChallenge(resp.challenge);
             this.setState({
-              decrypted: true,
               errors: {}
             });
           } else {
@@ -83,14 +80,11 @@ class Challenge extends React.Component {
     } = this.props;
     const {
       errors = {},
-      message,
-      decrypted
+      message
     } = this.state;
-
     return (
       <div className='challenge'>
-        <h1>{challenge.name }{ decrypted || challenge.completed ? completed : null}</h1>
-        { challenge.description }
+        <ChallengeItem {...challenge} />
         <p className='problem'>
           { challenge.problem }
         </p>

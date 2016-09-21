@@ -38,6 +38,8 @@ def challenge(request, pk):
     total_points = request.user.cryptographer.points
     if challenge_dict.get('points_required') > total_points:
         return redirect(to='challenge-web-all')
+    else:
+        challenge_dict['can_do'] = True
 
     challenge_dict['completed'] = challenge.users.filter(pk=request.user.cryptographer.pk).exists()
     initial_state = {

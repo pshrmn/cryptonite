@@ -1,17 +1,13 @@
 import React from 'react';
-import { Link } from 'react-router';
 import { connect } from 'react-redux';
 
 import { Errors } from '../inputs';
 import { all_challenges } from '../../api/challenge';
 import { loadChallenges } from '../../actions';
-import {
-  locked,
-  unlocked,
-  completed
-} from '../symbols';
+import ChallengeItem from './ChallengeItem';
 
 import '../../scss/challenges-list.scss';
+
 
 class ChallengeList  extends React.Component {
   constructor(props) {
@@ -48,32 +44,8 @@ class ChallengeList  extends React.Component {
         <ol>
           {
             this.props.challenges.map(c => (
-              <li key={c.pk}
-                className='challenge-item'>
-                <div className='status'>
-                  { c.completed ? completed : 
-                    (c.can_do ? unlocked : locked)
-                  }
-                  {
-                    c.completed ? c.points : 0
-                  }/{c.can_do ? c.points : '???'}
-                </div>
-                <div>
-                  <div>
-                    {
-                      c.can_do ? (
-                        <Link to={`/challenges/${c.pk}`}>{c.name}</Link>
-                      ) : (
-                        c.name
-                      )
-                    }
-                  </div>
-                  <div className='byline'>
-                    {
-                      c.can_do ? c.description : `Need ${c.points_required} points to attempt this challenge`
-                    }
-                  </div>
-                </div>
+              <li key={c.pk}>
+                <ChallengeItem {...c} />
               </li>
             ))
           }
