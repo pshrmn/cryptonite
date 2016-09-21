@@ -11,6 +11,7 @@ import {
   completed
 } from '../symbols';
 
+import '../../scss/challenges-list.scss';
 
 class ChallengeList  extends React.Component {
   constructor(props) {
@@ -42,25 +43,37 @@ class ChallengeList  extends React.Component {
     } = this.state;
     
     return (
-      <div>
-        <h1>Challenges</h1>
+      <div className='challenges-list'>
         <Errors errors={errors['__all__']} />
         <ol>
           {
             this.props.challenges.map(c => (
-              <li key={c.pk}>
-                { c.completed ? completed : 
-                  (c.can_do ? unlocked : locked)
-                }
-                {
-                  c.can_do ? (
-                    <Link to={`/challenges/${c.pk}`}>{c.name}</Link>
-                  ) : (
-                    <span title={`${c.points_required} points needed to attempt this challenge.`}>
-                      {c.name}
-                    </span>
-                  )
-                }
+              <li key={c.pk}
+                className='challenge-item'>
+                <div className='status'>
+                  { c.completed ? completed : 
+                    (c.can_do ? unlocked : locked)
+                  }
+                  {
+                    c.completed ? c.points : 0
+                  }/{c.can_do ? c.points : '???'}
+                </div>
+                <div>
+                  <div>
+                    {
+                      c.can_do ? (
+                        <Link to={`/challenges/${c.pk}`}>{c.name}</Link>
+                      ) : (
+                        c.name
+                      )
+                    }
+                  </div>
+                  <div className='byline'>
+                    {
+                      c.can_do ? c.description : `Need ${c.points_required} points to attempt this challenge`
+                    }
+                  </div>
+                </div>
               </li>
             ))
           }

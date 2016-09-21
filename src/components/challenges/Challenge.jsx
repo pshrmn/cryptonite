@@ -9,6 +9,9 @@ import {
   check as checkChallenge
 } from '../../api/challenge';
 import { loadChallenge } from '../../actions';
+import {
+  completed
+} from '../symbols';
 
 import '../../scss/challenge.scss';
 
@@ -86,7 +89,7 @@ class Challenge extends React.Component {
 
     return (
       <div className='challenge'>
-        <h1>{challenge.name }{ decrypted || challenge.completed ? '✓' : null}</h1>
+        <h1>{challenge.name }{ decrypted || challenge.completed ? completed : null}</h1>
         { challenge.description }
         <p className='problem'>
           { challenge.problem }
