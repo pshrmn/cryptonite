@@ -8,6 +8,9 @@ from django.contrib.auth import (get_user_model, authenticate,
 from django.contrib.auth.forms import (UserCreationForm, AuthenticationForm,
                                        PasswordChangeForm)
 
+from cryptographer.models import Cryptographer
+from helpers.context import user_state
+
 User = get_user_model()
 
 
@@ -28,12 +31,13 @@ def signup(request):
     if form.is_valid():
         form.save()
         user = authenticate(username=data['username'], password=data['password1'])
+        # create a Cryptographer and link it to the user
+        c = Cryptographer(user=user)
+        c.save()
+
         auth_login(request, user)
         return JsonResponse({
-            'user': {
-                'username': user.username,
-                'pk': user.pk
-            },
+            'user': user_state(user),
             'success': True,
             'errors': {}
         })
@@ -52,10 +56,7 @@ def login(request):
         user = form.get_user()
         auth_login(request, user)
         return JsonResponse({
-            'user': {
-                'username': user.username,
-                'pk': user.pk
-            },
+            'user': user_state(user),
             'success': True,
             'errors': {}
         })

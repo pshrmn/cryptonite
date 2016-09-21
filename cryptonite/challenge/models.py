@@ -2,6 +2,8 @@ from django.db import models
 from django.conf import settings
 
 
+from cryptographer.models import Cryptographer
+
 class Challenge(models.Model):
     """
     A Challenge presents the user with a problem message
@@ -18,8 +20,9 @@ class Challenge(models.Model):
     description = models.CharField(max_length=10000, default='')
     points = models.PositiveIntegerField(default=50)
     points_required = models.PositiveIntegerField(default=0)
-    users = models.ManyToManyField(settings.AUTH_USER_MODEL,
-                                   blank=True)
+    users = models.ManyToManyField(Cryptographer,
+                                   blank=True,
+                                   through='CompletedChallenge')
 
     def __str__(self):
         return '%d - %s' % (self.pk, self.name)
@@ -40,3 +43,10 @@ class Challenge(models.Model):
         challenge['solution'] = self.solution
         return challenge
 
+
+class CompletedChallenge(models.Model):
+    challenge = models.ForeignKey(Challenge)
+    cryptographer = models.ForeignKey(Cryptographer)
+
+    def __str__(self):
+        return '%d - %d' % (self.cryptographer.pk, self.challenge.pk)

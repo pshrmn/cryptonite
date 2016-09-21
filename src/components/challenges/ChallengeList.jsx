@@ -35,7 +35,7 @@ class ChallengeList  extends React.Component {
     const { 
       errors = {}
     } = this.state;
-
+    const lock = String.fromCharCode(55357,56594);
     return (
       <div>
         <h1>Challenges</h1>
@@ -50,8 +50,9 @@ class ChallengeList  extends React.Component {
                   ) : (
                     <span>
                       {c.name}{' '}
-                      <span title={`${c.points_required} points need to attempt this challenge.`}>
-                        {String.fromCharCode(55357,56594)}
+                      <span
+                        title={`${c.points_required} points needed to attempt this challenge.`}>
+                        {lock}
                       </span>
                     </span>
                   )

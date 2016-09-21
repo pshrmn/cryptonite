@@ -1,10 +1,11 @@
 import json
 from django.http import JsonResponse
+
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_http_methods
 from django.db.models import Sum
 
-from challenge.models import Challenge
+from challenge.models import Challenge, CompletedChallenge
 
 
 @require_http_methods(['GET'])
@@ -17,8 +18,7 @@ def all_challenges(request):
             },
             'challenges': []
         })
-    points_agg = request.user.challenge_set.all().aggregate(total_points=Sum('points'))
-    total_points = points_agg.get('total_points')
+    total_points = request.user.cryptographer.points
     challenges = []
     for challenge in Challenge.objects.all():
         c_dict = challenge.as_dict()
@@ -50,8 +50,7 @@ def challenge(request, pk):
             }
         })
     challenge_dict = challenge.as_dict()
-    points_agg = request.user.challenge_set.all().aggregate(total_points=Sum('points'))
-    total_points = points_agg.get('total_points')
+    total_points = request.user.cryptographer.points
     if challenge_dict.get('points_required') > total_points:
         points_message = ('You do not have enough points to attempt this challenge. '
                           'Complete easier challenges to get more points.')
@@ -84,8 +83,8 @@ def check_challenge(request, pk):
             }
         })
     # a user can't check a challenge that they don't have access to
-    points_agg = request.user.challenge_set.all().aggregate(total_points=Sum('points'))
-    if challenge.points_required > points_agg.get('total_points'):
+    total_points = request.user.cryptographer.points
+    if challenge.points_required > total_points:
         return JsonResponse({
             'success': False,
             'errors': [
@@ -94,7 +93,19 @@ def check_challenge(request, pk):
             ]
         })
     if msg.upper() == challenge.solution:
-        challenge.users.add(request.user)
+        """
+        when the user has submitted the correct solution, add a row to the
+        CopmletedChallenge table and update the user (cryptographer) point
+        total
+        """
+        crypto = request.user.cryptographer
+        _, created = CompletedChallenge.objects.get_or_create(
+            cryptographer=crypto,
+            challenge=challenge
+        )
+        crypto.points += challenge.points
+        crypto.save()
+
         return JsonResponse({
             'success': True,
             'errors': {}

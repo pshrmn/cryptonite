@@ -1,6 +1,4 @@
 from django.shortcuts import render, redirect
-from django.views.decorators.csrf import ensure_csrf_cookie
-from django.db.models import Sum
 import json
 
 from challenge.models import Challenge
@@ -11,8 +9,7 @@ def all_challenges(request):
     if not request.user.is_authenticated:
         return redirect(to='/login?next=%s' % request.path)
     challenges = []
-    points_agg = request.user.challenge_set.all().aggregate(total_points=Sum('points'))
-    total_points = points_agg.get('total_points')
+    total_points = request.user.cryptographer.points
     for challenge in Challenge.objects.all():
         c_dict = challenge.as_dict()
         c_dict['completed'] = challenge.users.filter(pk=request.user.pk).exists()
@@ -38,8 +35,8 @@ def challenge(request, pk):
         return redirect(to='challenge-web-all')
 
     challenge_dict = challenge.as_dict()
-    points_agg = request.user.challenge_set.all().aggregate(total_points=Sum('points'))
-    if challenge_dict.get('points_required') > points_agg.get('total_points'):
+    total_points = request.user.cryptographer.points
+    if challenge_dict.get('points_required') > total_points:
         return redirect(to='challenge-web-all')
 
     challenge_dict['completed'] = challenge.users.filter(pk=request.user.pk).exists()

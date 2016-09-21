@@ -15,7 +15,10 @@ function Header(props) {
   if ( user.authenticated ) {
     userLinks.push(
       <li key='user'>
-        <Link className='cap' to='/profile'>{ user.username }</Link>
+        <Link className='cap' to='/profile'>
+          { user.username }
+        </Link>
+        {' '}({user.points})
         <ul>
           <li key='profile'>
             <Link to='/profile'>Profile</Link>

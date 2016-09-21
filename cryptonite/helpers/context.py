@@ -3,7 +3,8 @@ def user_state(user):
         return {
             'authenticated': True,
             'username': user.username,
-            'pk': user.pk
+            'pk': user.pk,
+            'points': user.cryptographer.points
         }
     else:
         return {

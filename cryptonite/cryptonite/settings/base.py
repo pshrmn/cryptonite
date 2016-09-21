@@ -14,7 +14,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'challenge',
     'json_auth',
-    'catch_all'
+    'catch_all',
+    'cryptographer'
 ]
 
 MIDDLEWARE = [
