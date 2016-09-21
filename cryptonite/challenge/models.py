@@ -4,25 +4,34 @@ from django.conf import settings
 
 class Challenge(models.Model):
     """
-    A Challenge presents the user with an encrypted message which
-    the user is expected to decrypt.
+    A Challenge presents the user with a problem message
+    that the user is expected to solve. When the problem
+    is solved by the user, they are awarded some amount
+    of points. Some Challenges require a user to have
+    accumulated a certain number of points to do them
+    (i.e., users are required to complete easier Challenges
+    before attempting harder ones).
     """
     name = models.CharField(max_length=200)
     problem = models.CharField(max_length=1000)
     solution = models.CharField(max_length=1000)
     description = models.CharField(max_length=10000, default='')
+    points = models.PositiveIntegerField(default=50)
+    points_required = models.PositiveIntegerField(default=0)
     users = models.ManyToManyField(settings.AUTH_USER_MODEL,
                                    blank=True)
 
     def __str__(self):
-        return self.name
+        return '%d - %s' % (self.pk, self.name)
 
     def as_dict(self):
         challenge = {
             'pk': self.pk,
             'name': self.name,
             'problem': self.problem,
-            'description': self.description
+            'description': self.description,
+            'points': self.points,
+            'points_required': self.points_required
         }
         return challenge
 
@@ -30,3 +39,4 @@ class Challenge(models.Model):
         challenge = self.as_dict()
         challenge['solution'] = self.solution
         return challenge
+

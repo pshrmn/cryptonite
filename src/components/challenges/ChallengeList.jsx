@@ -44,7 +44,18 @@ class ChallengeList  extends React.Component {
           {
             this.props.challenges.map(c => (
               <li key={c.pk}>
-                <Link to={`/challenges/${c.pk}`}>{c.name}</Link>
+                {
+                  c.can_do ? (
+                    <Link to={`/challenges/${c.pk}`}>{c.name}</Link>
+                  ) : (
+                    <span>
+                      {c.name}{' '}
+                      <span title={`${c.points_required} points need to attempt this challenge.`}>
+                        {String.fromCharCode(55357,56594)}
+                      </span>
+                    </span>
+                  )
+                }
                 <span className='completed'>{c.completed ? '✓' : null}</span>
               </li>
             ))
