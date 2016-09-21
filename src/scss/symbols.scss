@@ -1,0 +1,17 @@
+@import 'variables';
+
+.completed {
+  color: $green;
+}
+
+.star {
+  color: $gold;
+}
+
+.locked {
+  color: $red;
+}
+
+.unlocked {
+  color: $dark-gray;
+}

@@ -5,6 +5,11 @@ import { connect } from 'react-redux';
 import { Errors } from '../inputs';
 import { all_challenges } from '../../api/challenge';
 import { loadChallenges } from '../../actions';
+import {
+  locked,
+  unlocked,
+  completed
+} from '../symbols';
 
 
 class ChallengeList  extends React.Component {
@@ -35,7 +40,7 @@ class ChallengeList  extends React.Component {
     const { 
       errors = {}
     } = this.state;
-    const lock = String.fromCharCode(55357,56594);
+    
     return (
       <div>
         <h1>Challenges</h1>
@@ -44,20 +49,18 @@ class ChallengeList  extends React.Component {
           {
             this.props.challenges.map(c => (
               <li key={c.pk}>
+                { c.completed ? completed : 
+                  (c.can_do ? unlocked : locked)
+                }
                 {
                   c.can_do ? (
                     <Link to={`/challenges/${c.pk}`}>{c.name}</Link>
                   ) : (
-                    <span>
-                      {c.name}{' '}
-                      <span
-                        title={`${c.points_required} points needed to attempt this challenge.`}>
-                        {lock}
-                      </span>
+                    <span title={`${c.points_required} points needed to attempt this challenge.`}>
+                      {c.name}
                     </span>
                   )
                 }
-                <span className='completed'>{c.completed ? '✓' : null}</span>
               </li>
             ))
           }

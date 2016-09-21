@@ -3,6 +3,7 @@ import { Link } from 'react-router';
 import { connect } from 'react-redux';
 
 import LogoutLink from './auth/LogoutLink';
+import { star } from './symbols';
 
 import '../scss/header.scss';
 
@@ -11,14 +12,13 @@ function Header(props) {
     user,
   } = props;
   const userLinks = [];
-
+  
   if ( user.authenticated ) {
     userLinks.push(
       <li key='user'>
         <Link className='cap' to='/profile'>
           { user.username }
         </Link>
-        {' '}({user.points})
         <ul>
           <li key='profile'>
             <Link to='/profile'>Profile</Link>
@@ -27,6 +27,13 @@ function Header(props) {
             <LogoutLink />
           </li>
         </ul>
+      </li>
+    );
+    userLinks.push(
+      <li key='points'>
+        <span className='user-points' title={`You have ${user.points} points!`}>
+          {user.points}{star}
+        </span>
       </li>
     );
   } else {
