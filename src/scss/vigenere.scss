@@ -20,6 +20,16 @@ table.vigenere-table {
   thead td {
     border: 0;
   }
-  
-  
+}
+
+.shift-keys {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.vigenere-char {
+  p {
+    margin: 0;
+    text-align: center;
+  }
 }

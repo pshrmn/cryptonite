@@ -36,7 +36,8 @@ class ShiftKey extends React.Component {
   render() {
     const {
       characters = [],
-      radius = 150
+      radius = 150,
+      noControls = false
     } = this.props;
     const {
       shift
@@ -62,29 +63,37 @@ class ShiftKey extends React.Component {
                            outerRadius={medRing}
                            innerRadius={nearRing} />
             <g>
-              <g className='clickable'
-                 transform={`translate(${(nearRing)/2},0)`}
-                 onClick={this.increaseShift} >
-                 <circle r={tri} 
-                         transform={`translate(${halfTri},0)`}
-                         /* this circle exists to make clicking the button easier */ />
-                <path d={d} />
-                <title>- Left Shift / + Right Shift</title>
-              </g>
+              {
+                noControls ? null : (
+                  <g className='clickable'
+                     transform={`translate(${(nearRing)/2},0)`}
+                     onClick={this.increaseShift} >
+                     <circle r={tri} 
+                             transform={`translate(${halfTri},0)`}
+                             /* this circle exists to make clicking the button easier */ />
+                    <path d={d} />
+                    <title>- Left Shift / + Right Shift</title>
+                  </g>
+                )
+              }
               <g className='shift-amount'>
                 <text dy='-2.0em'>left shift of {Math.abs(shift-characters.length)}</text>
                 <text dy='0.3em' className='big'>{characters[shift]}</text>
                 <text dy='2.5em'>right shift of {shift}</text>                
               </g>
-              <g className='clickable'
-                 transform={`translate(${-(nearRing)/2},0)`}
-                 onClick={this.decreaseShift} >
-                 <circle r={tri} 
-                         transform={`translate(${-halfTri},0)`}
-                         /* this circle exists to make clicking the button easier */ />
-                <path d={d} transform='scale(-1,1)' />
-                <title>+ Left Shift / - Right Shift</title>
-              </g>
+              {
+                noControls ? null : (
+                  <g className='clickable'
+                     transform={`translate(${-(nearRing)/2},0)`}
+                     onClick={this.decreaseShift} >
+                     <circle r={tri} 
+                             transform={`translate(${-halfTri},0)`}
+                             /* this circle exists to make clicking the button easier */ />
+                    <path d={d} transform='scale(-1,1)' />
+                    <title>+ Left Shift / - Right Shift</title>
+                  </g>
+                )
+              }
             </g>
           </g>
         </svg>

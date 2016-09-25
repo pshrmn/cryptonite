@@ -4,7 +4,7 @@
     "pk": 1,
     "fields": {
       "name": "Easy",
-      "description": "This should be easy to decipher. It was encrypted using a shift cipher of one to the right",
+      "description": "This should be easy to decipher. It was encrypted using a shift cipher of one to the right.",
       "problem": "FBTZ",
       "solution": "EASY",
       "points": 50,
@@ -16,7 +16,7 @@
     "pk": 2,
     "fields": {
       "name": "A Bit Harder",
-      "description": "For a little bit more of a challenge, this was encrypted using a shift cipher of two to the left",
+      "description": "For a little bit more of a challenge, this was encrypted using a shift cipher of two to the left.",
       "problem": "FYPBCP",
       "solution": "HARDER",
       "points": 50,
@@ -28,7 +28,7 @@
     "pk": 3,
     "fields": {
       "name": "Halfway There",
-      "description": "Rot-13 shift ciphers are interesting because the same cipher is used for encrypting and decrypting",
+      "description": "Rot-13 shift ciphers are interesting because the same cipher is used for encrypting and decrypting.",
       "problem": "GUVEGRRA",
       "solution": "THIRTEEN",
       "points": 50,
