@@ -40,7 +40,7 @@
     "pk": 4,
     "fields": {
       "name": "Switching Things Up",
-      "description": "This time, you are given a message and need to encrypt it using a shift cipher of 4 to the right.",
+      "description": "For this challenge, you are given a message and need to encrypt it using a shift cipher of 4 to the right.",
       "problem": "TOP SECRET",
       "solution": "XST WIGVIX",
       "points": 50,
@@ -52,7 +52,7 @@
     "pk": 5,
     "fields": {
       "name": "Hello, Caesar",
-      "description": "Julius Caesar used a shift cipher of -3 to encrypt messages.",
+      "description": "Julius Caesar used a shift cipher of -3 (three to the left) to encrypt messages.",
       "problem": "VLR QLL YORQRP",
       "solution": "AND YOU BRUTUS",
       "points": 50,
