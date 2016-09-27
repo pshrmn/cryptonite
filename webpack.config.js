@@ -22,7 +22,8 @@ const config = {
     filename: 'js/bundle.js'
   },
   resolve: {
-    extensions: ['', '.js', '.jsx']
+    extensions: ['', '.js', '.jsx'],
+    root: path.join(__dirname, 'src')
   },
   module: {
     loaders: [

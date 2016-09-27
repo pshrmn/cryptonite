@@ -1,6 +1,6 @@
 import React from 'react';
 
-import '../scss/symbols.scss';
+import 'scss/symbols.scss';
 
 export const locked = (
   <span

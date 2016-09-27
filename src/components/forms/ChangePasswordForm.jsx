@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { InputRow, Errors } from '../inputs';
-import { changePassword } from '../../api/auth';
+import { InputRow, Errors } from 'components/inputs';
+import { changePassword } from 'api/auth';
 
 export default class ChangePasswordForm extends React.Component {
   constructor(props) {

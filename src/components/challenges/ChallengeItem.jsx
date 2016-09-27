@@ -5,8 +5,8 @@ import {
   locked,
   unlocked,
   star
-} from '../symbols';
-import '../../scss/challenge-item.scss';
+} from 'components/symbols';
+import 'scss/challenge-item.scss';
 
 export default (props) => (
   <div className='challenge-item'>

@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import LogoutLink from './auth/LogoutLink';
 import { star } from './symbols';
 
-import '../scss/header.scss';
+import 'scss/header.scss';
 
 function Header(props) {
   const {

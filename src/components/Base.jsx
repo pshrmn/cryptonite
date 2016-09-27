@@ -15,7 +15,7 @@ import {
 import NotFound from './NotFound';
 import MatchWhenAuthorized from './MatchWhenAuthorized';
 
-import '../scss/Base.scss';
+import 'scss/Base.scss';
 
 export default props => (
   <BrowserRouter>

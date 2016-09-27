@@ -1,7 +1,7 @@
 import React from 'react';
 import { Match } from 'react-router';
 
-import MatchWhenAuthorized from '../MatchWhenAuthorized';
+import MatchWhenAuthorized from 'components/MatchWhenAuthorized';
 import Challenge from './Challenge';
 import ChallengeList from './ChallengeList';
 

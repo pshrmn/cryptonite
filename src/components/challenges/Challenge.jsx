@@ -3,15 +3,15 @@ import React from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 
-import { Errors } from '../inputs';
+import { Errors } from 'components/inputs';
 import ChallengeItem from './ChallengeItem';
 import {
   challenge as fetchChallenge,
   check as checkChallenge
-} from '../../api/challenge';
-import { loadChallenge } from '../../actions';
+} from 'api/challenge';
+import { loadChallenge } from 'actions';
 
-import '../../scss/challenge.scss';
+import 'scss/challenge.scss';
 
 
 class Challenge extends React.Component {

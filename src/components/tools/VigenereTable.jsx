@@ -1,6 +1,6 @@
 import React from 'react';
 
-import '../../scss/vigenere.scss';
+import 'scss/vigenere.scss';
 
 export default function VigenereTable(props) {
   const {

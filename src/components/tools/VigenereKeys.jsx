@@ -1,7 +1,7 @@
 import React from 'react';
 
 import ShiftKey from './ShiftKey';
-import '../../scss/vigenere.scss';
+import 'scss/vigenere.scss';
 
 export default class VigenereKeys extends React.Component {
   constructor(props) {

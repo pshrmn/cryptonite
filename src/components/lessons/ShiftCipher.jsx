@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Lesson from './LessonBase';
-import { AlphabetShiftKey } from '../tools/ShiftKey';
+import { AlphabetShiftKey } from 'components/tools/ShiftKey';
 
 const title = 'Shift Ciphers';
 

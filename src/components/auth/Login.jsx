@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-import LoginForm from '../forms/LoginForm';
+import LoginForm from 'components/forms/LoginForm';
 
 export default ({location}) => {
   let next = '/';

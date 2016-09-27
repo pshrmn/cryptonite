@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { logoutUser } from '../../actions';
-import { logout } from '../../api/auth';
+
+import { logoutUser } from 'actions';
+import { logout } from 'api/auth';
 
 const LogoutLink = (props, context) => {
   const logoutHandler = event => {

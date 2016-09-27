@@ -1,12 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { Errors } from '../inputs';
-import { all_challenges } from '../../api/challenge';
-import { loadChallenges } from '../../actions';
 import ChallengeItem from './ChallengeItem';
+import { Errors } from 'components/inputs';
 
-import '../../scss/challenges-list.scss';
+import { all_challenges } from 'api/challenge';
+import { loadChallenges } from 'actions';
+
+import 'scss/challenges-list.scss';
 
 
 class ChallengeList  extends React.Component {

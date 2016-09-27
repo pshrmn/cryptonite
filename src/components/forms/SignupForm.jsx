@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { InputRow, Errors } from '../inputs';
-import { signup } from '../../api/auth';
-import { loginUser } from '../../actions';
+import { InputRow, Errors } from 'components/inputs';
+import { signup } from 'api/auth';
+import { loginUser } from 'actions';
 
 class SignupForm extends React.Component {
   constructor(props) {

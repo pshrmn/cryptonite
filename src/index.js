@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, combineReducers } from 'redux';
 
-import reducers from './reducers';
-import Base from './components/Base';
+import reducers from 'reducers';
+import Base from 'components/Base';
 
 const intialState = {
   user: window.__INITIAL_STATE__.user,

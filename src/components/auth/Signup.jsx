@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-import SignupForm from '../forms/SignupForm';
+import SignupForm from 'components/forms/SignupForm';
 
 export default ({location}) => {
   let next = '/';

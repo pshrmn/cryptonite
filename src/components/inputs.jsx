@@ -1,6 +1,6 @@
 import React from 'react';
 
-import '../scss/inputs.scss';
+import 'scss/inputs.scss';
 
 export const InputRow = function(props) {
   const {
