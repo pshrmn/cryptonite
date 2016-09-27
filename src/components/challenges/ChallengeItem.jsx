@@ -27,7 +27,6 @@ export default (props) => (
           ) : (
             props.name
           )
-          
         }
       </div>
       <div className='description'>

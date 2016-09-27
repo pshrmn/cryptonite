@@ -4,7 +4,7 @@ import 'scss/symbols.scss';
 
 export const locked = (
   <span
-    className='locked'
+    className='symbol locked'
     title='Locked'>
     {String.fromCharCode(55357,56594)}
   </span>
@@ -12,14 +12,14 @@ export const locked = (
 
 export const unlocked = (
   <span
-    className='unlocked'
+    className='symbol unlocked'
     title='Unlocked'>
     {String.fromCharCode(55357,56595)}
   </span>
 );
 
 export const star = (
-  <span className='star'>
+  <span className='symbol star'>
     {String.fromCharCode(55356, 57119)}
   </span>
 );

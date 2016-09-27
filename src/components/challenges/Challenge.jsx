@@ -82,12 +82,16 @@ class Challenge extends React.Component {
     return (
       <div className='challenge'>
         <ChallengeItem {...challenge} />
-        <p className='problem'>
-          { challenge.problem }
-        </p>
+        <Messages
+          input={challenge.problem}
+          output={message} />
         <form onSubmit={this.checkMessage}>
           <Errors errors={errors['__all__']} />
-          <textarea className='decrypted' value={message} onChange={this.handleMessage} />
+          <textarea
+            placeholder='Enter message here'
+            className='decrypted'
+            value={message}
+            onChange={this.handleMessage} />
           <div>
             <button>Check</button>
           </div>
@@ -96,6 +100,35 @@ class Challenge extends React.Component {
     );
   }
 }
+
+const Messages = (props) => {
+  const {
+    input = '',
+    output = ''
+  } = props;
+  return (
+    <div className='messages'>
+      <Message chars={input.split('')} />
+      <Message chars={output.split('')} />
+    </div>
+  );
+};
+
+const Message = ({chars}) => (
+  <div className='message'>
+    {
+      chars.map((char,i) => {
+        return (
+          <span
+            key={i}
+            className={char === ' ' ? 'space' : 'char'}>
+            { char }
+          </span>
+        );
+      })
+    }
+  </div>
+)
 
 export default connect(
   (state, ownProps) => {

@@ -1,5 +1,9 @@
 @import 'variables';
 
+.symbol {
+  display: inline-block;
+}
+
 .star {
   color: $gold;
 }
