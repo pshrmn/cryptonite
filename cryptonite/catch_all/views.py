@@ -15,7 +15,7 @@ def base_view(request):
     return render(request,
                   template_name='base.html',
                   context={
-                    'initial_state': json.dumps(initial_state)
+                      'initial_state': json.dumps(initial_state)
                   })
 
 

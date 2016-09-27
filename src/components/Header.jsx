@@ -78,5 +78,5 @@ function Header(props) {
 export default connect(
   state => ({
     user: state.user
-  }),
+  })
 )(Header);

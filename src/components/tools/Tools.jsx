@@ -18,7 +18,7 @@ function ToolsList(props) {
       <h1>Tools</h1>
       <p>
         Below are some tools that may assist you in encrypting and decrypting
-        messages.
+        messages. What they don't do is encrypt and decrypt messages for you.
       </p>
       <ul>
         <li>

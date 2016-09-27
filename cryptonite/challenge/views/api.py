@@ -3,7 +3,6 @@ from django.http import JsonResponse
 
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_http_methods
-from django.db.models import Sum
 
 from challenge.models import Challenge, CompletedChallenge
 
@@ -31,6 +30,7 @@ def all_challenges(request):
         'challenges': challenges
     })
 
+
 @require_http_methods(['GET'])
 def challenge(request, pk):
     if not request.user.is_authenticated():
@@ -38,7 +38,7 @@ def challenge(request, pk):
             'success': False,
             'errors': {
                 '__all__': ['You must be logged in to view challenges']
-            },   
+            },
         })
     try:
         challenge = Challenge.objects.get(pk=pk)
@@ -59,7 +59,7 @@ def challenge(request, pk):
             'errors': {
                 '__all__': [points_message]
             }
-            })
+        })
     challenge_dict['completed'] = challenge.users.filter(pk=request.user.cryptographer.pk).exists()
     return JsonResponse({
         'success': True,
@@ -112,7 +112,8 @@ def check_challenge(request, pk):
         return JsonResponse({
             'success': True,
             'errors': {},
-            'challenge': challenge_dict
+            'challenge': challenge_dict,
+            'new_points': crypto.points
         })
     else:
         return JsonResponse({

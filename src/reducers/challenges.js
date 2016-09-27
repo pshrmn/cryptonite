@@ -6,6 +6,9 @@ export default function(state = [], action) {
     // clear the challenges when the user logs out
     return [];
 
+  case types.COMPLETE_CHALLENGE:
+    // for the time being, this replicates the LOAD_CHALLENGE
+    // functionality, so just fall through to it
   case types.LOAD_CHALLENGE:
     // filter out the challenge from existing state if it exists
     // this allows the challenge to be updated if it is already

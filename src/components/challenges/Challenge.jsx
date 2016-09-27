@@ -9,7 +9,7 @@ import {
   challenge as fetchChallenge,
   check as checkChallenge
 } from 'api/challenge';
-import { loadChallenge } from 'actions';
+import { loadChallenge, completeChallenge } from 'actions';
 
 import 'scss/challenge.scss';
 
@@ -58,10 +58,7 @@ class Challenge extends React.Component {
       .then(resp => resp.json())
       .then(resp => {
         if ( resp.success ) {
-            this.props.loadChallenge(resp.challenge);
-            this.setState({
-              errors: {}
-            });
+            this.props.completeChallenge(resp.challenge, resp.new_points);
           } else {
             return Promise.reject(resp.errors)
           }
@@ -110,6 +107,7 @@ export default connect(
     }
   },
   {
-    loadChallenge
+    loadChallenge,
+    completeChallenge
   }
 )(Challenge);

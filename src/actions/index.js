@@ -18,3 +18,9 @@ export const loadChallenges = challenges => ({
   type: types.LOAD_CHALLENGES,
   challenges
 });
+
+export const completeChallenge = (challenge, points) => ({
+  type: types.COMPLETE_CHALLENGE,
+  challenge,
+  points
+});

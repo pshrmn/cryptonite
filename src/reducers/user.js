@@ -6,10 +6,17 @@ export default function(state = {}, action) {
     return Object.assign({}, action.user, {
       authenticated: true
     });
+
   case types.LOGOUT_USER:
     return {
       authenticated: false
     };
+
+  case types.COMPLETE_CHALLENGE:
+    return Object.assign({}, state, {
+      points: action.points
+    });
+
   default:
     return state;
   }
