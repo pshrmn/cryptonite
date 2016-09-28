@@ -2,6 +2,7 @@ import React from 'react';
 
 import Lesson from './LessonBase';
 import VigenereTable from 'components/tools/VigenereTable';
+import { EnglishAlphabet } from 'constants/CharacterSets';
 
 const title = 'The Vigenère Cipher';
 
@@ -48,7 +49,7 @@ export default () => (
       <p>
         That leaves us with the following information for our key:
       </p>
-      <VigenereTable keyword='CIPHER' characters={'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')} />
+      <VigenereTable keyword='CIPHER' characters={EnglishAlphabet.split('')} />
       <p>
         Now we can start to encrypt the following message:
       </p>

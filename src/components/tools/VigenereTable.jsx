@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { EnglishAlphabet } from 'constants/CharacterSets';
+
 import 'scss/vigenere.scss';
 
 export default function VigenereTable(props) {
@@ -33,6 +35,7 @@ export default function VigenereTable(props) {
   );
 }
 
+const EnglishChars = EnglishAlphabet.split('');
 export class EnglishVigenereTable extends React.Component {
   constructor(props) {
     super(props);
@@ -49,7 +52,6 @@ export class EnglishVigenereTable extends React.Component {
   }
   
   render() {
-    const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
     const {
       keyword
     } = this.state;
@@ -59,7 +61,9 @@ export class EnglishVigenereTable extends React.Component {
                value={keyword}
                onChange={this.keywordHandler}
                placeholder='Keyword' />
-        <VigenereTable characters={ALPHABET} keyword={keyword.toUpperCase()} />
+        <VigenereTable
+          characters={EnglishChars}
+          keyword={keyword.toUpperCase()} />
       </div>
     );
   }

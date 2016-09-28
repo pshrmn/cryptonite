@@ -14,6 +14,7 @@ import {
 } from './auth';
 import NotFound from './NotFound';
 import MatchWhenAuthorized from './MatchWhenAuthorized';
+import Cheat from './Cheat';
 
 import 'scss/Base.scss';
 
@@ -27,8 +28,9 @@ export default props => (
         <Match pattern='/challenges' component={Challenges} />
         <Match pattern='/tools' component={Tools} />
         <Match pattern='/login' component={Login} />
-        <Match pattern ='/signup' component={Signup} />
+        <Match pattern='/signup' component={Signup} />
         <MatchWhenAuthorized pattern='/profile' component={Profile} />
+        <Match pattern='/cheat' component={Cheat} />
         <Miss component={NotFound} />
       </main>
       <Footer />

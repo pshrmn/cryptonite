@@ -2,8 +2,9 @@ import React from 'react';
 import { pie, arc } from 'd3-shape';
 
 import { InputRow } from '../inputs';
+import { EnglishAlphabet } from 'constants/CharacterSets';
 
-import '../../scss/shiftkey.scss';
+import 'scss/shiftkey.scss';
 
 /*
  * The ShiftKey provides a convenient mechanism for shifting
@@ -143,12 +144,12 @@ function shiftArray(characters, shift) {
 
 export default ShiftKey;
 
+const EnglishCharacters = EnglishAlphabet.split('');
 /*
  * A ShiftKey whose characters are the letters in the English alphabet
  */
 export function AlphabetShiftKey(props) {
-  const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
-  return <ShiftKey characters={ALPHABET} {...props} />
+  return <ShiftKey characters={EnglishCharacters} {...props} />
 };
 
 export class CustomShiftKey extends React.Component {
