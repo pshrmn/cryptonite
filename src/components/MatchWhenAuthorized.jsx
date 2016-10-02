@@ -20,10 +20,5 @@ const MatchWhenAuthorized = ({component: Component, user, ...rest}) => (
 export default connect(
   state => ({
     user: state.user,
-  }),
-  null,
-  null,
-  {
-    pure: false
-  }
+  })
 )(MatchWhenAuthorized);
