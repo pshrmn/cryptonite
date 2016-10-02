@@ -1,0 +1,11 @@
+[
+  {
+    "model": "auth.user",
+    "pk": 1,
+    "fields": {
+        "username": "alan_turing",
+        "password": "enigmaM4K3R",
+        "email": "alan@turing.test"
+    }
+  }
+]

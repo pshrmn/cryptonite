@@ -1,0 +1,10 @@
+[
+  {
+    "model": "cryptographer.cryptographer",
+    "pk": 1,
+    "fields": {
+        "user": 1,
+        "points": 1000
+    }
+  }
+]

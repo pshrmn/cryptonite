@@ -1,8 +1,7 @@
 from django.db import models
-from django.conf import settings
-
 
 from cryptographer.models import Cryptographer
+
 
 class Challenge(models.Model):
     """

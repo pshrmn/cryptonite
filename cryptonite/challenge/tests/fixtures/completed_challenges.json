@@ -1,0 +1,10 @@
+[
+  {
+    "model": "challenge.completedchallenge",
+    "pk": 1,
+    "fields": {
+        "challenge": 1,
+        "cryptographer": 1
+    }
+  }
+]

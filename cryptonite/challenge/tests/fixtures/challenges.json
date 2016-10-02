@@ -1,0 +1,14 @@
+[
+  {
+    "model": "challenge.challenge",
+    "pk": 1,
+    "fields": {
+        "name": "Easy",
+        "problem": "GRFG",
+        "solution": "TEST",
+        "description": "This message was encrypted using ROT13",
+        "points": 50,
+        "points_required": 100
+    }
+  }
+]
