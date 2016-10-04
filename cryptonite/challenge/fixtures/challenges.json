@@ -89,7 +89,7 @@
     "fields": {
       "name": "A Sour Note",
       "description": "The keyword \"LEMON\" was used to encrypt this message using a Vigenère cipher.",
-      "problem": "ELQ ZPIFWAR UG TR HUP BOEV",
+      "problem": "ELQ ARPXUBT TW UB GSI BOEV",
       "solution": "THE MEETING IS IN THE PARK",
       "points": 150,
       "points_required": 400
@@ -102,7 +102,7 @@
       "name": "Quickly Now",
       "description": "Your partner's identify has been discovered and you need to let her know. Encrypt the following message using a Vigenère cipher and the keyword \"FAST\"",
       "problem": "YOU HAVE TO GET OUT NOW",
-      "solution": "DOM MANX TG LEL TUL SOO",
+      "solution": "DOM AFVW MT GWM TUL GTW",
       "points": 200,
       "points_required": 400
     }

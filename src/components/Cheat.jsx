@@ -205,11 +205,14 @@ class VigenereCheat extends React.Component {
       message,
       reverse,
       cipher
-    } = this.state
-    const decoded = message.split('').map((char, index) => {
-      const modIndex = index % keyword.length;
+    } = this.state;
+    let rollingIndex = 0;
+    const decoded = message.split('').map((char) => {
+      const modIndex = rollingIndex % keyword.length;
       try {
-        return cipher(char, modIndex, reverse);
+        const newChar = cipher(char, modIndex, reverse);
+        rollingIndex++;
+        return newChar;
       } catch(err) {
         return char;
       }
