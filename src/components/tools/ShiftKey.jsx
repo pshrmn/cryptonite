@@ -37,7 +37,7 @@ class ShiftKey extends React.Component {
   render() {
     const {
       characters = [],
-      radius = 150,
+      radius = 125,
       noControls = false
     } = this.props;
     const {
@@ -67,7 +67,7 @@ class ShiftKey extends React.Component {
               {
                 noControls ? null : (
                   <g className='clickable'
-                     transform={`translate(${(nearRing)/2},0)`}
+                     transform={`translate(${Math.floor((nearRing)/2)},0)`}
                      onClick={this.increaseShift} >
                      <circle r={tri} 
                              transform={`translate(${halfTri},0)`}
@@ -78,14 +78,14 @@ class ShiftKey extends React.Component {
                 )
               }
               <g className='shift-amount'>
-                <text dy='-2.0em'>left shift of {Math.abs(shift-characters.length)}</text>
+                <text dy='-2.0em'>left {Math.abs(shift-characters.length)}</text>
                 <text dy='0.3em' className='big'>{characters[shift]}</text>
-                <text dy='2.5em'>right shift of {shift}</text>                
+                <text dy='2.5em'>right {shift}</text>                
               </g>
               {
                 noControls ? null : (
                   <g className='clickable'
-                     transform={`translate(${-(nearRing)/2},0)`}
+                     transform={`translate(${-Math.ceil((nearRing)/2)},0)`}
                      onClick={this.decreaseShift} >
                      <circle r={tri} 
                              transform={`translate(${-halfTri},0)`}

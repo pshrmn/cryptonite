@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 
 import { Errors } from 'components/inputs';
 import ChallengeItem from './ChallengeItem';
+import ToolLoader from 'components/tools/ToolLoader';
+
 import {
   challenge as fetchChallenge,
   check as checkChallenge
@@ -96,6 +98,12 @@ class Challenge extends React.Component {
             <button>Check</button>
           </div>
         </form>
+        <div>
+          <p>
+            Need some help? Try using one of these tools.
+          </p>
+          <ToolLoader />
+        </div>
       </div>
     );
   }
@@ -122,7 +130,7 @@ const Message = ({chars}) => (
           <span
             key={i}
             className={char === ' ' ? 'space' : 'char'}>
-            { char }
+            { char === ' ' ? String.fromCharCode(160) : char }
           </span>
         );
       })

@@ -52,12 +52,13 @@ export default class VigenereIndices extends React.Component {
 
 
 const MappedChars = (props) => {
-  const {
-    length = 0,
-    message = ''
-  } = props;
+  // if length is 0, React will complain because numbers
+  // modulo 0 are NaN
+  const length = props.length || 1;
+  const message = props.message;
   const isLetter = /[A-Z]/;
   let rollingIndex = 0;
+
   const indices = message
     .split('')
     .map((char, index) => (
