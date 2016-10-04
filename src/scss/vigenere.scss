@@ -33,3 +33,14 @@ table.vigenere-table {
     text-align: center;
   }
 }
+
+.vigenere-indices {
+  display: flex;
+  flex-flow: row wrap;
+
+  .char-index {
+    margin: 0 5px;
+    display: flex;
+    flex-flow: column nowrap;
+  }
+}

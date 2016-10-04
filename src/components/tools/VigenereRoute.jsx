@@ -2,6 +2,7 @@ import React from 'react';
 
 import { EnglishVigenereTable } from './VigenereTable';
 import { EnglishVigenereKeys } from './VigenereKeys';
+import VigenereIndices from './VigenereIndices';
 
 export default function VigenereToolsPage(props) {
   return (
@@ -17,6 +18,14 @@ export default function VigenereToolsPage(props) {
           right. When decrypting a message, the shift should be to the left.
         </p>
         <EnglishVigenereTable />
+      </div>
+      <div>
+        <h2>Vigenère Indices</h2>
+        <p>
+          The Vigenère indices tool provides the index (modulu the length of the
+          keyword) for each character in the message.
+        </p>
+        <VigenereIndices />
       </div>
       <div>
         <h2>Vigenère Keys</h2>
