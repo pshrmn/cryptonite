@@ -22,6 +22,7 @@ class ChallengeTestCase(TestCase):
             ('name', str),
             ('problem', str),
             ('description', str),
+            ('cipher', str),
             ('points', int),
             ('points_required', int)
         ]

@@ -13,10 +13,25 @@ class Challenge(models.Model):
     (i.e., users are required to complete easier Challenges
     before attempting harder ones).
     """
+    SHIFT = 'SH'
+    VIGENERE = 'VI'
+    UNKNOWN = 'UN'
+    CIPHER_CHOICES = (
+        (SHIFT, 'Shift'),
+        (VIGENERE, 'Vigenère'),
+        (UNKNOWN, 'Unknown')
+    )
+
+
     name = models.CharField(max_length=200)
     problem = models.CharField(max_length=1000)
     solution = models.CharField(max_length=1000)
     description = models.CharField(max_length=10000, default='')
+    cipher = models.CharField(
+        max_length=2,
+        choices=CIPHER_CHOICES,
+        default=UNKNOWN
+    )
     points = models.PositiveIntegerField(default=50)
     points_required = models.PositiveIntegerField(default=0)
     users = models.ManyToManyField(Cryptographer,
@@ -32,6 +47,7 @@ class Challenge(models.Model):
             'name': self.name,
             'problem': self.problem,
             'description': self.description,
+            'cipher': self.get_cipher_display(),
             'points': self.points,
             'points_required': self.points_required
         }

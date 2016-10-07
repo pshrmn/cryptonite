@@ -7,6 +7,7 @@
         "problem": "GRFG",
         "solution": "TEST",
         "description": "This message was encrypted using ROT13",
+        "cipher": "SH",
         "points": 50,
         "points_required": 100
     }

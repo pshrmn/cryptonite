@@ -5,6 +5,7 @@
     "fields": {
       "name": "Easy",
       "description": "This should be easy to decipher. It was encrypted using a shift cipher of one to the right.",
+      "cipher": "SH",
       "problem": "FBTZ",
       "solution": "EASY",
       "points": 50,
@@ -17,6 +18,7 @@
     "fields": {
       "name": "A Bit Harder",
       "description": "For a little bit more of a challenge, this was encrypted using a shift cipher of two to the left.",
+      "cipher": "SH",
       "problem": "FYPBCP",
       "solution": "HARDER",
       "points": 50,
@@ -29,6 +31,7 @@
     "fields": {
       "name": "Halfway There",
       "description": "Rot-13 shift ciphers are interesting because the same cipher is used for encrypting and decrypting.",
+      "cipher": "SH",
       "problem": "GUVEGRRA",
       "solution": "THIRTEEN",
       "points": 50,
@@ -41,6 +44,7 @@
     "fields": {
       "name": "Switching Things Up",
       "description": "For this challenge, you are given a message and need to encrypt it using a shift cipher of 4 to the right.",
+      "cipher": "SH",
       "problem": "TOP SECRET",
       "solution": "XST WIGVIX",
       "points": 50,
@@ -53,6 +57,7 @@
     "fields": {
       "name": "Hello, Caesar",
       "description": "Julius Caesar used a shift cipher of -3 (three to the left) to encrypt messages.",
+      "cipher": "SH",
       "problem": "VLR QLL YORQRP",
       "solution": "AND YOU BRUTUS",
       "points": 50,
@@ -65,6 +70,7 @@
     "fields": {
       "name": "A Real Sentence",
       "description": "The number of words in the message is the same as the amount of shift used to encrypt it. Of course, once you've decrypted one, you've decrypted them all.",
+      "cipher": "SH",
       "problem": "JCNNITW JCNNITW JCNNITW JCNNITW JCNNITW JCNNITW JCNNITW JCNNITW",
       "solution": "BUFFALO BUFFALO BUFFALO BUFFALO BUFFALO BUFFALO BUFFALO BUFFALO",
       "points": 100,
@@ -77,6 +83,7 @@
     "fields": {
       "name": "A Prime Challenge",
       "description": "This message was encrypted using a shift cipher. The characters were shifted by the product of the first two positive prime numbers.",
+      "cipher": "SH",
       "problem": "ZCU ZOSKY ZNXKK KWAGRY YOD",
       "solution": "TWO TIMES THREE EQUALS SIX",
       "points": 150,
@@ -89,6 +96,7 @@
     "fields": {
       "name": "A Sour Note",
       "description": "The keyword \"LEMON\" was used to encrypt this message using a Vigenère cipher.",
+      "cipher": "VI",
       "problem": "ELQ ARPXUBT TW UB GSI BOEV",
       "solution": "THE MEETING IS IN THE PARK",
       "points": 150,
@@ -101,6 +109,7 @@
     "fields": {
       "name": "Quickly Now",
       "description": "Your partner's identify has been discovered and you need to let her know. Encrypt the following message using a Vigenère cipher and the keyword \"FAST\"",
+      "cipher": "VI",
       "problem": "YOU HAVE TO GET OUT NOW",
       "solution": "DOM AFVW MT GWM TUL GTW",
       "points": 200,
