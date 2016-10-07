@@ -41,6 +41,24 @@
 
   }
 
+  .cipher-tag {
+    display: inline-block;
+    font-size: 0.75em;
+    padding: 0px 2px;
+    margin-left: 15px;
+    border-radius: 5px;
+    background: $black;
+    color: $light-gray;
+
+    &.shift {
+      background: $green;
+    }
+
+    &.vigenère {
+      background: $orange;
+    }
+  }
+
   .description {
     font-size: 0.8em;
   }

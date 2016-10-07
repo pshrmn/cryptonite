@@ -28,6 +28,7 @@ export default (props) => (
             props.name
           )
         }
+        <Tag text={props.cipher} />
       </div>
       <div className='description'>
         {props.description}
@@ -40,5 +41,11 @@ export default (props) => (
         }
       </div>
     </div>
+  </div>
+);
+
+const Tag = props => (
+  <div className={['cipher-tag', props.text.toLowerCase()].join(' ')}>
+    { props.text }
   </div>
 );
