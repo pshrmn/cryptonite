@@ -21,7 +21,8 @@ class Challenge extends React.Component {
     super(props);
     this.state = {
       errors: undefined,
-      message: ''
+      message: '',
+      checking: false
     };
     // start loading the challenge if it isn't already loaded
     const {
@@ -56,9 +57,11 @@ class Challenge extends React.Component {
 
   checkMessage(event) {
     event.preventDefault();
+    this.setState({ checking: true });
     checkChallenge(this.props.challengeID, this.state.message)
       .then(resp => resp.json())
       .then(resp => {
+        this.setState({ checking: false });
         if ( resp.success ) {
             this.props.completeChallenge(resp.challenge, resp.new_points);
           } else {
@@ -79,7 +82,8 @@ class Challenge extends React.Component {
     } = this.props;
     const {
       errors = {},
-      message
+      message,
+      checking
     } = this.state;
     return (
       <div className='challenge'>
@@ -95,12 +99,12 @@ class Challenge extends React.Component {
             value={message}
             onChange={this.handleMessage} />
           <div>
-            <button>Check</button>
+            <button className='pos' disabled={checking}>Check</button>
           </div>
         </form>
         <div>
           <p>
-            Need some help? Try using one of these tools.
+            Need some help? Try using one of these cipher tools.
           </p>
           <ToolLoader />
         </div>

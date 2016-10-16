@@ -1,20 +1,18 @@
 @import 'variables';
 
 .challenge {
-  .challenge-item {
-    font-size: 1.25em;
-  }
-
   form {
     margin-top: 15px;
   }
 
   textarea.decrypted {
     width: 100%;
+    font-size: 1.25em;
   }
 
   .message {
     margin: 5px 0;
+    font-size: 1.25em;
 
     label {
       display: block;

@@ -1,54 +1,37 @@
 @import 'variables';
 
 .challenge-item {
-  font-size: 1em;
-  margin: 5px 0;
+  font-size: 1.25em;
   display: inline-flex;
-  flex-flow: row nowrap;
-  align-items: center;
+  flex-flow: column nowrap;
+  align-items: flex-start;
 
-  .byline {
-    font-size: 0.75em;
-    color: $dark-gray;
+  .title {
+    h2 {
+      margin: 2px 0;
+      font-size: 1.25em;
+      font-weight: normal;
+    }
   }
 
-  .possible-points {
+  .tags {
+    display: flex;
+    flex-flow: row wrap;
+
+    font-size: 1em;
+  }
+
+  .tag {
     font-size: 0.8em;
-    display: inline-block;
-    margin: 0 5px;
-    min-width: 5em;
-
-    .status {
-      color: $dark-gray;
-      background: $gray;
-      border-radius: 5px;
-      padding: 1px 3px;
-      font-size: 1.5em;
-
-
-      .star {
-        color: $dark-gray;
-      }
-
-      &.done {
-        color: $black;
-        .star {
-          color: $gold;
-        }
-      }
-      
-    }
-
+    margin-right: 5px;
   }
 
   .cipher-tag {
-    display: inline-block;
-    font-size: 0.75em;
     padding: 0px 2px;
-    margin-left: 15px;
     border-radius: 5px;
     background: $black;
     color: $light-gray;
+    display: inline-block;
 
     &.shift {
       background: $green;
@@ -57,6 +40,30 @@
     &.vigenère {
       background: $orange;
     }
+  }
+
+  .byline {
+    font-size: 0.75em;
+    color: $dark-gray;
+  }
+
+  .status {
+    color: $dark-gray;
+    background: $gray;
+    border-radius: 5px;
+    padding: 1px 3px;
+
+    .star {
+      color: $dark-gray;
+    }
+
+    &.done {
+      color: $black;
+      .star {
+        color: $gold;
+      }
+    }
+    
   }
 
   .description {

@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router';
 
 import ChallengeItem from './ChallengeItem';
 import { Errors } from 'components/inputs';
@@ -46,7 +47,15 @@ class ChallengeList  extends React.Component {
           {
             this.props.challenges.map(c => (
               <li key={c.pk}>
-                <ChallengeItem {...c} />
+                {
+                  c.can_do ? (
+                    <Link to={`/challenges/${c.pk}`}>
+                      <ChallengeItem {...c} />
+                    </Link>
+                  ) : (
+                    <ChallengeItem {...c} />
+                  )
+                }
               </li>
             ))
           }

@@ -27,10 +27,6 @@ function Header(props) {
             <LogoutLink />
           </li>
         </ul>
-      </li>
-    );
-    userLinks.push(
-      <li key='points'>
         <span className='user-points' title={`You have ${user.points} points!`}>
           {user.points}{star}
         </span>

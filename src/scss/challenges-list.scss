@@ -1,5 +1,29 @@
+@import 'variables';
+
 .challenges-list {
-  ol {
-    font-size: 1.25em;
+  a {
+    text-decoration: none;
+    display: block;
+    padding: 5px;
+  }
+
+  a:hover {
+    background: $white;
+
+    @media (min-width: 800px) {
+      background: transparent;
+    }
+
+    h2 {
+      text-decoration: underline;
+    }
+  }
+
+  .description {
+    display: none;
+
+    @media (min-width: 800px) {
+      display: block;
+    }
   }
 }

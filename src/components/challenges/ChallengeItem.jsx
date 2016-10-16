@@ -10,42 +10,36 @@ import 'scss/challenge-item.scss';
 
 export default (props) => (
   <div className='challenge-item'>
-    <div className='possible-points'>
-      <span className={props.completed ? 'status done' : 'status'}>
-        {props.points}
-        {
-          props.completed ? star : 
-            (props.can_do ? unlocked : locked)
-        }
-      </span>
+    <div className='challenge-info'>
+      <div className='title'>
+        <h2>{props.name}</h2>
+        <div className='tags'>
+          <div className={props.completed ? 'tag status done' : 'tag status'}>
+            {props.points}
+            {
+              props.completed ? star : 
+                (props.can_do ? unlocked : locked)
+            }
+          </div>
+          <Tag text={props.cipher} />
+        </div>
+      </div>
     </div>
-    <div>
-      <div>
-        {
-          props.can_do ? (
-            <Link to={`/challenges/${props.pk}`}>{props.name}</Link>
-          ) : (
-            props.name
-          )
-        }
-        <Tag text={props.cipher} />
-      </div>
-      <div className='description'>
-        {props.description}
-      </div>
-      <div className='byline'>
-        {
-          props.can_do ?
-            null :
-            `You need ${props.points_required} points to attempt this challenge.`
-        }
-      </div>
+    <div className='byline'>
+      {
+        props.can_do ?
+          null :
+          `You need ${props.points_required} points to attempt this challenge.`
+      }
+    </div>
+    <div className='description'>
+      {props.can_do ? props.description : null}
     </div>
   </div>
 );
 
 const Tag = props => (
-  <div className={['cipher-tag', props.text.toLowerCase()].join(' ')}>
+  <div className={['tag', 'cipher-tag', props.text.toLowerCase()].join(' ')}>
     { props.text }
   </div>
 );

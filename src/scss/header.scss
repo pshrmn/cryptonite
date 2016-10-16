@@ -1,6 +1,7 @@
 @import 'variables';
 
 header {
+  min-height: 10vh;
   padding: 0 0 5px 10vw;
   font-size: 1.25em;
   background: #27436f;
@@ -64,8 +65,8 @@ nav li:hover ul {
 }
 
 .user-points {
-  color: $black;
-  background: $white;
+  color: $white;
   padding: 2px 5px;
-  border-radius: 15px;
+  border-radius: 3px;
+  margin-left: 5px;
 }

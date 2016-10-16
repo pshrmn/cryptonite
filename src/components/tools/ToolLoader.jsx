@@ -77,9 +77,11 @@ export default class ToolLoader extends React.Component {
       return (
         <div className='tool' key={key}>
           <h3>{ tool.name }</h3>
-          <button onClick={() => this.removeTool(key)}>
-            Remove
-          </button>
+          <div>
+            <button className='neg' onClick={() => this.removeTool(key)}>
+              Remove
+            </button>
+          </div>
           <Component />
         </div>
       );
