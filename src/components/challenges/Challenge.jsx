@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { Errors } from 'components/inputs';
 import ChallengeItem from './ChallengeItem';
 import ToolLoader from 'components/tools/ToolLoader';
+import Spinner from 'components/Spinner';
 
 import {
   challenge as fetchChallenge,
@@ -99,7 +100,8 @@ class Challenge extends React.Component {
             value={message}
             onChange={this.handleMessage} />
           <div>
-            <button className='pos' disabled={checking}>Check</button>
+            <button className='pos'>Check</button>
+            { checking ? <Spinner /> : null }
           </div>
         </form>
         <div>

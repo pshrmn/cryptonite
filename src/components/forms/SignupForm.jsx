@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { InputRow, Errors } from 'components/inputs';
+import Spinner from 'components/Spinner';
 import { signup } from 'api/auth';
 import { loginUser } from 'actions';
 
@@ -11,7 +12,8 @@ class SignupForm extends React.Component {
     this.state = {
       username: '',
       password1: '',
-      password2: ''
+      password2: '',
+      loading: false
     };
 
     this.handleUsername = this.handleUsername.bind(this);
@@ -40,9 +42,11 @@ class SignupForm extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
+    this.setState({ loading: true });
     signup(this.state.username, this.state.password1, this.state.password2)
       .then(resp => resp.json())
       .then(resp => {
+        this.setState({ loading: false });
         if ( resp.success ) {
           this.props.loginUser(resp.user);
           this.context.router.transitionTo(this.props.next || '/');
@@ -60,7 +64,8 @@ class SignupForm extends React.Component {
       username,
       password1,
       password2,
-      errors = {}
+      errors = {},
+      loading
     } = this.state;
     return (
       <form onSubmit={this.handleSubmit}>
@@ -84,6 +89,7 @@ class SignupForm extends React.Component {
                 id='signup-password2-input' />
         <div>
           <button>Sign Up</button>
+          { loading ? <Spinner /> : null }
         </div>
       </form>
     );

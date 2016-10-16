@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { InputRow, Errors } from 'components/inputs';
+import Spinner from 'components/Spinner';
 import { login } from 'api/auth';
 import { loginUser } from 'actions';
 
@@ -11,7 +12,8 @@ class LoginForm extends React.Component {
     this.state = {
       username: '',
       password: '',
-      errors: {}
+      errors: {},
+      loading: false
     };
 
     this.handleUsername = this.handleUsername.bind(this);
@@ -33,9 +35,11 @@ class LoginForm extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
+    this.setState({ loading: true });
     login(this.state.username, this.state.password)
       .then(resp => resp.json())
       .then(resp => {
+        this.setState({ loading: false })
         if ( resp.success ) {
           this.props.loginUser(resp.user);
           this.context.router.transitionTo(this.props.next || '/');
@@ -52,7 +56,8 @@ class LoginForm extends React.Component {
     const {
       username,
       password,
-      errors = {}
+      errors = {},
+      loading
     } = this.state;
     return (
       <form onSubmit={this.handleSubmit}>
@@ -70,6 +75,7 @@ class LoginForm extends React.Component {
                 id='login-password-input' />
         <div>
           <button>Login</button>
+          { loading ? <Spinner /> : null }
         </div>
       </form>
     );
