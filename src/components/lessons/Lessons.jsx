@@ -6,7 +6,8 @@ import {
   ModularArithmetic,
   SubstitutionCiphers,
   ShiftCipher,
-  Vigenere
+  Vigenere,
+  BasicAttacks
 } from './index';
 
 export default ({pathname}) => (
@@ -17,6 +18,7 @@ export default ({pathname}) => (
     <Match pattern={`${pathname}/substitution-ciphers`} component={SubstitutionCiphers} />
     <Match pattern={`${pathname}/shift-ciphers`} component={ShiftCipher} />
     <Match pattern={`${pathname}/vigenere-cipher`} component={Vigenere} />
+    <Match pattern={`${pathname}/basic-attacks`} component={BasicAttacks} />
   </div>
 );
 
@@ -38,6 +40,9 @@ const LessonList = props => (
       </li>
       <li>
         <Link to={{pathname: '/learn/vigenere-cipher'}}>Vigenère Cipher</Link>
+      </li>
+      <li>
+        <Link to={{pathname: '/learn/basic-attacks'}}>Basic Attacks</Link>
       </li>
     </ol>
   </div>
