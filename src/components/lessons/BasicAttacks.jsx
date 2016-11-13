@@ -119,6 +119,16 @@ export default () => (
         <a href="https://en.wikipedia.org/wiki/Letter_frequency#Relative_frequencies_of_letters_in_the_English_language">Wikipedia</a>
         has a good English language reference table of letter frequency.
       </p>
+      <p>
+        Unlike with word length attacks, there isn't a simple solution to disguise
+        the frequency of a character. More complicated ciphers can do a better job
+        at making character frequency harder to determine. For example, when using
+        a Vigenère cipher, character frequency has to be counted based on position.
+        This means that only characters in the same modulo position (based on the
+        length of the cipher's keyword) can be taken into account with respect
+        to each other. If the attacker does not know the length of the cipher key,
+        then they do not know (with certainty) how to count the letter frequency.
+      </p>
     </section>
   </Lesson>
 )
