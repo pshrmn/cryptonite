@@ -1,0 +1,36 @@
+@import 'variables';
+
+button {
+  font-size: 1.25em;
+  background: $blue;
+  color: $light-gray;
+  border: 1px solid $navy-blue;
+  border-radius: 3px;
+  box-shadow: inset 0 2px 0 $light-blue;  
+  padding: 5px 10px;
+
+  &.neg {
+    background: $red;
+    border-color: $dark-red;
+    box-shadow: inset 0 2px 0 $light-red;
+  }
+
+  &.pos {
+    background: $green;
+    border-color: $dark-green;
+    box-shadow: inset 0 2px 0 $light-green;
+  }
+
+  @media (min-width: 800px) {
+    font-size: 1em;
+    box-shadow: inset 0 1px 0 $light-blue;
+
+    &.neg {
+      box-shadow: inset 0 1px 0 $light-red;
+    }
+
+    &.pos {
+      box-shadow: inset 0 1px 0 $light-green;
+    }
+  }
+}

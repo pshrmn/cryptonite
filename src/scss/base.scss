@@ -11,15 +11,6 @@ body {
   box-sizing: inherit;
 }
 
-main {
-  background: $light-gray;
-  font-size: 20px;
-  border-top: 2px solid $white;
-  display: block;
-  padding: 0 5px 25px;
-  min-height: 85vh;
-  color: $black;
-}
 
 a {
   color: $black;
@@ -29,45 +20,20 @@ a {
   text-transform: capitalize;
 }
 
-button {
-  font-size: 1.25em;
-  background: $blue;
-  color: $light-gray;
-  border: 1px solid $navy-blue;
-  border-radius: 3px;
-  box-shadow: inset 0 2px 0 $light-blue;  
-  padding: 5px 10px;
+main {
+  background: $light-gray;
+  font-size: 20px;
+  border-top: 2px solid $white;
+  display: block;
+  padding: 0 5px 25px;
+  min-height: 85vh;
+  color: $black;
 
-  &.neg {
-    background: $red;
-    border-color: $dark-red;
-    box-shadow: inset 0 2px 0 $light-red;
-  }
-
-  &.pos {
-    background: $green;
-    border-color: $dark-green;
-    box-shadow: inset 0 2px 0 $light-green;
-  }
-}
-
-@media (min-width: 800px) {
-  button {
-    font-size: 1em;
-    box-shadow: inset 0 1px 0 $light-blue;
-
-    &.neg {
-      box-shadow: inset 0 1px 0 $light-red;
-    }
-
-    &.pos {
-      box-shadow: inset 0 1px 0 $light-green;
-    }
-  }
-
-  main {
+  @media (min-width: 800px) {
     font-size: 16px;
   }
 }
 
+
 @import 'container';
+@import 'buttons';
