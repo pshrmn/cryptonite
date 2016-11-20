@@ -117,7 +117,7 @@ export default () => (
       </p>
       <p>
         <a href="https://en.wikipedia.org/wiki/Letter_frequency#Relative_frequencies_of_letters_in_the_English_language">Wikipedia</a>
-        has a good English language reference table of letter frequency.
+        {' '}has a good English language reference table of letter frequency.
       </p>
       <p>
         Unlike with word length attacks, there isn't a simple solution to disguise
