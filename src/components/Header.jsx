@@ -61,12 +61,14 @@ function Header(props) {
 
   return (
     <header>
-      <Link id='home' to='/'>Cryptonite</Link>
-      <nav>
-        <ul>
-          { links }
-        </ul>
-      </nav>
+      <div className='container'>
+        <Link id='home' to='/'>Cryptonite</Link>
+        <nav>
+          <ul>
+            { links }
+          </ul>
+        </nav>
+      </div>
     </header>
   );
 }

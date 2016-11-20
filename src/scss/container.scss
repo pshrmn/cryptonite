@@ -1,0 +1,18 @@
+.container {
+  padding-left: 5px;
+  padding-bottom: 5px;
+}
+
+@media (min-width: 800px) {
+  .container {
+    width: 800px;
+    margin: 0 auto;
+    padding-left: 0;
+  }
+}
+
+@media (min-width: 1000px) {
+  .container {
+    width: 1000px;
+  }
+}

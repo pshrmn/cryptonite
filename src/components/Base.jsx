@@ -23,15 +23,17 @@ export default props => (
     <div id='app-base'>
       <Header />
       <main>
-        <Match pattern='/' exactly component={Index} />
-        <Match pattern='/learn' component={Lessons} />
-        <Match pattern='/challenges' component={Challenges} />
-        <Match pattern='/tools' component={Tools} />
-        <Match pattern='/login' component={Login} />
-        <Match pattern='/signup' component={Signup} />
-        <MatchWhenAuthorized pattern='/profile' component={Profile} />
-        <Match pattern='/cheat' component={Cheat} />
-        <Miss component={NotFound} />
+        <div className='container'>
+          <Match pattern='/' exactly component={Index} />
+          <Match pattern='/learn' component={Lessons} />
+          <Match pattern='/challenges' component={Challenges} />
+          <Match pattern='/tools' component={Tools} />
+          <Match pattern='/login' component={Login} />
+          <Match pattern='/signup' component={Signup} />
+          <MatchWhenAuthorized pattern='/profile' component={Profile} />
+          <Match pattern='/cheat' component={Cheat} />
+          <Miss component={NotFound} />
+        </div>
       </main>
       <Footer />
     </div>

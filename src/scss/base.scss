@@ -19,10 +19,6 @@ main {
   padding: 0 5px 25px;
   min-height: 85vh;
   color: $black;
-
-  @media (min-width: 800px) {
-    padding: 0 10vw 25px;
-  }
 }
 
 a {
@@ -73,3 +69,5 @@ button {
     font-size: 16px;
   }
 }
+
+@import 'container';
