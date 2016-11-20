@@ -1,0 +1,15 @@
+@import 'variables';
+
+main {
+  background: $light-gray;
+  font-size: 20px;
+  border-top: 2px solid $white;
+  display: block;
+  padding: 0 5px 25px;
+  min-height: 85vh;
+  color: $black;
+
+  @media (min-width: 800px) {
+    font-size: 16px;
+  }
+}
