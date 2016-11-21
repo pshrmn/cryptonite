@@ -9,4 +9,11 @@
     background: #fff;
     border: 1px solid #ccc;
   }
+
+  code {
+    border: 1px solid $gray;
+    border-radius: 3px;
+    background: $white;
+    padding: 0 3px;
+  }
 }

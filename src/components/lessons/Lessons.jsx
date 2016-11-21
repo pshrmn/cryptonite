@@ -7,7 +7,8 @@ import {
   SubstitutionCiphers,
   ShiftCipher,
   Vigenere,
-  BasicAttacks
+  BasicAttacks,
+  AffineCipher
 } from './index';
 
 export default ({pathname}) => (
@@ -19,6 +20,7 @@ export default ({pathname}) => (
     <Match pattern={`${pathname}/shift-ciphers`} component={ShiftCipher} />
     <Match pattern={`${pathname}/vigenere-cipher`} component={Vigenere} />
     <Match pattern={`${pathname}/basic-attacks`} component={BasicAttacks} />
+    <Match pattern={`${pathname}/affine-cipher`} component={AffineCipher} />
   </div>
 );
 
@@ -36,13 +38,16 @@ const LessonList = props => (
         <Link to={{pathname: '/learn/substitution-ciphers'}}>Substitution Ciphers</Link>
       </li>
       <li>
-        <Link to={{pathname: '/learn/shift-ciphers'}}>Shift Ciphers</Link>
+        <Link to={{pathname: '/learn/shift-ciphers'}}>Shift Cipher</Link>
       </li>
       <li>
         <Link to={{pathname: '/learn/vigenere-cipher'}}>Vigenère Cipher</Link>
       </li>
       <li>
         <Link to={{pathname: '/learn/basic-attacks'}}>Basic Attacks</Link>
+      </li>
+      <li>
+        <Link to={{pathname: '/learn/affine-cipher'}}>Affine Cipher</Link>
       </li>
     </ol>
   </div>

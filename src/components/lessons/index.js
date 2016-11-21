@@ -5,3 +5,4 @@ export { default as SubstitutionCiphers } from './SubstitutionCiphers';
 export { default as ShiftCipher } from './ShiftCipher';
 export { default as Vigenere } from './Vigenere';
 export { default as BasicAttacks } from './BasicAttacks';
+export { default as AffineCipher } from './AffineCipher';
