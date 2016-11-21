@@ -29,9 +29,9 @@ export default () => (
       <p>
         Imagine you are given the following message to decrypt:
       </p>
-      <div className='message'>
+      <code>
         Q VMML BW AMM GWC
-      </div>
+      </code>
       <p>
         The first thing that should stand out is that one of the encrypted words
         is a single character. Assuming that the plain text message is in English,
@@ -56,17 +56,17 @@ export default () => (
         use the same word length throughout the message. For example, every "word"
         might be shown as four letters.
       </p>
-      <div className='message'>
+      <code>
         QVMM LBWA MMGW C
-      </div>
+      </code>
       <p>
         Additional letters can be appended to the final word to make it appear to
         be a full word. This can provide more security because it does not reveal
         the total character count of the real message.
       </p>
-      <div className='message'>
+      <code>
         QVMM LBWA MMGW CXYZ
-      </div>
+      </code>
       <p>
         Making all words the same length makes it so that the attacker can't
         easily guess that the first word in the message is either "A" or "I".
@@ -74,9 +74,9 @@ export default () => (
       <p>
         The person that knows how to decrypt the message will receive it as:
       </p>
-      <div className='message'>
+      <code>
         INEE DTOS EEYO U
-      </div>
+      </code>
       <p>
         While that message doesn't appear to be in English, it should be simple
         for the decrypter to figure out the correct word length and read the

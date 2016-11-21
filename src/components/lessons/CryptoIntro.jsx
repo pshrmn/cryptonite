@@ -10,9 +10,9 @@ export default () => (
       <p>
         Imagine that you have a message that you want to pass to a friend:
       </p>
-      <div className='message'>
+      <code>
         MATH IS FUN
-      </div>
+      </code>
       <p>
         The information in the message is important and you don't want anyone
         else who sees the message to know what it says. What should you do? You
@@ -27,24 +27,24 @@ export default () => (
         in a message. You then encrypt the message and your friend gets the
         encrypted message:
       </p>
-      <div className='message'>
+      <code>
         ZNGU VF SHA
-      </div>
+      </code>
       <p>
         Luckily, she knows that the message was encrypted using ROT13 and that in
         order to decrypt it, she needs to reverse the encryption cipher with a
         decryption cipher. For ROT13 encryption, the decryption cipher is also
         ROT13. Using that cipher, she can decrypt the message and reply:
       </p>
-      <div className='message'>
+      <code>
         QRSVAVGRYL
-      </div>
+      </code>
       <p>
         After you decrypt her message, you see that her response is:
       </p>
-      <div className='message'>
+      <code>
         DEFINITELY
-      </div>
+      </code>
       <p>
         What would happen if someone else saw the messages that you passed? That
         depends on whether or not they know how to decrypt the messages. To

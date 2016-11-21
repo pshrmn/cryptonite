@@ -18,19 +18,20 @@ export default () => (
         decimal places, you computed the quotient and left a remainder. For example,
         25 divided by 4 is 6.25, but it can also be expressed as 6 remainder 1.
         Modular arithmetic is essentially division that only cares for the remainder,
-        ignoring the quotient. Therefore, 25 modulo 4 = 1 because 25 ÷ 4 has a remainder
+        ignoring the quotient. Therefore, <code>25 modulo 4 = 1</code> because
+        {' '}<code>25 ÷ 4</code> has a remainder
         of 1.
       </p>
-      <div className='message'>
+      <code>
         25 ÷ 4 = 6.25 = 6 remainder 1
-      </div>
+      </code>
       <p>
         Note that it is common to express modulo using the word "mod" or the
-        symbol "%". I.e., 24 mod 4 = 0 and 25 % 4 = 1.
+        symbol "%". I.e., <code>24 mod 4 = 0</code> and <code>25 % 4 = 1</code>.
       </p>
-      <div className='message'>
+      <code>
         25 % 4 = 1
-      </div>
+      </code>
     </section>
     <section>
       <h2>The Modulo Cycle</h2>
@@ -75,9 +76,9 @@ export default () => (
         Of course, in modular arithmetic, we don't care about the quotient, only
         the remainder.
       </p>
-      <div className='message'>
+      <code>
         25 mod 4 = 25 - 4 = 21 - 4 = 17 - 4 = 13 - 4 = 9 - 4 = 5 - 4 = 1
-      </div>
+      </code>
     </section>
     <section>
       <h2>Getting Negative</h2>
@@ -86,9 +87,9 @@ export default () => (
         number until we are greater than or equal to 0 (and less than the modulo
         number).
       </p>
-      <div className='message'>
+      <code>
         -25 mod 4 = -25 + 4 = -21 + 4 = -17 + 4 = -13 + 4 = -9 + 4 = -5 + 4 = -1 + 4 = 3
-      </div>
+      </code>
     </section>
     <section>
       <h2>7 equals 2?</h2>
@@ -99,7 +100,8 @@ export default () => (
         number, while not literally being equal.
       </p>
       <p>
-        2 % 5 = 2 and 7 % 5 = 2, therefore 2 is congruent to 7 when each is modulo 5
+        <code>2 % 5 = 2</code> and <code>7 % 5 = 2</code>, therefore 2 is
+        congruent to 7 when each is modulo 5.
       </p>
     </section>
   </Lesson>

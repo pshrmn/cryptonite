@@ -41,10 +41,10 @@ export default () => (
           using modular arithmetic. "B" will be index 1, so on and so forth until
           we get to the character "Z" which will be index 25.
         </p>
-        <div className='message'>
+        <code>
           A=0 B=1 C=2 D=3 E=4 F=5 G=6 H=7 I=8 J=9 K=10 L=11 M=12 N=13 O=14 P=15
           Q=16 R=17 S=18 T=19 U=20 V=21 W=22 X=23 Y=24 Z=25
-        </div>
+        </code>
         <p>
           When encrypting (and decrypting) using a shift cipher, the amount of
           shift is added (or subtracted) from the character's index value. The
@@ -56,20 +56,20 @@ export default () => (
           that you should add the shift amount and left indicates that you should
           substract it.
         </p>
-        <div className='message'>
+        <code>
           left shift of 2 = index - 2
-        </div>
-        <div className='message'>
+        </code>
+        <code>
           right shift of 7 = index + 7
-        </div>
+        </code>
         <p>
           A left shift of x can be cancelled out by a right shift of x and vice
           versa. If a message is encrypted with a right shift of 11, it will be
           decrypted using a left shift of 11.
         </p>
-        <div className='message'>
+        <code>
           index = (((index + 11) mod 26) - 11) mod 26
-        </div>
+        </code>
       </section>
       <section>
         <h2>Making Sure to Modulo</h2>
@@ -83,29 +83,29 @@ export default () => (
         <p>
           For a right shift of 3, we should end up with the mapped values:
         </p>
-        <div className='message'>
+        <code>
           A=3 B=4 C=5 D=6 E=7 F=8 G=9 H=10 I=11 J=12 K=13 L=14 M=15 N=16 O=17 P=18
           Q=19 R=20 S=21 T=22 U=23 V=24 W=25 X=26 Y=27 Z=28
-        </div>
+        </code>
         <p>
           This is where modular arithmetic comes in. Simply by using the modulo
           of the number of characters in our character set, we can ensure that
           each character will be mapped to a valid index.
         </p>
-        <div className='message'>
+        <code>
           left shift of 2 = (index - 2) mod 26
-        </div>
-        <div className='message'>
+        </code>
+        <code>
           right shift of 7 = (index + 7) mod 26
-        </div>
+        </code>
         <p>
           Using modular arithmetic, the values that were greater than the number
           of characters have cycled back to legitimate values.
         </p>
-        <div className='message'>
+        <code>
           A=3 B=4 C=5 D=6 E=7 F=8 G=9 H=10 I=11 J=12 K=13 L=14 M=15 N=16 O=17 P=18
           Q=19 R=20 S=21 T=22 U=23 V=24 W=25 X=0 Y=1 Z=2
-        </div>        
+        </code>
       </section>
       <section>
         <h2>A Bit of Help</h2>
@@ -137,97 +137,97 @@ export default () => (
         <p>
           The message that we will be encrypting is:
         </p>
-        <div className='message'>
+        <code>
           The bell rings at two.
-        </div>
+        </code>
         <p>
           Ignoring punctuation and treating all letters as the same case, we can
           convert this message to:
         </p>
-        <div className='message'>
+        <code>
           THE BELL RINGS AT TWO
-        </div>
+        </code>
         <p>
           Now, we need to determine how much our cipher should shift. Seven is a
           popular "random" number choice, so we'll go with a right shift of 7.
         </p>
-        <div className='message'>
+        <code>
           substitute index = (index + 7) mod 26
-        </div>
+        </code>
         <p>
           So, given the input indices:
         </p>
-        <div className='message'>
+        <code>
           A=0 B=1 C=2 D=3 E=4 F=5 G=6 H=7 I=8 J=9 K=10 L=11 M=12 N=13 O=14 P=15
           Q=16 R=17 S=18 T=19 U=20 V=21 W=22 X=23 Y=24 Z=25
-        </div>
+        </code>
         <p>
           We will substitute each letter with the letter that has an index seven
           index values higher (modulo 26).
         </p>
-        <div className='message'>
+        <code>
           A=7 B=8 C=9 D=10 E=11 F=12 G=13 H=14 I=15 J=16 K=17 L=18 M=19 N=20
           O=21 P=22 Q=23 R=24 S=25 T=0 U=1 V=2 W=3 X=4 Y=5 Z=6
-        </div>
+        </code>
         <p>
           Now, we need to determine the index of each character in the message
           that we are encrypting.
         </p>
-        <div className='message'>
+        <code>
           T=0 H=14 E=11 B=8 E=11 L=18 L=18 R=24 I=15 N=20 G=13 S=25 A=7 T=0 T=0
           W=3 O=21
-        </div>
+        </code>
         <p>
           Next, we need to lookup the index value for each character and substitute
           the character at the index.
         </p>
-        <div className='message'>
+        <code>
           0=A 14=O 11=L 8=I 11=L 18=S 18=S 24=Y 15=P 20=U 13=N 25=Z 7=H 0=A 0=A
           3=D 21=V
-        </div>
+        </code>
         <p>
           That leaves us with our encrypted message:
         </p>
-        <div className='message'>
+        <code>
           AOL ILSS YPUNZ HA ADV
-        </div>
+        </code>
         <p>
           If we are the recipient of the message, we need to decrypt the message
           to read it. First, we should determine the index of each character.
         </p>
-        <div className='message'>
+        <code>
           A=0 O=14 L=11 I=8 L=11 S=18 S=18 Y=24 P=15 U=20 N=13 Z=25 H=7 A=0 A=0
           D=3 V=21
-        </div>
+        </code>
         <p>
           We know that the plain text message was encrypted using a right shift
           of 7, so to decrypt it we need to do a left shift of 7.
         </p>
-        <div className='message'>
+        <code>
           original index = (substitute index - 7) mod 26
-        </div>
+        </code>
         <p>
           This cipher is applied to each character in the encrypted message to
           determine the original indices.
         </p>
-        <div className='message'>
+        <code>
           A=19 O=7 L=4 I=1 L=4 S=11 S=11 Y=17 P=8 U=13 N=6 Z=18 H=0 A=19 A=19
           D=22 V=14
-        </div>
+        </code>
         <p>
           Then, we just need to map the original indices to the original index
           values to get the correct letters.
         </p>
-        <div className='message'>
+        <code>
           19=T 7=H 4=E 1=B 4=E 11=L 11=L 17=R 8=I 13=N 6=G 18=S 0=A 19=T 19=T
           22=W 14=0
-        </div>
+        </code>
         <p>
           Which leaves us with our original message:
         </p>
-        <div className='message'>
+        <code>
           THE BELL RINGS AT TWO
-        </div>
+        </code>
       </section>
     </div>
   </Lesson>
