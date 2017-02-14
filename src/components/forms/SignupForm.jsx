@@ -49,7 +49,7 @@ class SignupForm extends React.Component {
         this.setState({ loading: false });
         if ( resp.success ) {
           this.props.loginUser(resp.user);
-          this.context.router.transitionTo(this.props.next || '/');
+          this.context.router.push(this.props.next || '/');
         } else {
           this.setState({errors: resp.errors});
         }

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { Errors } from 'components/inputs';
@@ -86,6 +86,7 @@ class Challenge extends React.Component {
       message,
       checking
     } = this.state;
+    console.log('rendering challenge', challenge)
     return (
       <div className='challenge'>
         <ChallengeItem {...challenge} />
@@ -146,7 +147,7 @@ const Message = ({chars}) => (
 
 export default connect(
   (state, ownProps) => {
-    let { challengeID } = ownProps.params;
+    let { challengeID } = ownProps.match.params;
     challengeID = parseInt(challengeID, 10);
     return {
       challenge: state.challenges.find(c => c.pk === challengeID),

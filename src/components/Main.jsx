@@ -1,5 +1,5 @@
 import React from 'react';
-import { Match, Miss } from 'react-router';
+import { Switch, Route } from 'react-router-dom';
 
 import Index from './Index';
 import Lessons from './lessons/Lessons';
@@ -11,23 +11,25 @@ import {
   Profile
 } from './auth';
 import NotFound from './NotFound';
-import MatchWhenAuthorized from './MatchWhenAuthorized';
 import Cheat from './Cheat';
+import protect from './protect'
 
 import 'scss/main.scss';
 
 export default (props) => (
   <main>
     <div className='container'>
-      <Match pattern='/' exactly component={Index} />
-      <Match pattern='/learn' component={Lessons} />
-      <Match pattern='/challenges' component={Challenges} />
-      <Match pattern='/tools' component={Tools} />
-      <Match pattern='/login' component={Login} />
-      <Match pattern='/signup' component={Signup} />
-      <MatchWhenAuthorized pattern='/profile' component={Profile} />
-      <Match pattern='/cheat' component={Cheat} />
-      <Miss component={NotFound} />
+      <Switch>
+        <Route path='/' exact component={Index} />
+        <Route path='/learn' component={Lessons} />
+        <Route path='/challenges' component={protect(Challenges)} />
+        <Route path='/tools' component={Tools} />
+        <Route path='/login' component={Login} />
+        <Route path='/signup' component={Signup} />
+        <Route path='/profile' component={protect(Profile)} />
+        <Route path='/cheat' component={Cheat} />
+        <Route component={NotFound} />
+      </Switch>
     </div>
   </main>
 )

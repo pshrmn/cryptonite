@@ -1,18 +1,13 @@
 import React from 'react';
-import { Match } from 'react-router';
+import { Switch, Route } from 'react-router-dom';
 
-import MatchWhenAuthorized from 'components/MatchWhenAuthorized';
+import protect from 'components/protect'
 import Challenge from './Challenge';
 import ChallengeList from './ChallengeList';
 
-export default ({pathname}) => (
-  <div>
-    <Match
-      pattern={`${pathname}`}
-      exactly
-      component={ChallengeList} />
-    <MatchWhenAuthorized
-      pattern={`${pathname}/:challengeID`}
-      component={Challenge} />
-  </div>
+export default ({ match }) => (
+  <Switch>
+    <Route exact path={match.url} component={ChallengeList} />
+    <Route path={`${match.url}/:challengeID`} component={protect(Challenge)} />
+  </Switch>
 );

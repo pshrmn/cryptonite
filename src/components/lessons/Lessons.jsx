@@ -1,5 +1,5 @@
 import React from 'react';
-import { Match, Link } from 'react-router';
+import { Switch, Route, Link } from 'react-router-dom';
 
 import {
   CryptoIntro,
@@ -11,17 +11,17 @@ import {
   AffineCipher
 } from './index';
 
-export default ({pathname}) => (
-  <div>
-    <Match pattern={`${pathname}`} exactly component={LessonList} />
-    <Match pattern={`${pathname}/crypto-intro`} component={CryptoIntro} />
-    <Match pattern={`${pathname}/modular-arithmetic`} component={ModularArithmetic} />
-    <Match pattern={`${pathname}/substitution-ciphers`} component={SubstitutionCiphers} />
-    <Match pattern={`${pathname}/shift-ciphers`} component={ShiftCipher} />
-    <Match pattern={`${pathname}/vigenere-cipher`} component={Vigenere} />
-    <Match pattern={`${pathname}/basic-attacks`} component={BasicAttacks} />
-    <Match pattern={`${pathname}/affine-cipher`} component={AffineCipher} />
-  </div>
+export default ({ match }) => (
+  <Switch>
+    <Route exact path={`${match.url}`} component={LessonList} />
+    <Route path={`${match.url}/crypto-intro`} component={CryptoIntro} />
+    <Route path={`${match.url}/modular-arithmetic`} component={ModularArithmetic} />
+    <Route path={`${match.url}/substitution-ciphers`} component={SubstitutionCiphers} />
+    <Route path={`${match.url}/shift-ciphers`} component={ShiftCipher} />
+    <Route path={`${match.url}/vigenere-cipher`} component={Vigenere} />
+    <Route path={`${match.url}/basic-attacks`} component={BasicAttacks} />
+    <Route path={`${match.url}/affine-cipher`} component={AffineCipher} />
+  </Switch>
 );
 
 const LessonList = props => (
@@ -29,25 +29,25 @@ const LessonList = props => (
     <h1>Lessons</h1>
     <ol>
       <li>
-        <Link to={{pathname: '/learn/crypto-intro'}}>Introduction to Cryptography</Link>
+        <Link to='/learn/crypto-intro'>Introduction to Cryptography</Link>
       </li>
       <li>
-        <Link to={{pathname: '/learn/modular-arithmetic'}}>Modular Arithmetic</Link>
+        <Link to='/learn/modular-arithmetic'>Modular Arithmetic</Link>
       </li>
       <li>
-        <Link to={{pathname: '/learn/substitution-ciphers'}}>Substitution Ciphers</Link>
+        <Link to='/learn/substitution-ciphers'>Substitution Ciphers</Link>
       </li>
       <li>
-        <Link to={{pathname: '/learn/shift-ciphers'}}>Shift Cipher</Link>
+        <Link to='/learn/shift-ciphers'>Shift Cipher</Link>
       </li>
       <li>
-        <Link to={{pathname: '/learn/vigenere-cipher'}}>Vigenère Cipher</Link>
+        <Link to='/learn/vigenere-cipher'>Vigenère Cipher</Link>
       </li>
       <li>
-        <Link to={{pathname: '/learn/basic-attacks'}}>Basic Attacks</Link>
+        <Link to='/learn/basic-attacks'>Basic Attacks</Link>
       </li>
       <li>
-        <Link to={{pathname: '/learn/affine-cipher'}}>Affine Cipher</Link>
+        <Link to='/learn/affine-cipher'>Affine Cipher</Link>
       </li>
     </ol>
   </div>

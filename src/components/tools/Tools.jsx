@@ -1,15 +1,15 @@
 import React from 'react';
-import { Match, Link } from 'react-router';
+import { Switch, Route, Link } from 'react-router-dom';
 
 import ShiftRoute from './ShiftRoute';
 import VigenereRoute from './VigenereRoute';
 
-export default ({ pathname }) => (
-  <div>
-    <Match pattern={`${pathname}`} exactly component={ToolsList} />
-    <Match pattern={`${pathname}/shift`} component={ShiftRoute} />
-    <Match pattern={`${pathname}/vigenere`} component={VigenereRoute} />
-  </div>
+export default ({ match }) => (
+  <Switch>
+    <Route exact path={`${match.url}`} component={ToolsList} />
+    <Route path={`${match.url}/shift`} component={ShiftRoute} />
+    <Route path={`${match.url}/vigenere`} component={VigenereRoute} />
+  </Switch>
 );
 
 function ToolsList(props) {
@@ -22,10 +22,10 @@ function ToolsList(props) {
       </p>
       <ul>
         <li>
-          <Link to={{pathname: '/tools/shift'}}>Shift Cipher Tools</Link>
+          <Link to='/tools/shift'>Shift Cipher Tools</Link>
         </li>
         <li>
-          <Link to={{pathname: '/tools/vigenere'}}>Vigenère Cipher Tools</Link>
+          <Link to='/tools/vigenere'>Vigenère Cipher Tools</Link>
         </li>
       </ul>
     </div>

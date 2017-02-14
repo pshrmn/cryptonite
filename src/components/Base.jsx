@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Match, Miss } from 'react-router';
+import { BrowserRouter } from 'react-router-dom';
 
 import Header from './Header';
 import Footer from './Footer';

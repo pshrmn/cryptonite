@@ -1,24 +1,24 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Match, Link } from 'react-router';
+import { Switch, Route, Link } from 'react-router-dom';
 
 import ChangePassword from './ChangePassword';
 import LogoutLink from './LogoutLink';
 
-export default ({ pathname }) => (
-  <div>
-    <Match pattern={`${pathname}/change-password`} component={ChangePassword} />
-    <Match pattern={pathname} exactly component={BaseProfile} />
-  </div>
+export default ({ match }) => (
+  <Switch>
+    <Route path={`${match.url}/change-password`} component={ChangePassword} />
+    <Route exact path={match.url} component={BaseProfile} />
+  </Switch>
 )
 
-const BaseProfile = ({ pathname }) => (
+const BaseProfile = ({ match }) => (
   <ul>
     <li>
       <LogoutLink />
     </li>
     <li>
-      <Link to={`${pathname}/change-password`}>Change Password</Link>
+      <Link to={`${match.url}/change-password`}>Change Password</Link>
     </li>
   </ul>
 );
