@@ -86,7 +86,7 @@ class Challenge extends React.Component {
       message,
       checking
     } = this.state;
-    console.log('rendering challenge', challenge)
+
     return (
       <div className='challenge'>
         <ChallengeItem {...challenge} />
