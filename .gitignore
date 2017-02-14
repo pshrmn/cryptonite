@@ -7,3 +7,4 @@ node_modules
 
 cryptonite/cryptonite/settings/dev.py
 cryptonite/staticfiles/
+cryptonite/static/
