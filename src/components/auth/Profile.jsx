@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { Switch, Route, Link } from 'react-router-dom';
 
 import ChangePassword from './ChangePassword';
@@ -12,7 +11,7 @@ export default ({ match }) => (
   </Switch>
 )
 
-const BaseProfile = ({ match }) => (
+const BaseProfile = ({ match, location }) => (
   <ul>
     <li>
       <LogoutLink />

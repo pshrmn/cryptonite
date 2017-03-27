@@ -10,7 +10,7 @@ const LogoutLink = (props, context) => {
     logout()
       .then(() => {
         props.logoutUser();
-        context.router.push('/');
+        context.router.history.push('/');
       })
   }
   return <a href='#' onClick={logoutHandler}>Logout</a>;

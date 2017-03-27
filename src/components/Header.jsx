@@ -10,6 +10,7 @@ import 'scss/header.scss';
 function Header(props) {
   const {
     user,
+    location
   } = props;
   const userLinks = [];
   
