@@ -16,17 +16,20 @@ import protect from './protect'
 
 import 'scss/main.scss';
 
+const ProtectedChallenges = protect(Challenges);
+const ProtectedProfile = protect(Profile);
+
 export default (props) => (
   <main>
     <div className='container'>
       <Switch>
         <Route path='/' exact component={Index} />
         <Route path='/learn' component={Lessons} />
-        <Route path='/challenges' component={protect(Challenges)} />
+        <Route path='/challenges' component={ProtectedChallenges} />
         <Route path='/tools' component={Tools} />
         <Route path='/login' component={Login} />
         <Route path='/signup' component={Signup} />
-        <Route path='/profile' component={protect(Profile)} />
+        <Route path='/profile' component={ProtectedProfile} />
         <Route path='/cheat' component={Cheat} />
         <Route component={NotFound} />
       </Switch>
