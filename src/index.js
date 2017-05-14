@@ -1,31 +1,31 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { createStore, combineReducers } from 'redux';
 
-import reducers from 'reducers';
-import Base from 'components/Base';
+import createHistory from 'history/createBrowserHistory';
+import createConfig from 'curi';
+import { Navigator } from 'curi-react';
+import { parse } from 'qs';
+import createQueryMiddleware from 'curi-middleware-query';
 
-// the defaultState is used in case __INITIAL_STATE__
-// does not exist
-const defaultState = {
-  user: {
-    authenticated: false
-  },
-  challenges: []
-};
+import store from './store';
+import routes from './routes';
+import renderFunction from './renderFunction';
 
-const intialState = Object.assign({},
-  defaultState,
-  window.__INITIAL_STATE__
-);
+const history = createHistory();
+const queryMiddleware = createQueryMiddleware(parse);
 
-const reducer = combineReducers(reducers);
-const store = createStore(reducer, intialState);
+const config = createConfig(history, routes, {
+  middleware: [queryMiddleware]
+});
 
-ReactDOM.render(
-  <Provider store={store}>
-    <Base />
-  </Provider>,
-  document.querySelector('#app-holder')
-);
+config.ready().then(() => {
+  ReactDOM.render(
+    <Provider store={store}>
+      <Navigator config={config}>
+        {renderFunction}
+      </Navigator>
+    </Provider>,
+    document.querySelector('#app-holder')
+  );  
+});

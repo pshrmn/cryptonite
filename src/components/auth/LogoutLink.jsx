@@ -10,13 +10,14 @@ const LogoutLink = (props, context) => {
     logout()
       .then(() => {
         props.logoutUser();
-        context.router.history.push('/');
+        context.curi.history.push('/');
       })
   }
+
   return <a href='#' onClick={logoutHandler}>Logout</a>;
 }
 
-LogoutLink.contextTypes = {router: React.PropTypes.object};
+LogoutLink.contextTypes = {curi: React.PropTypes.object};
 
 export default connect(
   state => ({

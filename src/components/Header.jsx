@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from 'curi-react';
 import { connect } from 'react-redux';
 
 import LogoutLink from './auth/LogoutLink';
@@ -17,12 +17,12 @@ function Header(props) {
   if ( user.authenticated ) {
     userLinks.push(
       <li key='user'>
-        <Link className='cap' to='/profile'>
+        <Link className='cap' to='Profile'>
           { user.username }
         </Link>
         <ul>
           <li key='profile'>
-            <Link to='/profile'>Profile</Link>
+            <Link to='Profile'>Profile</Link>
           </li>
           <li key='logout'>
             <LogoutLink />
@@ -36,25 +36,25 @@ function Header(props) {
   } else {
     userLinks.push(
       <li key='signup'>
-        <Link to='/signup'>Signup</Link>
+        <Link to='Signup'>Signup</Link>
       </li>
     );
     userLinks.push(
       <li key='login'>
-        <Link to='/login'>Login</Link>
+        <Link to='Login'>Login</Link>
       </li>
     );
   }
 
   const links = [
     <li key='learn'>
-      <Link to='/learn'>Learn</Link>
+      <Link to='Lessons'>Learn</Link>
     </li>,
     <li key='challenges'>
-      <Link to='/challenges/'>Challenges</Link>
+      <Link to='Challenges'>Challenges</Link>
     </li>,
     <li key='tools'>
-      <Link to='/tools'>Tools</Link>
+      <Link to='Tools'>Tools</Link>
     </li>,
     ...userLinks
   ];
@@ -63,7 +63,7 @@ function Header(props) {
   return (
     <header>
       <div className='container'>
-        <Link id='home' to='/'>Cryptonite</Link>
+        <Link id='home' to='Home'>Cryptonite</Link>
         <nav>
           <ul>
             { links }

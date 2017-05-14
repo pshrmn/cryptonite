@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { EnglishVigenereTable } from './VigenereTable';
-import { EnglishVigenereKeys } from './VigenereKeys';
-import VigenereIndices from './VigenereIndices';
+import { EnglishVigenereTable } from 'components/tools/VigenereTable';
+import { EnglishVigenereKeys } from 'components/tools/VigenereKeys';
+import VigenereIndices from 'components/tools/VigenereIndices';
 
 export default function VigenereToolsPage(props) {
   return (

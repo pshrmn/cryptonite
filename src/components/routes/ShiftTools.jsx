@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { AlphabetShiftKey, CustomShiftKey } from './ShiftKey';
+import { AlphabetShiftKey, CustomShiftKey } from 'components/tools/ShiftKey';
 
 export default function ShiftToolsPage(props) {
   return (

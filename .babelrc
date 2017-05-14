@@ -1,9 +1,7 @@
 {
   "presets": ["es2015", "react"],
-  "plugins": ["transform-object-rest-spread"],
-  "env": {
-    "production": {
-      "plugins": ["transform-react-constant-elements"]
-    }
-  }
+  "plugins": [
+    "transform-object-rest-spread",
+    "transform-export-extensions"
+  ]
 }

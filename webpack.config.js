@@ -10,7 +10,8 @@ const config = {
     vendor: [
       'react',
       'react-dom',
-      'react-router',
+      'curi',
+      'curi-react',
       'redux',
       'react-redux',
       'whatwg-fetch',

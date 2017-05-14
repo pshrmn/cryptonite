@@ -1,18 +1,15 @@
 import React from 'react';
-
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { Errors } from 'components/inputs';
-import ChallengeItem from './ChallengeItem';
+import ChallengeItem from 'components/challenges/ChallengeItem';
 import ToolLoader from 'components/tools/ToolLoader';
 import Spinner from 'components/Spinner';
 
 import {
-  challenge as fetchChallenge,
   check as checkChallenge
 } from 'api/challenge';
-import { loadChallenge, completeChallenge } from 'actions';
+import { completeChallenge } from 'actions';
 
 import 'scss/challenge.scss';
 
@@ -25,26 +22,6 @@ class Challenge extends React.Component {
       message: '',
       checking: false
     };
-    // start loading the challenge if it isn't already loaded
-    const {
-      challenge,
-      challengeID,
-      loadChallenge
-    } = props;
-    if ( props.challenge === undefined ) {
-      fetchChallenge(challengeID)
-        .then(resp => resp.json())
-        .then(resp => {
-          if ( resp.success ) {
-            loadChallenge(resp.challenge);
-          } else {
-            this.setState({errors: resp.errors});
-          }
-        })
-        .catch(err => {
-          console.error(err);
-        });
-    }
 
     this.handleMessage = this.handleMessage.bind(this);
     this.checkMessage = this.checkMessage.bind(this);
@@ -59,7 +36,7 @@ class Challenge extends React.Component {
   checkMessage(event) {
     event.preventDefault();
     this.setState({ checking: true });
-    checkChallenge(this.props.challengeID, this.state.message)
+    checkChallenge(this.props.challengeId, this.state.message)
       .then(resp => resp.json())
       .then(resp => {
         this.setState({ checking: false });
@@ -79,7 +56,7 @@ class Challenge extends React.Component {
   render() {
     const {
       challenge = {},
-      challengeID
+      challengeId
     } = this.props;
     const {
       errors = {},
@@ -147,15 +124,14 @@ const Message = ({chars}) => (
 
 export default connect(
   (state, ownProps) => {
-    let { challengeID } = ownProps.match.params;
-    challengeID = parseInt(challengeID, 10);
+    let { challengeId } = ownProps.params;
+    challengeId = parseInt(challengeId, 10);
     return {
-      challenge: state.challenges.find(c => c.pk === challengeID),
-      challengeID
+      challenge: state.challenges.find(c => c.pk === challengeId),
+      challengeId
     }
   },
   {
-    loadChallenge,
     completeChallenge
   }
 )(Challenge);

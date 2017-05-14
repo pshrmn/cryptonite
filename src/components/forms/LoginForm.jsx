@@ -42,7 +42,7 @@ class LoginForm extends React.Component {
         this.setState({ loading: false })
         if ( resp.success ) {
           this.props.loginUser(resp.user);
-          this.context.router.history.push(this.props.next || '/');
+          this.context.curi.history.push(this.props.next || '/');
         } else {
           this.setState({errors: resp.errors});
         }
@@ -83,7 +83,7 @@ class LoginForm extends React.Component {
 }
 
 LoginForm.contextTypes = {
-  router: React.PropTypes.object
+  curi: React.PropTypes.object
 };
 
 export default connect(

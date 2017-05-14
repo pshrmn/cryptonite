@@ -1,11 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
-import {
-  locked,
-  unlocked,
-  star
-} from 'components/symbols';
+import { locked, unlocked, star } from 'components/symbols';
 import 'scss/challenge-item.scss';
 
 export default (props) => (
