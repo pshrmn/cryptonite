@@ -5,6 +5,7 @@ import Footer from './components/Footer';
 import { Redirect } from 'curi-react';
 
 import 'scss/base.scss';
+import 'scss/main.scss';
 
 export default function renderFunction(response) {
   const { body, params, query, location, redirectTo } = response;
