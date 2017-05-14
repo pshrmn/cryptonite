@@ -6,8 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "webpack:dev": "webpack",
-    "webpack:prod": "webpack --define process.env.NODE_ENV=\"'production'\" --optimize-minimize",
-    "webpack:watch": "webpack --watch"
+    "webpack:prod": "webpack --define process.env.NODE_ENV=\"'production'\" --optimize-minimize"
   },
   "repository": {
     "type": "git",
@@ -38,10 +37,8 @@
     "babel-loader": "^7.0.0",
     "babel-plugin-transform-export-extensions": "^6.22.0",
     "babel-plugin-transform-object-rest-spread": "^6.8.0",
-    "babel-plugin-transform-react-constant-elements": "^6.9.1",
     "babel-preset-es2015": "^6.14.0",
     "babel-preset-react": "^6.11.1",
-    "cross-env": "^5.0.0",
     "css-loader": "^0.28.1",
     "extract-text-webpack-plugin": "^2.1.0",
     "node-sass": "^4.5.2",
