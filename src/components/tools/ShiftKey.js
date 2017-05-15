@@ -1,7 +1,7 @@
 import React from 'react';
 import { pie, arc } from 'd3-shape';
 
-import { InputRow } from '../inputs';
+import { InputRow } from 'components/inputs';
 import { EnglishAlphabet } from 'constants/CharacterSets';
 
 import 'scss/shiftkey.scss';

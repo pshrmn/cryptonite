@@ -2,8 +2,8 @@ import React from 'react';
 import { Link } from 'curi-react';
 import { connect } from 'react-redux';
 
-import LogoutLink from './auth/LogoutLink';
-import { star } from './symbols';
+import LogoutLink from 'components/auth/LogoutLink';
+import { star } from 'components/symbols';
 
 import 'scss/header.scss';
 
