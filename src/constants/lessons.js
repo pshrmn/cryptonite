@@ -1,10 +1,10 @@
-import CryptoIntro from './CryptoIntro';
-import ModularArithmetic from './ModularArithmetic';
-import SubstitutionCiphers from './SubstitutionCiphers';
-import ShiftCipher from './ShiftCipher';
-import Vigenere from './Vigenere';
-import BasicAttacks from './BasicAttacks';
-import AffineCipher from './AffineCipher';
+import CryptoIntro from 'components/lessons/CryptoIntro';
+import ModularArithmetic from 'components/lessons/ModularArithmetic';
+import SubstitutionCiphers from 'components/lessons/SubstitutionCiphers';
+import ShiftCipher from 'components/lessons/ShiftCipher';
+import Vigenere from 'components/lessons/Vigenere';
+import BasicAttacks from 'components/lessons/BasicAttacks';
+import AffineCipher from 'components/lessons/AffineCipher';
 
 
 const lessons = [

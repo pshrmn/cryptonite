@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'curi-react';
-import lessons from 'components/lessons/lessons';
+import lessons from 'constants/lessons';
 
 const LessonList = props => (
   <div>

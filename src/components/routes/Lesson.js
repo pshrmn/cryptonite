@@ -1,5 +1,5 @@
 import React from 'react';
-import lessons from 'components/lessons/lessons';
+import lessons from 'constants/lessons';
 
 const mappedSlugs = {};
 lessons.forEach(lesson => {
