@@ -32,7 +32,7 @@ function goHomeWhenAlreadyAuthorized(responseCreator) {
   }
 }
 
-function goToLoginWhenNotAuthorized(responseCreator) {
+function goToLoginWhenNotAuthorized(params, responseCreator) {
   const { user } = store.getState();
   if (!user || !user.authenticated) {
     responseCreator.redirect({ to: 'Login' });
@@ -44,30 +44,30 @@ const routes = [
   {
     name: 'Home',
     path: '',
-    body: () =>Home
+    body: () => Home
   },
   // user
     {
     name: 'Login',
     path: 'login',
-    body: () =>Login,
+    body: () => Login,
     load: goHomeWhenAlreadyAuthorized
   },
   {
     name: 'Signup',
     path: 'signup',
-    body: () =>Signup,
+    body: () => Signup,
     load: goHomeWhenAlreadyAuthorized
   },
   {
     name: 'Profile',
     path: 'profile',
-    body: () =>Profile,
+    body: () => Profile,
     children: [
       {
         name: 'Change Password',
         path: 'change-password',
-        body: () =>ChangePassword
+        body: () => ChangePassword
       }
     ]
   },
@@ -75,26 +75,29 @@ const routes = [
   {
     name: 'Lessons',
     path: 'learn',
-    body: () =>LessonList,
+    body: () => LessonList,
     children: [
       {
         name: 'Lesson',
         path: ':lessonSlug',
-        body: () =>Lesson
+        body: () => Lesson
       }
     ]
   },
   {
     name: 'Challenges',
     path: 'challenges',
-    body: () =>ChallengeList,
-    load: (responseCreator) => {
+    body: () => ChallengeList,
+    load: (params, responseCreator) => {
       // loading the challenges from the server every time this mounts
       // this might be overkill, but helps to ensure that the user
       // always has the most up to date challenges
       const { user } = store.getState();
       if (!user || !user.authenticated) {
-        responseCreator.redirect({ name: 'Login' });
+        responseCreator.redirect({
+          to: 'Login',
+          details: { search: '?next=/challenges' }
+        });
       } else {
         return all_challenges()
           .then(resp => resp.json())
@@ -115,11 +118,13 @@ const routes = [
       {
         name: 'Challenge',
         path: ':challengeId',
-        body: () =>Challenge,
-        load: (responseCreator) => {
+        body: () => Challenge,
+        load: (params, responseCreator) => {
           const { user } = store.getState();
           if (!user || !user.authenticated) {
-            responseCreator.redirect({ name: 'Login' });
+            responseCreator.redirect({
+              to: 'Login'
+            });
           } else {
             // load data when the user is authenticated
             const { params } = responseCreator;
@@ -143,24 +148,24 @@ const routes = [
   {
     name: 'Tools',
     path: 'tools',
-    body: () =>Tools,
+    body: () => Tools,
     children: [
       {
         name: 'Shift Tools',
         path: 'shift',
-        body: () =>ShiftTools
+        body: () => ShiftTools
       },
       {
         name: 'Vigenere Tools',
         path: 'vigenere',
-        body: () =>VigenereTools
+        body: () => VigenereTools
       }
     ]
   },
   {
     name: 'Cheat',
     path: 'cheat',
-    body: () =>Cheat
+    body: () => Cheat
   }
 ];
 
