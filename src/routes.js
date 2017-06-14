@@ -25,7 +25,7 @@ import {
 } from './actions';
 
 // some reusable load functions
-function goHomeWhenAlreadyAuthorized(responseCreator) {
+function goHomeWhenAlreadyAuthorized(params, responseCreator) {
   const { user } = store.getState();
   if (user && user.authenticated) {
     responseCreator.redirect({ to: 'Home' });
