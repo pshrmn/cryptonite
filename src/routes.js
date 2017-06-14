@@ -44,30 +44,30 @@ const routes = [
   {
     name: 'Home',
     path: '',
-    value: Home
+    body: () =>Home
   },
   // user
     {
     name: 'Login',
     path: 'login',
-    value: Login,
+    body: () =>Login,
     load: goHomeWhenAlreadyAuthorized
   },
   {
     name: 'Signup',
     path: 'signup',
-    value: Signup,
+    body: () =>Signup,
     load: goHomeWhenAlreadyAuthorized
   },
   {
     name: 'Profile',
     path: 'profile',
-    value: Profile,
+    body: () =>Profile,
     children: [
       {
         name: 'Change Password',
         path: 'change-password',
-        value: ChangePassword
+        body: () =>ChangePassword
       }
     ]
   },
@@ -75,19 +75,19 @@ const routes = [
   {
     name: 'Lessons',
     path: 'learn',
-    value: LessonList,
+    body: () =>LessonList,
     children: [
       {
         name: 'Lesson',
         path: ':lessonSlug',
-        value: Lesson
+        body: () =>Lesson
       }
     ]
   },
   {
     name: 'Challenges',
     path: 'challenges',
-    value: ChallengeList,
+    body: () =>ChallengeList,
     load: (responseCreator) => {
       // loading the challenges from the server every time this mounts
       // this might be overkill, but helps to ensure that the user
@@ -115,7 +115,7 @@ const routes = [
       {
         name: 'Challenge',
         path: ':challengeId',
-        value: Challenge,
+        body: () =>Challenge,
         load: (responseCreator) => {
           const { user } = store.getState();
           if (!user || !user.authenticated) {
@@ -143,24 +143,24 @@ const routes = [
   {
     name: 'Tools',
     path: 'tools',
-    value: Tools,
+    body: () =>Tools,
     children: [
       {
         name: 'Shift Tools',
         path: 'shift',
-        value: ShiftTools
+        body: () =>ShiftTools
       },
       {
         name: 'Vigenere Tools',
         path: 'vigenere',
-        value: VigenereTools
+        body: () =>VigenereTools
       }
     ]
   },
   {
     name: 'Cheat',
     path: 'cheat',
-    value: Cheat
+    body: () =>Cheat
   }
 ];
 
