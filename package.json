@@ -19,17 +19,17 @@
   },
   "homepage": "https://github.com/pshrmn/cryptonite#readme",
   "dependencies": {
-    "curi": "^0.7.1",
+    "curi": "^0.8.2",
     "curi-middleware-query": "^0.1.1",
-    "curi-react": "^0.6.4",
-    "d3-shape": "^1.0.4",
-    "history": "^4.6.1",
+    "curi-react": "^0.6.10",
+    "d3-shape": "^1.2.0",
+    "history": "^4.6.2",
     "qs": "^6.3.0",
-    "react": "^15.4.2",
-    "react-dom": "^15.4.2",
-    "react-redux": "^5.0.2",
+    "react": "^15.6.0",
+    "react-dom": "^15.6.0",
+    "react-redux": "^5.0.5",
     "redux": "^3.6.0",
-    "whatwg-fetch": "^1.0.0"
+    "whatwg-fetch": "^2.0.3"
   },
   "devDependencies": {
     "autoprefixer": "^7.0.1",
