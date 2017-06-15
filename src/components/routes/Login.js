@@ -1,12 +1,10 @@
 import React from 'react';
 import { Link } from 'curi-react';
-import { parse } from 'qs'
 
 import LoginForm from 'components/forms/LoginForm';
 
-export default ({location}) => {
+export default ({ query, location }) => {
   let next = '/';
-  let query = parse(location.search && location.search.substr(1))
   if ( query && query.next ) {
     next = query.next;
   } else if ( location.state && location.state.from ) {

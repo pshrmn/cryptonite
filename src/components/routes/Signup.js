@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'curi-react';
-import { parse } from 'qs'
 
 import SignupForm from 'components/forms/SignupForm';
 
