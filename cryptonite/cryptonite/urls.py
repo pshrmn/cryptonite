@@ -4,6 +4,7 @@ from django.views.generic import RedirectView
 
 from catch_all.views import base_view, unknown_api
 
+from graphene_django.views import GraphQLView
 
 urlpatterns = [
     url(r'^challenges/', include('challenge.urls.web')),
@@ -11,6 +12,10 @@ urlpatterns = [
                             pattern_name='challenge-web-all',
                             permanent=True)
                          )
+]
+
+urlpatterns += [
+    url(r'^graphql', GraphQLView.as_view(graphiql=True)),
 ]
 
 urlpatterns += [

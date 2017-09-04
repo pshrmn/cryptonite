@@ -15,7 +15,8 @@ INSTALLED_APPS = [
     'challenge',
     'json_auth',
     'catch_all',
-    'cryptographer'
+    'cryptographer',
+    'graphene_django',
 ]
 
 MIDDLEWARE = [
@@ -81,3 +82,7 @@ LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/'
 
 DATABASES = {}
+
+GRAPHENE = {
+    'SCHEMA': 'cryptonite.schema.schema'
+}
