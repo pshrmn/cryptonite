@@ -22,7 +22,7 @@ def all_challenges(request):
     for challenge in Challenge.objects.all():
         c_dict = challenge.as_dict()
         c_dict['completed'] = challenge.users.filter(pk=request.user.cryptographer.pk).exists()
-        c_dict['can_do'] = total_points >= c_dict['points_required']
+        c_dict['can_do'] = challenge.can_do(total_points)
         challenges.append(c_dict)
     return JsonResponse({
         'success': True,

@@ -58,6 +58,13 @@ class Challenge(models.Model):
         challenge['solution'] = self.solution
         return challenge
 
+    def can_do(self, user_points):
+        return user_points >= self.points_required
+
+    def completed_by(self, user):
+        pk = user.cryptographer.pk
+        return self.users.filter(pk=pk).exists()
+
 
 class CompletedChallenge(models.Model):
     challenge = models.ForeignKey(Challenge)
