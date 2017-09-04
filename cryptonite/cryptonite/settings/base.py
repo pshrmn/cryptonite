@@ -13,7 +13,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'challenge',
-    'json_auth',
+    'user_auth',
     'catch_all',
     'cryptographer',
     'graphene_django',

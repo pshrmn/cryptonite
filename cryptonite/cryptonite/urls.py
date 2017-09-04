@@ -23,7 +23,7 @@ urlpatterns += [
         r'^api/',
         include(
             [
-                url(r'^auth/', include('json_auth.urls')),
+                url(r'^auth/', include('user_auth.urls')),
                 url(r'^challenge/', include('challenge.urls.api')),
                 url(r'^(?:.*)/?$', unknown_api, name='unknown_api')
             ]
