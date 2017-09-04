@@ -11,27 +11,24 @@ class ChallengeType(DjangoObjectType):
     can_do = graphene.Boolean()
     completed = graphene.Boolean()
 
-    def resolve_can_do(self, args, context, info):
-        total_points = context.user.cryptographer.points
+    def resolve_can_do(self, info):
+        total_points = info.context.user.cryptographer.points
         return self.can_do(total_points)
 
-    def resolve_completed(self, args, context, info):
-        return self.completed_by(context.user)
+    def resolve_completed(self, info):
+        return self.completed_by(info.context.user)
 
-class Query(graphene.AbstractType):
+class Query(object):
     all_challenges = graphene.List(ChallengeType)
     challenge = graphene.Field(ChallengeType,
                                pk=graphene.Int())
 
-    def resolve_all_challenges(self, args, context, info):
-        if not context.user.is_authenticated():
+    def resolve_all_challenges(self, info):
+        if not info.context.user.is_authenticated():
             return []
         return Challenge.objects.all()
 
-    def resolve_challenge(self, args, context, info):
-        if not context.user.is_authenticated():
-            return None
-        pk = args.get('pk')
-        if pk is None:
+    def resolve_challenge(self, info, pk):
+        if not info.context.user.is_authenticated():
             return None
         return Challenge.objects.get(pk=pk)
