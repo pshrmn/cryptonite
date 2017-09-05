@@ -1,5 +1,6 @@
-import { createStore, combineReducers } from 'redux';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
 import reducers from 'reducers';
+import client from 'apolloClient';
 
 // the defaultState is used in case __INITIAL_STATE__
 // does not exist
@@ -10,12 +11,18 @@ const defaultState = {
   challenges: []
 };
 
-const intialState = Object.assign({},
+const initialState = Object.assign({},
   defaultState,
   window.__INITIAL_STATE__
 );
 
-const reducer = combineReducers(reducers);
-const store = createStore(reducer, intialState);
+const reducer = combineReducers({
+  ...reducers,
+  apollo: client.reducer()
+});
+
+const middleware = applyMiddleware(client.middleware());
+
+const store = createStore(reducer, initialState, middleware);
 
 export default store;

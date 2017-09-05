@@ -1,53 +1,30 @@
 import React from 'react';
+import { graphql } from 'react-apollo';
 
 import { InputRow, Errors } from 'components/inputs';
-import { changePassword } from 'api/auth';
+import { changePassword } from 'api/mutations';
 
-export default class ChangePasswordForm extends React.Component {
+class ChangePasswordForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      old_password: '',
-      new_password1: '',
-      new_password2: '',
+      oldPassword: '',
+      newPassword1: '',
+      newPassword2: '',
       success: false
     }
-    this.handleOldPassword = this.handleOldPassword.bind(this);
-    this.handlePassword1 = this.handlePassword1.bind(this);
-    this.handlePassword2 = this.handlePassword2.bind(this);
+    this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleOldPassword(event) {
-    this.setState({
-      old_password: event.target.value,
-      success: false
-    });
-  }
-
-  handlePassword1(event) {
-    this.setState({
-      new_password1: event.target.value,
-      success: false
-    });
-  }
-
-  handlePassword2(event) {
-    this.setState({
-      new_password2: event.target.value,
-      success: false
-    });
+  handleChange(event) {
+    this.setState({ [event.target.name]: event.target.value, success: false });
   }
 
   handleSubmit(event) {
     event.preventDefault();
-    const {
-      old_password,
-      new_password1,
-      new_password2,
-    } = this.state;
-    changePassword(old_password, new_password1, new_password2)
-      .then(resp => resp.json())
+    const { oldPassword, newPassword1, newPassword2, } = this.state;
+    this.props.mutate({ variables: { oldPassword, newPassword1, newPassword2 } })
       .then(resp => {
         if ( resp.success ) {
           this.setState({
@@ -65,9 +42,9 @@ export default class ChangePasswordForm extends React.Component {
 
   render() {
     const {
-      old_password,
-      new_password1,
-      new_password2,
+      oldPassword,
+      newPassword1,
+      newPassword2,
       success,
       errors = {}
     } = this.state;
@@ -75,24 +52,33 @@ export default class ChangePasswordForm extends React.Component {
       <form onSubmit={this.handleSubmit}>
         { success ? <p>Password change successful</p> : null }
         <Errors errors={errors['__all__']} />
-        <InputRow name='Old Password'
-                value={old_password}
-                type='password'
-                handler={this.handleOldPassword}
-                errors={errors.old_password}
-                id='password-old_password-input' />
-        <InputRow name='Password'
-                value={new_password1}
-                type='password'
-                handler={this.handlePassword1}
-                errors={errors.new_password1}
-                id='password-password1-input' />
-        <InputRow name='Password (Verify)'
-                value={new_password2}
-                type='password'
-                handler={this.handlePassword2}
-                errors={errors.new_password2}
-                id='password-password2-input' />
+        <InputRow
+          name='Old Password'
+          value={oldPassword}
+          type='password'
+          handler={this.handleChange}
+          errors={errors.oldPassword}
+          id='password-oldPassword-input'
+          inputName='oldPassword'
+        />
+        <InputRow
+          name='Password'
+          value={newPassword1}
+          type='password'
+          handler={this.handleChange}
+          errors={errors.newPassword1}
+          id='password-password1-input'
+          inputName='newPassword1'
+        />
+        <InputRow
+          name='Password (Verify)'
+          value={newPassword2}
+          type='password'
+          handler={this.handleChange}
+          errors={errors.newPassword2}
+          id='password-password2-input'
+          inputName='newPassword2'
+        />
         <div>
           <button>Change Password</button>
         </div>
@@ -100,3 +86,5 @@ export default class ChangePasswordForm extends React.Component {
     );
   }
 }
+
+export default graphql(changePassword)(ChangePasswordForm);

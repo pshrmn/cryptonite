@@ -10,7 +10,8 @@ export const InputRow = function(props) {
     handler,
     placeholder = '',
     id = `input-${Math.floor(Math.random()*10000)}`,
-    errors
+    errors,
+    inputName = ''
   } = props;
   return (
     <div className='input-row'>
@@ -18,11 +19,14 @@ export const InputRow = function(props) {
         <Errors errors={errors} />
       </div>
       <label htmlFor={id}>{name}</label>
-      <input type={type}
-             id={id}
-             value={value}
-             placeholder={placeholder}
-             onChange={handler} />
+      <input
+        type={type}
+        id={id}
+        value={value}
+        placeholder={placeholder}
+        onChange={handler}
+        name={inputName}
+      />
     </div>
   );
 }

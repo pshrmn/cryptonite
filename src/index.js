@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
+import { ApolloClient, ApolloProvider, createNetworkInterface } from 'react-apollo';
 
 import createHistory from 'history/createBrowserHistory';
 import createConfig from 'curi';
@@ -8,6 +8,7 @@ import { Navigator } from 'curi-react';
 import { parse } from 'qs';
 import createQueryMiddleware from 'curi-middleware-query';
 
+import client from './apolloClient';
 import store from './store';
 import routes from './routes';
 import renderFunction from './renderFunction';
@@ -20,12 +21,11 @@ const config = createConfig(history, routes, {
 });
 
 config.ready().then(() => {
-  ReactDOM.render(
-    <Provider store={store}>
+  ReactDOM.render((
+    <ApolloProvider client={client} store={store}>
       <Navigator config={config}>
         {renderFunction}
       </Navigator>
-    </Provider>,
-    document.querySelector('#app-holder')
-  );  
+    </ApolloProvider>
+  ), document.querySelector('#app-holder'));  
 });
