@@ -9,9 +9,7 @@ export const loginUser = gql`
 				value
 			}
 			user {
-				user {
-					username
-				}
+				username
 				points
 			}
 		}
@@ -27,9 +25,7 @@ export const signupUser = gql`
 				value
 			}
 			user {
-				user {
-					username
-				}
+				username
 				points
 			}
 		}

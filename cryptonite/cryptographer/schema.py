@@ -13,3 +13,18 @@ class UserType(DjangoObjectType):
 class CryptographerType(DjangoObjectType):
     class Meta:
         model = Cryptographer
+        exclude_fields = ('user',)
+
+    username = graphene.String()
+
+    def resolve_username(self, info):
+        return self.user.username
+
+class Query(object):
+    user = graphene.Field(CryptographerType)
+
+    def resolve_user(self, info):
+        user = info.context.user
+        if not user.is_authenticated():
+            return None
+        return user.cryptographer

@@ -1,11 +1,12 @@
 import graphene
 from challenge.schema import Query as ChallengeQuery, Mutation as ChallengeMutation
-from user_auth.schema import Mutation as UserMutation
+from cryptographer.schema import Query as CryptographerQuery
+from user_auth.schema import Mutation as AuthMutation
 
-class Query(ChallengeQuery, graphene.ObjectType):
+class Query(ChallengeQuery, CryptographerQuery, graphene.ObjectType):
     pass
 
-class Mutation(ChallengeMutation, UserMutation, graphene.ObjectType):
+class Mutation(ChallengeMutation, AuthMutation, graphene.ObjectType):
     pass
 
 schema = graphene.Schema(query=Query, mutation=Mutation)
