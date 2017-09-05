@@ -4,7 +4,7 @@ node_modules
 *.log
 *.sqlite3
 *.db
-
+.vscode
 cryptonite/cryptonite/settings/dev.py
 cryptonite/staticfiles/
 cryptonite/static/

@@ -8,13 +8,7 @@ from django.contrib.auth.forms import (UserCreationForm, AuthenticationForm,
 
 from cryptographer.models import Cryptographer
 from cryptographer.schema import CryptographerType
-
-class FormError(graphene.ObjectType):
-    key = graphene.String()
-    value = graphene.List(graphene.String)
-
-def list_errors(errors):
-    return [FormError(k,v) for k,v in errors.items()]
+from helpers.schema import FormError, list_errors
 
 class LoginUser(graphene.Mutation):
     class Arguments:
