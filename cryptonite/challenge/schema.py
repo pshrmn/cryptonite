@@ -13,6 +13,7 @@ class ChallengeType(DjangoObjectType):
 
     can_do = graphene.Boolean()
     completed = graphene.Boolean()
+    cipher = graphene.String()
 
     def resolve_can_do(self, info):
         total_points = info.context.user.cryptographer.points
@@ -20,6 +21,10 @@ class ChallengeType(DjangoObjectType):
 
     def resolve_completed(self, info):
         return self.completed_by(info.context.user)
+
+    def resolve_cipher(self, info):
+        print("returning", self.get_cipher_display())
+        return self.get_cipher_display()
 
 class Query(object):
     all_challenges = graphene.List(ChallengeType)
