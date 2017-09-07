@@ -1,10 +1,10 @@
 import React from 'react';
-import { graphql, compose, withApollo } from 'react-apollo';
+import { graphql } from 'react-apollo';
 
 import { InputRow, Errors } from 'components/inputs';
 import Spinner from 'components/Spinner';
 import { SIGNUP_MUTATION } from 'api/mutations';
-import { USER_QUERY } from 'api/queries';
+import { USER_QUERY, ALL_CHALLENGES_QUERY } from 'api/queries';
 
 class SignupForm extends React.Component {
   constructor(props) {
@@ -27,18 +27,18 @@ class SignupForm extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     this.setState({ loading: true });
-    this.props.mutate({
+    this.props.signupUser({
       variables: {
         username: this.state.username,
         password1: this.state.password1,
         password2: this.state.password2
       },
-      update: (store, { data: { signupUser } }) => {
-        const data = store.readQuery({query: USER_QUERY });
+      update: (dataProxy, { data: { signupUser } }) => {
+        const data = dataProxy.readQuery({query: USER_QUERY });
         const { success, user } = signupUser;
         if (success) {
           data.user = user;
-          store.writeQuery({ query: USER_QUERY, data });
+          dataProxy.writeQuery({ query: USER_QUERY, data });
         }
       }
     })
@@ -110,8 +110,12 @@ SignupForm.contextTypes = {
   curi: React.PropTypes.object
 };
 
-export default compose(
-  withApollo,
-  graphql(SIGNUP_MUTATION)
-)(SignupForm);
+export default graphql(SIGNUP_MUTATION, {
+  name: 'signupUser',
+  options: {
+    refetchQueries: [
+     { query: ALL_CHALLENGES_QUERY }
+    ]
+  }
+})(SignupForm);
 

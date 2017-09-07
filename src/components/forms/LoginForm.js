@@ -1,10 +1,10 @@
 import React from 'react';
-import { graphql, compose, withApollo } from 'react-apollo';
+import { graphql } from 'react-apollo';
 
 import { InputRow, Errors } from 'components/inputs';
 import Spinner from 'components/Spinner';
 import { LOGIN_MUTATION } from 'api/mutations';
-import { USER_QUERY } from 'api/queries';
+import { USER_QUERY, ALL_CHALLENGES_QUERY } from 'api/queries';
 
 class LoginForm extends React.Component {
   constructor(props) {
@@ -27,17 +27,17 @@ class LoginForm extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     this.setState({ loading: true });
-    this.props.mutate({
+    this.props.loginUser({
       variables: {
         username: this.state.username,
         password: this.state.password
       },
-      update: (store, { data: { loginUser } }) => {
-        const data = store.readQuery({query: USER_QUERY });
+      update: (dataProxy, { data: { loginUser } }) => {
+        const data = dataProxy.readQuery({query: USER_QUERY });
         const { success, user } = loginUser;
         if (success) {
           data.user = user;
-          store.writeQuery({ query: USER_QUERY, data });
+          dataProxy.writeQuery({ query: USER_QUERY, data });
         }
       }
     })
@@ -46,7 +46,6 @@ class LoginForm extends React.Component {
         this.setState({ loading: false })
         if ( success ) {
           this.context.curi.history.push(this.props.next || '/');
-          this.props.client.resetStore();
         } else {
           const errorsObject = errors.reduce((acc, { key, value }) => {
             acc[key] = value;
@@ -100,9 +99,11 @@ LoginForm.contextTypes = {
   curi: React.PropTypes.object
 };
 
-export default compose(
-  withApollo,
-  graphql(LOGIN_MUTATION, {
-    refetchQueries: ['user']
-  })
-)(LoginForm);
+export default graphql(LOGIN_MUTATION, {
+  name: 'loginUser',
+  options: {
+    refetchQueries: [
+     { query: ALL_CHALLENGES_QUERY }
+    ]
+  }
+})(LoginForm);

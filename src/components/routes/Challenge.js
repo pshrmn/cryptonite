@@ -32,8 +32,8 @@ class Challenge extends React.Component {
   checkMessage(event) {
     event.preventDefault();
     this.setState({ checking: true });
-    const { mutate, data } = this.props;
-    mutate({
+    const { checkChallenge, data } = this.props;
+    checkChallenge({
       variables: { id: data.challenge.id, message: this.state.message }
     })
       .then(resp => {
@@ -133,6 +133,8 @@ export default compose(
   graphql(CHALLENGE_QUERY, {
     options: (props) => ({ variables: { id: props.params.challengeId} })
   }),
-  graphql(CHECK_CHALLENGE_MUTATION)
+  graphql(CHECK_CHALLENGE_MUTATION, {
+    name: 'checkChallenge'
+  })
 )(Challenge);
 
