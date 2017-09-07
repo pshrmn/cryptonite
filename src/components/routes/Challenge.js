@@ -1,18 +1,14 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { compose, graphql } from 'react-apollo';
 
 import { Errors } from 'components/inputs';
 import ChallengeItem from 'components/challenges/ChallengeItem';
 import ToolLoader from 'components/tools/ToolLoader';
 import Spinner from 'components/Spinner';
 
-import {
-  check as checkChallenge
-} from 'api/challenge';
-import { completeChallenge } from 'actions';
-
+import { CHALLENGE_QUERY } from 'api/queries';
+import { CHECK_CHALLENGE_MUTATION } from 'api/mutations'
 import 'scss/challenge.scss';
-
 
 class Challenge extends React.Component {
   constructor(props) {
@@ -36,18 +32,29 @@ class Challenge extends React.Component {
   checkMessage(event) {
     event.preventDefault();
     this.setState({ checking: true });
-    checkChallenge(this.props.challengeId, this.state.message)
-      .then(resp => resp.json())
+    const { mutate, data } = this.props;
+    mutate({
+      variables: { id: data.challenge.id, message: this.state.message }
+    })
       .then(resp => {
-        this.setState({ checking: false });
-        if ( resp.success ) {
-            this.props.completeChallenge(resp.challenge, resp.new_points);
-          } else {
-            return Promise.reject(resp.errors)
-          }
+        const {
+          success,
+          errors,
+          user
+        } = resp.data.checkChallenge;
+        if ( success ) {
+          this.setState({ checking: false, errors: [] });
+        } else {
+          const errorsObject = errors.reduce((acc, { key, value }) => {
+            acc[key] = value;
+            return acc;
+          }, {});
+          return Promise.reject(errorsObject);
+        }
       })
       .catch(errors => {
         this.setState({
+          checking: false,
           errors
         });
       })
@@ -55,9 +62,9 @@ class Challenge extends React.Component {
 
   render() {
     const {
-      challenge = {},
-      challengeId
-    } = this.props;
+      challenge = {}
+    } = this.props.data;
+
     const {
       errors = {},
       message,
@@ -122,16 +129,10 @@ const Message = ({chars}) => (
   </div>
 )
 
-export default connect(
-  (state, ownProps) => {
-    let { challengeId } = ownProps.params;
-    challengeId = parseInt(challengeId, 10);
-    return {
-      challenge: state.challenges.find(c => c.pk === challengeId),
-      challengeId
-    }
-  },
-  {
-    completeChallenge
-  }
+export default compose(
+  graphql(CHALLENGE_QUERY, {
+    options: (props) => ({ variables: { id: props.params.challengeId} })
+  }),
+  graphql(CHECK_CHALLENGE_MUTATION)
 )(Challenge);
+

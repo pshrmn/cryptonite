@@ -1,9 +1,6 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { graphql, compose } from 'react-apollo';
-
-import { logoutUser } from 'actions';
-import { logoutUser as logoutMutation } from 'api/mutations';
+import { compose, withApollo, graphql } from 'react-apollo';
+import { LOGOUT_MUTATION } from 'api/mutations';
 
 const LogoutLink = (props, context) => {
   const logoutHandler = event => {
@@ -12,7 +9,7 @@ const LogoutLink = (props, context) => {
       .then((resp) => {
         const { success } = resp.data.logoutUser;
         if (success) {
-          props.logoutUser();
+          props.client.resetStore();
           context.curi.history.push('/');
         }
       })
@@ -24,9 +21,6 @@ const LogoutLink = (props, context) => {
 LogoutLink.contextTypes = {curi: React.PropTypes.object};
 
 export default compose(
-  graphql(logoutMutation),
-  connect(
-    state => ({ user: state.user }),
-    { logoutUser }
-  )
+  withApollo,
+  graphql(LOGOUT_MUTATION)
 )(LogoutLink);

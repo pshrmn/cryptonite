@@ -16,9 +16,13 @@ class CryptographerType(DjangoObjectType):
         exclude_fields = ('user',)
 
     username = graphene.String()
+    authenticated = graphene.Boolean()
 
     def resolve_username(self, info):
         return self.user.username
+
+    def resolve_authenticated(self, info):
+        return self.user.is_authenticated()
 
 class Query(object):
     user = graphene.Field(CryptographerType)

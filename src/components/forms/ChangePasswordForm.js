@@ -2,7 +2,7 @@ import React from 'react';
 import { graphql } from 'react-apollo';
 
 import { InputRow, Errors } from 'components/inputs';
-import { changePassword } from 'api/mutations';
+import { CHANGE_PASSWORD_MUTATION } from 'api/mutations';
 
 class ChangePasswordForm extends React.Component {
   constructor(props) {
@@ -24,7 +24,7 @@ class ChangePasswordForm extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     const { oldPassword, newPassword1, newPassword2, } = this.state;
-    this.props.mutate({ variables: { oldPassword, newPassword1, newPassword2 } })
+    this.props.mutate({ variables: { o: oldPassword, n1: newPassword1, n2: newPassword2 } })
       .then(resp => {
         if ( resp.success ) {
           this.setState({
@@ -87,4 +87,4 @@ class ChangePasswordForm extends React.Component {
   }
 }
 
-export default graphql(changePassword)(ChangePasswordForm);
+export default graphql(CHANGE_PASSWORD_MUTATION)(ChangePasswordForm);

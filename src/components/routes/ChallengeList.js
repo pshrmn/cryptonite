@@ -1,5 +1,7 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { graphql } from 'react-apollo';
+
+import { ALL_CHALLENGES_QUERY } from 'api/queries';
 import { Link } from 'curi-react';
 
 import ChallengeItem from 'components/challenges/ChallengeItem';
@@ -7,20 +9,18 @@ import ChallengeItem from 'components/challenges/ChallengeItem';
 import 'scss/challenges-list.scss';
 
 
-const ChallengeList = (props) => (
+const ChallengeList = ({ data }) => (
   <div className='challenges-list'>
     <ol>
       {
-        props.challenges.map(c => (
-          <li key={c.pk}>
+        data.allChallenges && data.allChallenges.map(c => (
+          <li key={c.id}>
             {
-              c.can_do ? (
-                <Link to='Challenge' params={{ challengeId: c.pk }}>
-                  <ChallengeItem {...c} />
-                </Link>
-              ) : (
-                <ChallengeItem {...c} />
-              )
+              c.canDo
+                ? <Link to='Challenge' params={{ challengeId: c.id }}>
+                    <ChallengeItem {...c} />
+                  </Link>
+                : <ChallengeItem {...c} />
             }
           </li>
         ))
@@ -29,8 +29,4 @@ const ChallengeList = (props) => (
   </div>
 );
 
-export default connect(
-  state => ({
-    challenges: state.challenges
-  })
-)(ChallengeList);
+export default graphql(ALL_CHALLENGES_QUERY)(ChallengeList);

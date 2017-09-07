@@ -13,7 +13,7 @@ export default (props) => (
             {props.points}
             {
               props.completed ? star : 
-                (props.can_do ? unlocked : locked)
+                (props.canDo ? unlocked : locked)
             }
           </div>
           <Tag text={props.cipher} />
@@ -22,13 +22,13 @@ export default (props) => (
     </div>
     <div className='byline'>
       {
-        props.can_do ?
+        props.canDo ?
           null :
-          `You need ${props.points_required} points to attempt this challenge.`
+          `You need ${props.pointsRequired} points to attempt this challenge.`
       }
     </div>
     <div className='description'>
-      {props.can_do ? props.description : null}
+      {props.canDo ? props.description : null}
     </div>
   </div>
 );

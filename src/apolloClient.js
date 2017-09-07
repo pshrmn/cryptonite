@@ -1,8 +1,21 @@
-import { ApolloClient, createNetworkInterface } from 'react-apollo';
+import {
+  ApolloClient,
+  createNetworkInterface,
+  toIdValue
+ } from 'react-apollo';
 import { getCSRFToken } from './helpers/csrf';
 
+function dataIdFromObject (result) {
+  if (result.__typename) {
+    if (result.id !== undefined) {
+      return `${result.__typename}:${result.id}`;
+    }
+  }
+  return null;
+}
+
 const networkInterface = createNetworkInterface({
-  uri: 'http://localhost:8000/graphql',
+  uri: '/graphql',
   opts: {
     credentials: 'same-origin',
     headers: {}
@@ -16,6 +29,19 @@ networkInterface.use([{
   }
 }]);
 
-// just hard coding localhost for testing,
-// will need to fix before deploying
-export default new ApolloClient({ networkInterface });
+export default new ApolloClient({
+  networkInterface,
+  dataIdFromObject,
+  customResolvers: {
+    Query: {
+      challenge: (info, args) => {
+        return toIdValue(
+          dataIdFromObject({
+            __typename: 'ChallengeType',
+            id: args.id
+          })
+        );
+      }
+    }
+  }
+});

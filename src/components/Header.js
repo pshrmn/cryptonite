@@ -1,20 +1,18 @@
 import React from 'react';
 import { Link } from 'curi-react';
 import { connect } from 'react-redux';
+import { graphql } from 'react-apollo';
 
+import { USER_QUERY } from 'api/queries';
 import LogoutLink from 'components/auth/LogoutLink';
 import { star } from 'components/symbols';
 
 import 'scss/header.scss';
 
-function Header(props) {
-  const {
-    user,
-    location
-  } = props;
+function Header({ data: { user }, location }) {
   const userLinks = [];
-  
-  if ( user.authenticated ) {
+
+  if ( user ) {
     userLinks.push(
       <li key='user'>
         <Link className='cap' to='Profile'>
@@ -74,8 +72,4 @@ function Header(props) {
   );
 }
 
-export default connect(
-  state => ({
-    user: state.user
-  })
-)(Header);
+export default graphql(USER_QUERY)(Header);

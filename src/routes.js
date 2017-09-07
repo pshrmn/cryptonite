@@ -1,4 +1,4 @@
-import store from './store';
+import client from './apolloClient';
 
 // components
 import {
@@ -18,7 +18,7 @@ import {
 } from './components/routes';
 
 // loading related
-import { all_challenges, challenge as fetchChallenge } from 'api/challenge';
+import { challenge as challengeQuery, allChallenges as allChallengesQuery } from 'api/queries';
 import {
   loadChallenges,
   loadChallenge
@@ -26,15 +26,13 @@ import {
 
 // some reusable load functions
 function goHomeWhenAlreadyAuthorized(params, responseCreator) {
-  const { user } = store.getState();
-  if (user && user.authenticated) {
+  if (userInStore()) {
     responseCreator.redirect({ to: 'Home' });
   }
 }
 
 function goToLoginWhenNotAuthorized(params, responseCreator) {
-  const { user } = store.getState();
-  if (!user || !user.authenticated) {
+  if (!userInStore()) {
     responseCreator.redirect({ to: 'Login' });
   }
 }
@@ -51,13 +49,13 @@ const routes = [
     name: 'Login',
     path: 'login',
     body: () => Login,
-    load: goHomeWhenAlreadyAuthorized
+    //load: goHomeWhenAlreadyAuthorized
   },
   {
     name: 'Signup',
     path: 'signup',
     body: () => Signup,
-    load: goHomeWhenAlreadyAuthorized
+    //load: goHomeWhenAlreadyAuthorized
   },
   {
     name: 'Profile',
@@ -88,60 +86,26 @@ const routes = [
     name: 'Challenges',
     path: 'challenges',
     body: () => ChallengeList,
-    load: (params, responseCreator) => {
-      // loading the challenges from the server every time this mounts
-      // this might be overkill, but helps to ensure that the user
-      // always has the most up to date challenges
-      const { user } = store.getState();
-      if (!user || !user.authenticated) {
+    /*load: (params, responseCreator) => {
+      if (!userInStore()) {
         responseCreator.redirect({
           to: 'Login',
           details: { search: '?next=/challenges' }
         });
-      } else {
-        return all_challenges()
-          .then(resp => resp.json())
-          .then(resp => {
-            if (resp.success) {
-              store.dispatch(
-                loadChallenges(resp.challenges)
-              );
-              const state = store.getState();
-            }
-          })
-          .catch(err => {
-            console.error(err);
-          });
       }
-    },
+    },*/
     children: [
       {
         name: 'Challenge',
         path: ':challengeId',
         body: () => Challenge,
-        load: (params, responseCreator) => {
-          const { user } = store.getState();
-          if (!user || !user.authenticated) {
+        /*load: (params, responseCreator) => {
+          if (!userInStore()) {
             responseCreator.redirect({
               to: 'Login'
             });
-          } else {
-            // load data when the user is authenticated
-            const { params } = responseCreator;
-            return fetchChallenge(params.challengeId)
-              .then(resp => resp.json())
-              .then(resp => {
-                if (resp.success) {
-                  store.dispatch(
-                    loadChallenge(resp.challenge)
-                  );
-                }
-              })
-              .catch(err => {
-                console.error(err);
-              });
           }
-        }
+        }*/
       }
     ]
   },

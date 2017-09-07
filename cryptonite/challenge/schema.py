@@ -23,48 +23,50 @@ class ChallengeType(DjangoObjectType):
         return self.completed_by(info.context.user)
 
     def resolve_cipher(self, info):
-        print("returning", self.get_cipher_display())
         return self.get_cipher_display()
 
 class Query(object):
     all_challenges = graphene.List(ChallengeType)
     challenge = graphene.Field(ChallengeType,
-                               pk=graphene.Int())
+                               id=graphene.Int())
 
     def resolve_all_challenges(self, info):
         if not info.context.user.is_authenticated():
             return []
         return Challenge.objects.all()
 
-    def resolve_challenge(self, info, pk):
+    def resolve_challenge(self, info, id):
         if not info.context.user.is_authenticated():
             return None
-        return Challenge.objects.get(pk=pk)
+        return Challenge.objects.get(pk=id)
 
 class CheckChallenge(graphene.Mutation):
     class Arguments:
+        id = graphene.Int()
         message = graphene.String()
-        pk = graphene.Int()
 
     user = graphene.Field(CryptographerType)
+    challenge = graphene.Field(ChallengeType)
     success = graphene.Boolean()
     errors = graphene.List(FormError)
 
-    def mutate(self, info, pk, message):
+    def mutate(self, info, id, message):
         user = info.context.user
         if not user.is_authenticated():
             return CheckChallenge(
-                userNone,
+                user=None,
+                challenge=None,
                 success=False,
                 errors=list_errors({
                     "__all__": ["You must be logged into check a challenge."]
                 })
             )
-        challenge = Challenge.objects.get(pk=pk)
+        challenge = Challenge.objects.get(pk=id)
         cryptographer = user.cryptographer
         if not challenge.can_do(cryptographer.points):
             return CheckChallenge(
                 user=cryptographer,
+                challenge=None,
                 success=False,
                 errors=list_errors({
                     "__all__": [('You do not have enough points to attempt this challenge. '
@@ -85,12 +87,13 @@ class CheckChallenge(graphene.Mutation):
                 cryptographer.points += challenge.points
                 cryptographer.save()
             
-            return CheckChallenge(user=cryptographer, success=True, errors=[])
+            return CheckChallenge(user=cryptographer, challenge=challenge, success=True, errors=[])
         else:
             return CheckChallenge(
                 user=cryptographer,
+                challenge=challenge, 
                 success=False,
-                errors=list_errors({"message": ['The provided message was not correct.']})
+                errors=list_errors({"__all__": ['The provided message was not correct.']})
             )        
 
 class Mutation(object):

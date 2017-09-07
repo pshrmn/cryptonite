@@ -71,10 +71,11 @@ class SignupUser(graphene.Mutation):
 
 class LogoutUser(graphene.Mutation):
     success = graphene.Boolean()
+    user = graphene.Field(CryptographerType)
 
     def mutate(self, info):
         auth_logout(info.context)
-        return LogoutUser(success=True)
+        return LogoutUser(success=True, user=None)
 
 class ChangePassword(graphene.Mutation):
     class Arguments:

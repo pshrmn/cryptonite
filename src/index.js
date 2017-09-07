@@ -9,7 +9,6 @@ import { parse } from 'qs';
 import createQueryMiddleware from 'curi-middleware-query';
 
 import client from './apolloClient';
-import store from './store';
 import routes from './routes';
 import renderFunction from './renderFunction';
 
@@ -22,7 +21,7 @@ const config = createConfig(history, routes, {
 
 config.ready().then(() => {
   ReactDOM.render((
-    <ApolloProvider client={client} store={store}>
+    <ApolloProvider client={client}>
       <Navigator config={config}>
         {renderFunction}
       </Navigator>
