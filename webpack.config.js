@@ -12,9 +12,7 @@ const config = {
       'react-dom',
       'curi',
       'curi-react',
-      'redux',
-      'react-redux',
-      'whatwg-fetch',
+      'react-apollo',
       'd3-shape'
     ]
   },
