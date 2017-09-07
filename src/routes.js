@@ -1,5 +1,3 @@
-import client from './apolloClient';
-
 // components
 import {
   Home,
@@ -17,26 +15,6 @@ import {
   Cheat
 } from './components/routes';
 
-// loading related
-import { challenge as challengeQuery, allChallenges as allChallengesQuery } from 'api/queries';
-import {
-  loadChallenges,
-  loadChallenge
-} from './actions';
-
-// some reusable load functions
-function goHomeWhenAlreadyAuthorized(params, responseCreator) {
-  if (userInStore()) {
-    responseCreator.redirect({ to: 'Home' });
-  }
-}
-
-function goToLoginWhenNotAuthorized(params, responseCreator) {
-  if (!userInStore()) {
-    responseCreator.redirect({ to: 'Login' });
-  }
-}
-
 const routes = [
   // homepage
   {
@@ -49,13 +27,11 @@ const routes = [
     name: 'Login',
     path: 'login',
     body: () => Login,
-    //load: goHomeWhenAlreadyAuthorized
   },
   {
     name: 'Signup',
     path: 'signup',
     body: () => Signup,
-    //load: goHomeWhenAlreadyAuthorized
   },
   {
     name: 'Profile',
@@ -86,26 +62,11 @@ const routes = [
     name: 'Challenges',
     path: 'challenges',
     body: () => ChallengeList,
-    /*load: (params, responseCreator) => {
-      if (!userInStore()) {
-        responseCreator.redirect({
-          to: 'Login',
-          details: { search: '?next=/challenges' }
-        });
-      }
-    },*/
     children: [
       {
         name: 'Challenge',
         path: ':challengeId',
-        body: () => Challenge,
-        /*load: (params, responseCreator) => {
-          if (!userInStore()) {
-            responseCreator.redirect({
-              to: 'Login'
-            });
-          }
-        }*/
+        body: () => Challenge
       }
     ]
   },
