@@ -8,7 +8,7 @@ graphql-relay==0.4.5
 gunicorn==19.6.0
 iso8601==0.1.12
 packaging==16.8
-promise==2.1.dev0
+promise==2.1.dev20170724043809
 psycopg2==2.6.2
 pyparsing==2.2.0
 singledispatch==3.4.0.3
