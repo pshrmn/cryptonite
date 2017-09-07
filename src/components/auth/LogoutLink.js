@@ -9,8 +9,8 @@ const LogoutLink = (props, context) => {
       .then((resp) => {
         const { success } = resp.data.logoutUser;
         if (success) {
-          props.client.resetStore();
           context.curi.history.push('/');
+          props.client.resetStore();
         }
       })
   }

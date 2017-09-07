@@ -1,5 +1,5 @@
 import React from 'react';
-import { graphql } from 'react-apollo';
+import { graphql, compose, withApollo } from 'react-apollo';
 
 import { InputRow, Errors } from 'components/inputs';
 import Spinner from 'components/Spinner';
@@ -110,5 +110,8 @@ SignupForm.contextTypes = {
   curi: React.PropTypes.object
 };
 
-export default graphql(SIGNUP_MUTATION)(SignupForm);
+export default compose(
+  withApollo,
+  graphql(SIGNUP_MUTATION)
+)(SignupForm);
 

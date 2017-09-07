@@ -1,5 +1,5 @@
 import React from 'react';
-import { graphql } from 'react-apollo';
+import { graphql, compose, withApollo } from 'react-apollo';
 
 import { InputRow, Errors } from 'components/inputs';
 import Spinner from 'components/Spinner';
@@ -46,6 +46,7 @@ class LoginForm extends React.Component {
         this.setState({ loading: false })
         if ( success ) {
           this.context.curi.history.push(this.props.next || '/');
+          this.props.client.resetStore();
         } else {
           const errorsObject = errors.reduce((acc, { key, value }) => {
             acc[key] = value;
@@ -99,7 +100,9 @@ LoginForm.contextTypes = {
   curi: React.PropTypes.object
 };
 
-export default graphql(LOGIN_MUTATION, {
-  refetchQueries: ['user']
-})
-(LoginForm);
+export default compose(
+  withApollo,
+  graphql(LOGIN_MUTATION, {
+    refetchQueries: ['user']
+  })
+)(LoginForm);
