@@ -2,29 +2,31 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { ApolloClient, ApolloProvider, createNetworkInterface } from 'react-apollo';
 
-import createHistory from 'history/createBrowserHistory';
-import createConfig from 'curi';
-import { Navigator } from 'curi-react';
-import { parse } from 'qs';
-import createQueryMiddleware from 'curi-middleware-query';
+import Browser from '@hickory/browser';
+import createConfig from '@curi/core';
+import { Navigator } from '@curi/react';
+import { parse, stringify } from 'qs';
 
 import client from './apolloClient';
 import routes from './routes';
 import renderFunction from './renderFunction';
 
-const history = createHistory();
-const queryMiddleware = createQueryMiddleware(parse);
-
-const config = createConfig(history, routes, {
-  middleware: [queryMiddleware]
+const history = Browser({
+  query: { parse, stringify }
 });
 
-config.ready().then(() => {
+const config = createConfig(history, routes);
+const root = document.querySelector('#app-holder');
+
+config.subscribe((response, action) => {
   ReactDOM.render((
     <ApolloProvider client={client}>
-      <Navigator config={config}>
-        {renderFunction}
-      </Navigator>
+      <Navigator
+        response={response}
+        action={action}
+        config={config}
+        render={renderFunction}
+      />
     </ApolloProvider>
-  ), document.querySelector('#app-holder'));  
+  ), root);
 });

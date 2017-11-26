@@ -2,7 +2,7 @@ import React from 'react';
 import { graphql } from 'react-apollo';
 
 import { ALL_CHALLENGES_QUERY } from 'api/queries';
-import { Link } from 'curi-react';
+import { Link } from '@curi/react';
 
 import ChallengeItem from 'components/challenges/ChallengeItem';
 

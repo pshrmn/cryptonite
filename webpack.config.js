@@ -10,8 +10,6 @@ const config = {
     vendor: [
       'react',
       'react-dom',
-      'curi',
-      'curi-react',
       'react-apollo',
       'd3-shape'
     ]
