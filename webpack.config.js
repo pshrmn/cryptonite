@@ -16,7 +16,9 @@ const config = {
   },
   output: {
     path: path.join(__dirname, 'cryptonite', 'static'),
-    filename: 'js/bundle.js'
+    filename: 'js/bundle.js',
+    chunkFilename: 'js/[name].bundle.js',
+    publicPath: '/static/'
   },
   resolve: {
     modules: [
