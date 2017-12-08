@@ -18,7 +18,7 @@ const history = Browser({
 const config = createConfig(history, routes);
 const root = document.querySelector('#app-holder');
 
-config.subscribe((response, action) => {
+config.respond((response, action) => {
   ReactDOM.render((
     <ApolloProvider client={client}>
       <Navigator

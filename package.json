@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/pshrmn/cryptonite#readme",
   "dependencies": {
-    "@curi/core": "^1.0.0-beta.16",
+    "@curi/core": "^1.0.0-beta.21",
     "@curi/react": "^1.0.0-beta.13",
     "@hickory/browser": "^1.0.0-beta.5",
     "d3-shape": "^1.2.0",

@@ -20,28 +20,48 @@ const routes = [
   {
     name: 'Home',
     path: '',
-    body: () => Home
+    match: {
+      response({ set }) {
+        set.body(Home);
+      }
+    }
   },
   // user
     {
     name: 'Login',
     path: 'login',
-    body: () => Login,
+    match: {
+      response({ set }) {
+        set.body(Login);
+      }
+    }
   },
   {
     name: 'Signup',
     path: 'signup',
-    body: () => Signup,
+    match: {
+      response({ set }) {
+        set.body(Signup);
+      }
+    }
   },
   {
     name: 'Profile',
     path: 'profile',
-    body: () => Profile,
+    match: {
+      response({ set }) {
+        set.body(Profile);
+      }
+    },
     children: [
       {
         name: 'Change Password',
         path: 'change-password',
-        body: () => ChangePassword
+        match: {
+          response({ set }) {
+            set.body(ChangePassword);
+          }
+        }
       }
     ]
   },
@@ -49,48 +69,80 @@ const routes = [
   {
     name: 'Lessons',
     path: 'learn',
-    body: () => LessonList,
+    match: {
+      response({ set }) {
+        set.body(LessonList);
+      }
+    },
     children: [
       {
         name: 'Lesson',
         path: ':lessonSlug',
-        body: () => Lesson
+        match: {
+          response({ set }) {
+            set.body(Lesson);
+          }
+        }
       }
     ]
   },
   {
     name: 'Challenges',
     path: 'challenges',
-    body: () => ChallengeList,
+    match: {
+      response({ set }) {
+        set.body(ChallengeList);
+      }
+    },
     children: [
       {
         name: 'Challenge',
         path: ':challengeId',
-        body: () => Challenge
+        match: {
+          response({ set }) {
+            set.body(Challenge);
+          }
+        }
       }
     ]
   },
   {
     name: 'Tools',
     path: 'tools',
-    body: () => Tools,
+    match: {
+      response({ set }) {
+        set.body(Tools);
+      }
+    },
     children: [
       {
         name: 'Shift Tools',
         path: 'shift',
-        body: () => ShiftTools
+        match: {
+          response({ set }) {
+            set.body(ShiftTools);
+          }
+        }
       },
       {
         name: 'Vigenere Tools',
         path: 'vigenere',
-        body: () => VigenereTools
+        match: {
+          response({ set }) {
+            set.body(VigenereTools);
+          }
+        }
       }
     ]
   },
   {
     name: 'Cheat',
     path: 'cheat',
-    body: () => Cheat
+    match: {
+      response({ set }) {
+        set.body(Cheat);
+      }
+    }
   }
 ];
 
