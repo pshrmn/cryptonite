@@ -10,7 +10,7 @@ const LogoutLink = (props, context) => {
       .then((resp) => {
         const { success } = resp.data.logoutUser;
         if (success) {
-          context.curi.config.history.push('/');
+          context.curi.router.history.push('/');
           props.client.resetStore();
         }
       })
@@ -21,7 +21,7 @@ const LogoutLink = (props, context) => {
 
 LogoutLink.contextTypes = {
   curi: PropTypes.shape({
-    config: PropTypes.object
+    router: PropTypes.object
   })
 };
 

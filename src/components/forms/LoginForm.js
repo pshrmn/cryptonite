@@ -46,7 +46,7 @@ class LoginForm extends React.Component {
         const { success, errors, user } = resp.data.loginUser;
         this.setState({ loading: false })
         if ( success ) {
-          this.context.curi.config.history.push(this.props.next || '/');
+          this.context.curi.router.history.push(this.props.next || '/');
         } else {
           const errorsObject = errors.reduce((acc, { key, value }) => {
             acc[key] = value;
@@ -98,7 +98,7 @@ class LoginForm extends React.Component {
 
 LoginForm.contextTypes = {
   curi: PropTypes.shape({
-    config: PropTypes.object
+    router: PropTypes.object
   })
 };
 

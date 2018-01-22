@@ -3,30 +3,25 @@ import ReactDOM from 'react-dom';
 import { ApolloClient, ApolloProvider, createNetworkInterface } from 'react-apollo';
 
 import Browser from '@hickory/browser';
-import createConfig from '@curi/core';
-import { Navigator } from '@curi/react';
+import curi from '@curi/core';
 import { parse, stringify } from 'qs';
 
 import client from './apolloClient';
 import routes from './routes';
 import renderFunction from './renderFunction';
+import ResponsiveBase from './components/ResponsiveBase';
 
 const history = Browser({
   query: { parse, stringify }
 });
 
-const config = createConfig(history, routes);
+const router = curi(history, routes);
 const root = document.querySelector('#app-holder');
 
-config.respond((response, action) => {
+router.respond((response, action) => {
   ReactDOM.render((
     <ApolloProvider client={client}>
-      <Navigator
-        response={response}
-        action={action}
-        config={config}
-        render={renderFunction}
-      />
+      <ResponsiveBase router={router} render={renderFunction} />
     </ApolloProvider>
   ), root);
 });

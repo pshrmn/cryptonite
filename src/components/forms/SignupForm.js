@@ -47,7 +47,7 @@ class SignupForm extends React.Component {
         this.setState({ loading: false });
         const { success, errors, user } = resp.data.signupUser;
         if ( success ) {
-          this.context.curi.config.history.push(this.props.next || '/');
+          this.context.curi.router.history.push(this.props.next || '/');
         } else {
           const errorsObject = errors.reduce((acc, { key, value }) => {
             acc[key] = value;
@@ -109,7 +109,7 @@ class SignupForm extends React.Component {
 
 SignupForm.contextTypes = {
   curi: PropTypes.shape({
-    config: PropTypes.object
+    router: PropTypes.object
   })
 };
 
