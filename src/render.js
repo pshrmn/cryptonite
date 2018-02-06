@@ -16,21 +16,19 @@ export default ({ router }) => {
     <ApolloProvider client={client}>
       <CuriProvider router={router}>
         {({ response }) => {
-            const { body:Body, params, query, location } = response;
+            const { body:Body } = response;
             return (
               <div id='app-base'>
                 <Header />
                 <main>
                   <div className='container'>
-                    <Body params={params} query={query} location={location} />
+                    <Body response={response} />
                   </div>
                 </main>
                 <Footer />
               </div>
             );
-          }
-          
-        }
+        }}
       </CuriProvider>
     </ApolloProvider>
   ), document.querySelector('#app-holder'));

@@ -70,14 +70,12 @@ class SuperSecret extends React.Component {
     this.handlePassword = this.handlePassword.bind(this);
   }
 
-
   handlePassword(event) {
     this.setState({ password: event.target.value });
     if ( event.target.value === this.SUPER_SECRET_PASSWORD ) {
       this.props.unlock();
     }
   }
-
 
   render() {
     return (

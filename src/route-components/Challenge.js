@@ -131,7 +131,7 @@ const Message = ({chars}) => (
 
 export default compose(
   graphql(CHALLENGE_QUERY, {
-    options: (props) => ({ variables: { id: props.params.challengeId} })
+    options: ({ response }) => ({ variables: { id: response.params.challengeId} })
   }),
   graphql(CHECK_CHALLENGE_MUTATION, {
     name: 'checkChallenge'

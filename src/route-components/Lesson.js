@@ -6,10 +6,8 @@ lessons.forEach(lesson => {
   mappedSlugs[lesson.slug] = lesson;
 });
 
-export default function Lesson(props) {
-  const { params } = props;
-  const { lessonSlug } = params;
-
+export default function Lesson({ response }) {
+  const { lessonSlug } = response.params;
   if (!lessonSlug || !mappedSlugs[lessonSlug]) {
     return <div>Lesson not found</div>;
   }

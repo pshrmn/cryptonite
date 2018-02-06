@@ -3,8 +3,10 @@ import { Link } from '@curi/react';
 
 import SignupForm from 'components/forms/SignupForm';
 
-export default ({ query, location }) => {
+export default ({ response }) => {
   let next = '/';
+  const { location } = response;
+  const { query } = location;
   if ( query && query.next ) {
     next = query.next;
   } else if ( location.state && location.state.from ) {
