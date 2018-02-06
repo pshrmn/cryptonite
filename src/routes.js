@@ -4,7 +4,7 @@ const routes = [
     name: 'Home',
     path: '',
     match: {
-      initial: () => import(/* webpackChunkName: 'Home' */'./components/routes/Home')
+      initial: () => import(/* webpackChunkName: 'Home' */'./route-components/Home')
         .then(module => module.default),
       response:({ resolved, set }) => {
         set.body(resolved.initial);
@@ -16,7 +16,7 @@ const routes = [
     name: 'Login',
     path: 'login',
     match: {
-      initial: () => import(/* webpackChunkName: 'Login' */'./components/routes/Login')
+      initial: () => import(/* webpackChunkName: 'Login' */'./route-components/Login')
         .then(module => module.default),
       response:({ resolved, set }) => {
         set.body(resolved.initial);
@@ -27,7 +27,7 @@ const routes = [
     name: 'Signup',
     path: 'signup',
     match: {
-      initial: () => import(/* webpackChunkName: 'Signup' */'./components/routes/Signup')
+      initial: () => import(/* webpackChunkName: 'Signup' */'./route-components/Signup')
         .then(module => module.default),
       response:({ resolved, set }) => {
         set.body(resolved.initial);
@@ -38,7 +38,7 @@ const routes = [
     name: 'Profile',
     path: 'profile',
     match: {
-      initial: () => import(/* webpackChunkName: 'Profile' */'./components/routes/Profile')
+      initial: () => import(/* webpackChunkName: 'Profile' */'./route-components/Profile')
         .then(module => module.default),
       response:({ resolved, set }) => {
         set.body(resolved.initial);
@@ -49,7 +49,7 @@ const routes = [
         name: 'Change Password',
         path: 'change-password',
         match: {
-          initial: () => import(/* webpackChunkName: 'ChangePassword' */'./components/routes/ChangePassword')
+          initial: () => import(/* webpackChunkName: 'ChangePassword' */'./route-components/ChangePassword')
             .then(module => module.default),
           response:({ resolved, set }) => {
             set.body(resolved.initial);
@@ -63,7 +63,7 @@ const routes = [
     name: 'Lessons',
     path: 'learn',
     match: {
-      initial: () => import(/* webpackChunkName: 'LessonList' */'./components/routes/LessonList')
+      initial: () => import(/* webpackChunkName: 'LessonList' */'./route-components/LessonList')
         .then(module => module.default),
       response:({ resolved, set }) => {
         set.body(resolved.initial);
@@ -74,7 +74,7 @@ const routes = [
         name: 'Lesson',
         path: ':lessonSlug',
         match: {
-          initial: () => import(/* webpackChunkName: 'Lesson' */'./components/routes/Lesson')
+          initial: () => import(/* webpackChunkName: 'Lesson' */'./route-components/Lesson')
             .then(module => module.default),
           response:({ resolved, set }) => {
             set.body(resolved.initial);
@@ -87,7 +87,7 @@ const routes = [
     name: 'Challenges',
     path: 'challenges',
     match: {
-      initial: () => import(/* webpackChunkName: 'ChallengeList' */'./components/routes/ChallengeList')
+      initial: () => import(/* webpackChunkName: 'ChallengeList' */'./route-components/ChallengeList')
         .then(module => module.default),
       response:({ resolved, set }) => {
         set.body(resolved.initial);
@@ -98,7 +98,7 @@ const routes = [
         name: 'Challenge',
         path: ':challengeId',
         match: {
-          initial: () => import(/* webpackChunkName: 'Challenge' */'./components/routes/Challenge')
+          initial: () => import(/* webpackChunkName: 'Challenge' */'./route-components/Challenge')
             .then(module => module.default),
           response:({ resolved, set }) => {
             set.body(resolved.initial);
@@ -111,7 +111,7 @@ const routes = [
     name: 'Tools',
     path: 'tools',
     match: {
-      initial: () => import(/* webpackChunkName: 'Tools' */'./components/routes/Tools')
+      initial: () => import(/* webpackChunkName: 'Tools' */'./route-components/Tools')
         .then(module => module.default),
       response:({ resolved, set }) => {
         set.body(resolved.initial);
@@ -122,7 +122,7 @@ const routes = [
         name: 'Shift Tools',
         path: 'shift',
         match: {
-          initial: () => import(/* webpackChunkName: 'ShiftTools' */'./components/routes/ShiftTools')
+          initial: () => import(/* webpackChunkName: 'ShiftTools' */'./route-components/ShiftTools')
             .then(module => module.default),
           response:({ resolved, set }) => {
             set.body(resolved.initial);
@@ -133,7 +133,7 @@ const routes = [
         name: 'Vigenere Tools',
         path: 'vigenere',
         match: {
-          initial: () => import(/* webpackChunkName: 'VigenereTools' */'./components/routes/VigenereTools')
+          initial: () => import(/* webpackChunkName: 'VigenereTools' */'./route-components/VigenereTools')
             .then(module => module.default),
           response:({ resolved, set }) => {
             set.body(resolved.initial);
@@ -146,7 +146,7 @@ const routes = [
     name: 'Cheat',
     path: 'cheat',
     match: {
-      initial: () => import(/* webpackChunkName: 'Cheat' */'./components/routes/Cheat')
+      initial: () => import(/* webpackChunkName: 'Cheat' */'./route-components/Cheat')
         .then(module => module.default),
       response:({ resolved, set }) => {
         set.body(resolved.initial);
