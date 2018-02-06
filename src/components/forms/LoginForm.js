@@ -1,6 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { graphql } from 'react-apollo';
+import { Curious } from '@curi/react';
 
 import { InputRow, Errors } from 'components/inputs';
 import Spinner from 'components/Spinner';
@@ -46,7 +46,7 @@ class LoginForm extends React.Component {
         const { success, errors, user } = resp.data.loginUser;
         this.setState({ loading: false })
         if ( success ) {
-          this.context.curi.router.history.push(this.props.next || '/');
+          this.props.router.history.push(this.props.next || '/');
         } else {
           const errorsObject = errors.reduce((acc, { key, value }) => {
             acc[key] = value;
@@ -96,13 +96,7 @@ class LoginForm extends React.Component {
   }
 }
 
-LoginForm.contextTypes = {
-  curi: PropTypes.shape({
-    router: PropTypes.object
-  })
-};
-
-export default graphql(LOGIN_MUTATION, {
+const ComposedForm = graphql(LOGIN_MUTATION, {
   name: 'loginUser',
   options: {
     refetchQueries: [
@@ -110,3 +104,11 @@ export default graphql(LOGIN_MUTATION, {
     ]
   }
 })(LoginForm);
+
+export default props => (
+  <Curious>
+    {({ router }) => (
+      <ComposedForm {...props} router={router} />
+    )}
+  </Curious>
+);

@@ -1,16 +1,16 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { compose, withApollo, graphql } from 'react-apollo';
 import { LOGOUT_MUTATION } from 'api/mutations';
+import { Curious } from '@curi/react';
 
-const LogoutLink = (props, context) => {
+const LogoutLink = (props) => {
   const logoutHandler = event => {
     event.preventDefault();
     props.mutate()
       .then((resp) => {
         const { success } = resp.data.logoutUser;
         if (success) {
-          context.curi.router.history.push('/');
+          props.router.history.push('/');
           props.client.resetStore();
         }
       })
@@ -19,13 +19,15 @@ const LogoutLink = (props, context) => {
   return <a href='#' onClick={logoutHandler}>Logout</a>;
 }
 
-LogoutLink.contextTypes = {
-  curi: PropTypes.shape({
-    router: PropTypes.object
-  })
-};
-
-export default compose(
+const ComposedLink = compose(
   withApollo,
   graphql(LOGOUT_MUTATION)
 )(LogoutLink);
+
+export default props => (
+  <Curious>
+    {({ router }) => (
+      <ComposedLink {...props} router={router} />
+    )}
+  </Curious>
+);
