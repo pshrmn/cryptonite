@@ -20,7 +20,7 @@ class LoginUser(graphene.Mutation):
     errors = graphene.List(FormError)
 
     def mutate(self, info, username, password):
-        if info.context.user.is_authenticated():
+        if info.context.user.is_authenticated:
             return LoginUser(
                 user=None,
                 success=False,
@@ -46,7 +46,7 @@ class SignupUser(graphene.Mutation):
     errors = graphene.List(FormError)
 
     def mutate(self, info, username, password1, password2):
-        if info.context.user.is_authenticated():
+        if info.context.user.is_authenticated:
             return SignupUser(
                 user=None,
                 success=False,

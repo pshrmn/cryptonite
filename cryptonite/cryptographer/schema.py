@@ -22,13 +22,13 @@ class CryptographerType(DjangoObjectType):
         return self.user.username
 
     def resolve_authenticated(self, info):
-        return self.user.is_authenticated()
+        return self.user.is_authenticated
 
 class Query(object):
     user = graphene.Field(CryptographerType)
 
     def resolve_user(self, info):
         user = info.context.user
-        if not user.is_authenticated():
+        if not user.is_authenticated:
             return None
         return user.cryptographer

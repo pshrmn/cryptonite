@@ -67,8 +67,8 @@ class Challenge(models.Model):
 
 
 class CompletedChallenge(models.Model):
-    challenge = models.ForeignKey(Challenge)
-    cryptographer = models.ForeignKey(Cryptographer)
+    challenge = models.ForeignKey(Challenge, on_delete=models.CASCADE)
+    cryptographer = models.ForeignKey(Cryptographer, on_delete=models.CASCADE)
 
     def __str__(self):
         return '%d - %d' % (self.cryptographer.pk, self.challenge.pk)

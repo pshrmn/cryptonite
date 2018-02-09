@@ -31,12 +31,12 @@ class Query(object):
                                id=graphene.Int())
 
     def resolve_all_challenges(self, info):
-        if not info.context.user.is_authenticated():
+        if not info.context.user.is_authenticated:
             return []
         return Challenge.objects.all()
 
     def resolve_challenge(self, info, id):
-        if not info.context.user.is_authenticated():
+        if not info.context.user.is_authenticated:
             return None
         return Challenge.objects.get(pk=id)
 
@@ -52,7 +52,7 @@ class CheckChallenge(graphene.Mutation):
 
     def mutate(self, info, id, message):
         user = info.context.user
-        if not user.is_authenticated():
+        if not user.is_authenticated:
             return CheckChallenge(
                 user=None,
                 challenge=None,
