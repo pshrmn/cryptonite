@@ -1,8 +1,9 @@
-import {
-  ApolloClient,
-  createNetworkInterface,
-  toIdValue
- } from 'react-apollo';
+import { ApolloClient } from 'apollo-client';
+import { toIdValue } from 'apollo-utilities';
+import { HttpLink } from 'apollo-link-http';
+import { ApolloLink, from } from 'apollo-link';
+import { InMemoryCache } from 'apollo-cache-inmemory';
+
 import { getCSRFToken } from './helpers/csrf';
 
 function dataIdFromObject (result) {
@@ -14,25 +15,28 @@ function dataIdFromObject (result) {
   return null;
 }
 
-const networkInterface = createNetworkInterface({
-  uri: '/graphql',
-  opts: {
-    credentials: 'same-origin',
-    headers: {}
-  }
+const link = new HttpLink({
+  url: '/graphql',
+  credentials: 'same-origin'
 });
 
-networkInterface.use([{
-  applyMiddleware (req, next) {
-    req.options.headers['X-CSRFToken'] = getCSRFToken();
-    next();
-  }
-}]);
-
-export default new ApolloClient({
-  networkInterface,
-  dataIdFromObject,
-  customResolvers: {
+const header = new ApolloLink((operation, forward) => {
+  operation.setContext(
+    ({ headers = {} }) => {
+      return {
+        headers: {
+          ...headers,
+          'X-CSRFToken': getCSRFToken()
+        }
+      }
+    }
+  );
+  
+  return forward(operation);
+});
+const cache = new InMemoryCache({
+  // maybe?
+  cacheResolvers: {
     Query: {
       challenge: (info, args) => {
         return toIdValue(
@@ -45,3 +49,11 @@ export default new ApolloClient({
     }
   }
 });
+
+const client = new ApolloClient({
+  link: from([header, link ]),
+  cache,
+  dataIdFromObject
+});
+
+export default client;

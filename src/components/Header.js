@@ -57,7 +57,6 @@ function Header({ data: { user }, location }) {
     ...userLinks
   ];
 
-
   return (
     <header>
       <div className='container'>
